@@ -10,7 +10,7 @@ import { PROJECTS } from "@/data/projects";
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-28 sm:py-36">
+    <section id="projects" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Проєкти"
@@ -18,7 +18,7 @@ export function Projects() {
           description="Я готую перші кейси до публікації. Нижче — приклади форматів проєктів, над якими я працюю."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((project, index) => (
             <Reveal key={project.id} delay={(index % 3) * 0.08}>
               <motion.article

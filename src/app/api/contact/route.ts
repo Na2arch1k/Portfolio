@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { SITE } from "@/lib/constants";
+import { isValidUaPhoneNumber } from "@/lib/phone";
 
 interface ContactPayload {
   name: string;
@@ -15,7 +16,7 @@ function isValidPayload(data: Partial<ContactPayload>): data is ContactPayload {
     data.name &&
       data.name.trim().length >= 2 &&
       data.phone &&
-      data.phone.trim().length >= 7 &&
+      isValidUaPhoneNumber(data.phone) &&
       data.email &&
       EMAIL_REGEX.test(data.email) &&
       data.message &&

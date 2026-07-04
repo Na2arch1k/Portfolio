@@ -44,7 +44,7 @@ export function Navbar() {
             href="#home"
             className="text-lg font-semibold tracking-tight text-white"
           >
-            Назарій<span className="text-accent">.</span>
+            Nazar<span className="text-accent">.dev</span>
           </a>
 
           <ul className="hidden items-center gap-8 lg:flex">

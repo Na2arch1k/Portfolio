@@ -7,12 +7,14 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { PhoneInput } from "@/components/ui/PhoneInput";
 import { SITE } from "@/lib/constants";
+import { toUaE164 } from "@/lib/phone";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 const CONTACT_INFO = [
-  { icon: Send, label: "Telegram", value: "@nazariidev", href: SITE.telegram },
+  { icon: Send, label: "Telegram", value: SITE.telegramHandle, href: SITE.telegram },
   { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
   { icon: MapPin, label: "Локація", value: SITE.location, href: undefined },
 ];
@@ -28,9 +30,10 @@ export function Contact() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const phoneDigits = String(formData.get("phone") ?? "").replace(/\D/g, "");
     const payload = {
       name: String(formData.get("name") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
+      phone: phoneDigits ? toUaE164(phoneDigits) : "",
       email: String(formData.get("email") ?? ""),
       message: String(formData.get("message") ?? ""),
     };
@@ -59,7 +62,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-28 sm:py-36">
+    <section id="contact" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Контакти"
@@ -67,7 +70,7 @@ export function Contact() {
           description="Залиште заявку — я звʼяжусь з вами протягом одного робочого дня."
         />
 
-        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-5">
+        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-5">
           <Reveal className="lg:col-span-2">
             <div className="glass flex h-full flex-col justify-between rounded-2xl p-8">
               <div>
@@ -132,15 +135,7 @@ export function Contact() {
                   <label htmlFor="phone" className="text-sm font-medium text-white/70">
                     Телефон
                   </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    required
-                    minLength={7}
-                    placeholder="+380 XX XXX XX XX"
-                    className="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-accent/60 focus:bg-white/[0.05]"
-                  />
+                  <PhoneInput id="phone" name="phone" required />
                 </div>
               </div>
 

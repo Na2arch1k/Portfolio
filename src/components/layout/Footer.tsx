@@ -66,12 +66,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/[0.08] pt-8 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/[0.08] pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
             © {year} {SITE.name}. Всі права захищено.
-          </p>
-          <p className="text-xs text-white/40">
-            Створено за допомогою Claude Code
           </p>
         </div>
       </Container>

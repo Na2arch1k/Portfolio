@@ -27,7 +27,7 @@ const PILLARS = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-28 sm:py-36">
+    <section id="about" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Про мене"
@@ -35,7 +35,7 @@ export function About() {
           description="Я займаюсь створенням сучасних вебсайтів для бізнесу. Використовую Claude Code та сучасний стек технологій для швидкої розробки красивих і ефективних сайтів. Моя ціль — допомагати компаніям виглядати професійно в інтернеті та отримувати більше клієнтів."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PILLARS.map(({ icon: Icon, title, description }, index) => (
             <Reveal key={title} delay={index * 0.1}>
               <GlassCard className="h-full">

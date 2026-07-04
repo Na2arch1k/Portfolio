@@ -7,7 +7,7 @@ import { PROCESS_STEPS } from "@/data/process";
 
 export function Process() {
   return (
-    <section id="process" className="relative py-28 sm:py-36">
+    <section id="process" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Процес роботи"
@@ -15,7 +15,7 @@ export function Process() {
           description="Кожен проєкт проходить шість чітких етапів, щоб результат відповідав очікуванням."
         />
 
-        <div className="relative mx-auto mt-20 max-w-2xl">
+        <div className="relative mx-auto mt-14 max-w-2xl">
           <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent/60 via-white/10 to-transparent sm:left-1/2 sm:-translate-x-1/2" />
 
           <div className="flex flex-col gap-12">

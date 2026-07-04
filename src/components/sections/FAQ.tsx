@@ -13,7 +13,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-28 sm:py-36">
+    <section id="faq" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="FAQ"
@@ -21,7 +21,7 @@ export function FAQ() {
           description="Не знайшли відповіді? Напишіть напряму — я відповім особисто."
         />
 
-        <div className="mx-auto mt-16 flex max-w-3xl flex-col gap-4">
+        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-4">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
             return (

@@ -6,7 +6,7 @@ import { ADVANTAGES } from "@/data/advantages";
 
 export function WhyChooseMe() {
   return (
-    <section id="why-me" className="relative py-28 sm:py-36">
+    <section id="why-me" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Чому саме я"
@@ -14,7 +14,7 @@ export function WhyChooseMe() {
           description="Поєдную дизайнерське мислення, технічну експертизу та швидкість AI-розробки."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {ADVANTAGES.map(({ icon: Icon, title, description }, index) => (
             <Reveal key={title} delay={(index % 3) * 0.08}>
               <GlassCard className="h-full text-center">

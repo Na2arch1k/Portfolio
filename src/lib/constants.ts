@@ -5,10 +5,11 @@ export const SITE = {
   locale: "uk_UA",
   description:
     "Розробляю швидкі, сучасні та красиві вебсайти для бізнесу за допомогою Claude Code. Створюю сайти, які реально приносять заявки.",
-  email: "hello@nazariidev.com",
+  email: "nazargar7@gmail.com",
   phone: "+380 67 123 45 67",
   phoneHref: "+380671234567",
-  telegram: "https://t.me/nazariidev",
+  telegram: "https://t.me/nazar_m0p",
+  telegramHandle: "@nazar_m0p",
   location: "Львів, Україна",
 } as const;
 

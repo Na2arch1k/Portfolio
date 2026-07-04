@@ -6,7 +6,7 @@ import { SERVICES } from "@/data/services";
 
 export function Services() {
   return (
-    <section id="services" className="relative py-28 sm:py-36">
+    <section id="services" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
           eyebrow="Послуги"
@@ -14,7 +14,7 @@ export function Services() {
           description="Від простого лендингу до багатофункціонального корпоративного сайту — підбираю рішення під цілі вашого бізнесу."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(({ icon: Icon, title, description }, index) => (
             <Reveal key={title} delay={(index % 3) * 0.08}>
               <GlassCard className="h-full">
