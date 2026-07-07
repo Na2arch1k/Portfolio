@@ -46,6 +46,11 @@ export async function sendTelegramNotification(
   ].filter((line): line is string => line !== null);
 
   try {
+    // Telegram's inline keyboard button "url" field only accepts http(s)
+    // or tg:// links — both "tel:" and "mailto:" come back as
+    // BUTTON_URL_INVALID and fail the whole sendMessage call. The email
+    // and phone are already in the message text above, where Telegram
+    // auto-links them for tap-to-email / tap-to-call.
     const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -53,13 +58,6 @@ export async function sendTelegramNotification(
         chat_id: chatId,
         text: lines.join("\n"),
         parse_mode: "HTML",
-        // Telegram's inline keyboard only accepts http(s)/tg:// URLs — a
-        // "tel:" button is rejected outright and fails the whole request.
-        // The phone number is already in the message text above, where
-        // Telegram auto-links it for tap-to-call.
-        reply_markup: {
-          inline_keyboard: [[{ text: "✉️ Написати email", url: `mailto:${payload.email}` }]],
-        },
       }),
     });
 
