@@ -1,16 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Zap, Smartphone, Search } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 
-const STATS = [
-  { icon: Zap, label: "Швидке виконання" },
-  { icon: Sparkles, label: "Сучасний дизайн" },
-  { icon: Smartphone, label: "Адаптивність" },
-  { icon: Search, label: "SEO" },
+const TRUST_STATS = [
+  { value: "6", label: "запущених проєктів" },
+  { value: "5+", label: "бізнес-ніш" },
+  { value: "2+", label: "роки досвіду" },
+  { value: "100%", label: "адаптивність" },
 ];
 
 export function Hero() {
@@ -27,20 +27,23 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent-soft"
+            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white/70 backdrop-blur-sm"
           >
-            <Sparkles size={16} />
-            Веброзробка нового покоління з Claude Code
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            Відкритий до нових проєктів
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-gradient max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
+            className="text-gradient max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl"
           >
-            Створюю сучасні вебсайти, які допомагають бізнесу отримувати{" "}
-            <span className="text-gradient-accent">більше клієнтів</span>
+            Преміальні сайти, які приносять бізнесу{" "}
+            <span className="text-gradient-accent">реальних клієнтів</span>
           </motion.h1>
 
           <motion.p
@@ -49,10 +52,9 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-white/60 sm:text-xl"
           >
-            Допомагаю бізнесу масштабуватися через ефективні веб-рішення. Маю
-            понад 2 роки досвіду у розробці, тому створюю не просто красиві
-            сайти, а швидкі та сучасні інструменти, які перетворюють
-            відвідувачів на реальних клієнтів.
+            Розробляю швидкі та сучасні вебсайти під конкретну нішу бізнесу —
+            від люксової стоматології до fine dining. Дизайн, код і запуск під
+            ключ.
           </motion.p>
 
           <motion.div
@@ -62,30 +64,39 @@ export function Hero() {
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
             <Button href="#contact" size="lg" icon={<ArrowRight size={18} />}>
-              Замовити сайт
+              Обговорити проєкт
             </Button>
-            <Button href="#projects" variant="secondary" size="lg">
-              Мої роботи
+            <Button
+              href="#projects"
+              variant="secondary"
+              size="lg"
+              icon={<ArrowDown size={16} />}
+            >
+              Переглянути роботи
             </Button>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-20 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
+            transition={{ duration: 0.7, delay: 0.45 }}
+            className="mt-20 w-full max-w-3xl"
           >
-            {STATS.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="glass flex flex-col items-center gap-3 rounded-2xl px-4 py-6 text-center transition-colors duration-300 hover:border-accent/40"
-              >
-                <Icon size={22} className="text-accent" />
-                <span className="text-sm font-medium text-white/70">
-                  {label}
-                </span>
-              </div>
-            ))}
+            <div className="glass grid grid-cols-2 divide-white/[0.06] rounded-2xl py-6 sm:grid-cols-4 sm:divide-x">
+              {TRUST_STATS.map(({ value, label }) => (
+                <div
+                  key={label}
+                  className="flex flex-col items-center gap-1 px-4 py-3 sm:py-0"
+                >
+                  <span className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                    {value}
+                  </span>
+                  <span className="text-xs font-medium text-white/50 sm:text-sm">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </Container>

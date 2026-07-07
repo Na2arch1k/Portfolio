@@ -10,19 +10,24 @@ export function Services() {
       <Container>
         <SectionHeading
           eyebrow="Послуги"
-          title="Все, що потрібно для сильної присутності онлайн"
-          description="Від простого лендингу до багатофункціонального корпоративного сайту — підбираю рішення під цілі вашого бізнесу."
+          title="Рішення під цілі вашого бізнесу"
+          description="Від лендингу до повноцінного корпоративного сайту — беру на себе дизайн, розробку та запуск."
         />
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map(({ icon: Icon, title, description }, index) => (
             <Reveal key={title} delay={(index % 3) * 0.08}>
               <GlassCard className="h-full">
-                <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-                  <Icon size={22} />
+                <div className="flex items-start justify-between">
+                  <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                    <Icon size={22} />
+                  </div>
+                  <span className="font-mono text-xs font-medium tracking-widest text-white/25 transition-colors duration-300 group-hover:text-accent-soft/60">
+                    0{index + 1}
+                  </span>
                 </div>
                 <h3 className="text-lg font-semibold text-white">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">
+                <p className="mt-2 text-sm leading-relaxed text-white/55">
                   {description}
                 </p>
               </GlassCard>

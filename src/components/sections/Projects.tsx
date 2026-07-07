@@ -1,68 +1,153 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Clock, LayoutGrid } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { PROJECTS } from "@/data/projects";
+import { PROJECTS, type Project } from "@/data/projects";
+
+function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }) {
+  const domain = new URL(project.url).hostname;
+
+  return (
+    <article className="group/row relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+      {/* Screenshot */}
+      <Reveal
+        className={cn("lg:col-span-7", flipped && "lg:order-2")}
+        delay={0.05}
+      >
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Відкрити сайт «${project.title}» у новій вкладці`}
+          className="group relative block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-2xl"
+        >
+          {/* Ambient glow behind the frame */}
+          <div
+            className={cn(
+              "pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100",
+              project.accent
+            )}
+          />
+
+          {/* Browser frame */}
+          <div className="glass overflow-hidden rounded-2xl transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_32px_80px_-24px_rgba(0,0,0,0.8)]">
+            <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.03] px-4 py-3">
+              <div className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#ff5f57]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#febc2e]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#28c840]" />
+              </div>
+              <div className="flex min-w-0 flex-1 items-center justify-center">
+                <span className="inline-flex max-w-full items-center gap-1.5 truncate rounded-md bg-black/30 px-3 py-1 text-[11px] font-medium tracking-wide text-white/40 transition-colors duration-300 group-hover:text-white/70">
+                  <Globe size={11} className="shrink-0" />
+                  <span className="truncate">{domain}</span>
+                </span>
+              </div>
+              <div className="w-[52px]" aria-hidden />
+            </div>
+
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <Image
+                src={project.image}
+                alt={`Скриншот сайту «${project.title}»`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+              {/* Hover veil with CTA */}
+              <div className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black shadow-lg">
+                  Відкрити сайт
+                  <ArrowUpRight size={15} />
+                </span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </Reveal>
+
+      {/* Copy */}
+      <div className={cn("lg:col-span-5", flipped && "lg:order-1")}>
+        <Reveal delay={0.15}>
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm font-medium tracking-widest text-accent-soft/70">
+              {project.index}
+            </span>
+            <span className="h-px flex-1 max-w-16 bg-gradient-to-r from-accent/50 to-transparent" />
+            <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+              {project.category}
+            </span>
+          </div>
+
+          <h3 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            {project.title}
+          </h3>
+
+          <p className="mt-4 text-base leading-relaxed text-white/55">
+            {project.description}
+          </p>
+
+          <ul className="mt-6 flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <li
+                key={tech}
+                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/60 transition-colors duration-300 hover:border-accent/30 hover:text-white/85"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+
+          <motion.a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
+          >
+            <span className="border-b border-accent/40 pb-0.5">
+              Живий сайт
+            </span>
+            <ArrowUpRight
+              size={16}
+              className="text-accent-soft transition-transform duration-300 group-hover/row:translate-x-0.5"
+            />
+          </motion.a>
+        </Reveal>
+      </div>
+    </article>
+  );
+}
 
 export function Projects() {
   return (
-    <section id="projects" className="relative py-20 sm:py-28">
+    <section id="projects" className="relative py-24 sm:py-32">
+      {/* Section ambience */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
+        <div className="absolute left-1/2 top-24 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-accent/[0.05] blur-[140px]" />
+      </div>
+
       <Container>
         <SectionHeading
-          eyebrow="Проєкти"
-          title="Портфоліо в процесі наповнення"
-          description="Я готую перші кейси до публікації. Нижче — приклади форматів проєктів, над якими я працюю."
+          eyebrow="Портфоліо"
+          title="Проєкти, які говорять самі за себе"
+          description="Реальні сайти для реальних ніш — від люксової стоматології до fine dining. Кожен можна відкрити та подивитися наживо."
         />
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 flex flex-col gap-24 sm:gap-32">
           {PROJECTS.map((project, index) => (
-            <Reveal key={project.id} delay={(index % 3) * 0.08}>
-              <motion.article
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="glass group relative flex h-full flex-col overflow-hidden rounded-2xl transition-colors duration-300 hover:border-accent/40"
-              >
-                <div
-                  className={cn(
-                    "relative flex h-48 items-center justify-center overflow-hidden bg-gradient-to-br",
-                    project.gradient
-                  )}
-                >
-                  <div className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_0%,transparent_80%)]" />
-                  <LayoutGrid
-                    size={40}
-                    className="relative z-10 text-white/25 transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">
-                    <Clock size={12} />
-                    Незабаром
-                  </span>
-                </div>
-
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="text-xs font-medium uppercase tracking-widest text-accent-soft">
-                    {project.category}
-                  </span>
-                  <h3 className="mt-2 text-lg font-semibold text-white">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">
-                    {project.description}
-                  </p>
-                  <button
-                    disabled
-                    className="mt-6 inline-flex items-center gap-1.5 self-start rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/40"
-                  >
-                    Незабаром
-                    <ArrowUpRight size={14} />
-                  </button>
-                </div>
-              </motion.article>
-            </Reveal>
+            <ProjectRow
+              key={project.id}
+              project={project}
+              flipped={index % 2 === 1}
+            />
           ))}
         </div>
       </Container>
