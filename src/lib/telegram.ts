@@ -53,13 +53,12 @@ export async function sendTelegramNotification(
         chat_id: chatId,
         text: lines.join("\n"),
         parse_mode: "HTML",
+        // Telegram's inline keyboard only accepts http(s)/tg:// URLs — a
+        // "tel:" button is rejected outright and fails the whole request.
+        // The phone number is already in the message text above, where
+        // Telegram auto-links it for tap-to-call.
         reply_markup: {
-          inline_keyboard: [
-            [
-              { text: "✉️ Написати email", url: `mailto:${payload.email}` },
-              { text: "📞 Подзвонити", url: `tel:${payload.phone}` },
-            ],
-          ],
+          inline_keyboard: [[{ text: "✉️ Написати email", url: `mailto:${payload.email}` }]],
         },
       }),
     });
