@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
+import { sendGAEvent } from "@next/third-parties/google";
 import {
   Mail,
   MapPin,
@@ -82,6 +83,7 @@ export function Contact() {
       }
 
       setStatus("success");
+      sendGAEvent("event", "generate_lead", { service: parsed.payload.service });
     } catch {
       setStatus("error");
       setError("Не вдалося з'єднатися з сервером. Перевірте інтернет-з'єднання.");
