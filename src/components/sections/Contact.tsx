@@ -115,7 +115,7 @@ export function Contact() {
                 {CONTACT_INFO.map(({ icon: Icon, label, value, href }) => (
                   <li key={label} className="flex items-center gap-4">
                     <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent">
-                      <Icon size={20} />
+                      <Icon size={20} aria-hidden="true" />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-widest text-white/40">

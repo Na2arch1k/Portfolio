@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
@@ -67,7 +67,8 @@ export function Navbar() {
           </div>
 
           <button
-            aria-label="Відкрити меню"
+            aria-label={open ? "Закрити меню" : "Відкрити меню"}
+            aria-expanded={open}
             className="grid h-10 w-10 place-items-center rounded-full text-white lg:hidden"
             onClick={() => setOpen((v) => !v)}
           >
@@ -76,35 +77,32 @@ export function Navbar() {
         </nav>
       </Container>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="mx-6 mt-3 lg:hidden"
-          >
-            <div className="glass-strong flex flex-col gap-1 rounded-2xl p-4">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="mt-2 px-4">
-                <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
-                  Замовити сайт
-                </Button>
-              </div>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.25 }}
+          className="mx-6 mt-3 lg:hidden"
+        >
+          <div className="glass-strong flex flex-col gap-1 rounded-2xl p-4">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="mt-2 px-4">
+              <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
+                Замовити сайт
+              </Button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </motion.div>
+      )}
     </header>
   );
 }

@@ -42,13 +42,13 @@ export function Footer() {
             </h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-white/60">
               <li className="flex items-center gap-2">
-                <Mail size={16} className="text-accent" />
+                <Mail size={16} className="text-accent" aria-hidden="true" />
                 <a href={`mailto:${SITE.email}`} className="hover:text-white">
                   {SITE.email}
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <Send size={16} className="text-accent" />
+                <Send size={16} className="text-accent" aria-hidden="true" />
                 <a
                   href={SITE.telegram}
                   target="_blank"
@@ -59,7 +59,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin size={16} className="text-accent" />
+                <MapPin size={16} className="text-accent" aria-hidden="true" />
                 {SITE.location}
               </li>
             </ul>
