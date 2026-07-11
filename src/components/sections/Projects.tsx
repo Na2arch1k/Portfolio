@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Globe } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Globe } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { PROJECTS, type Project } from "@/data/projects";
+import { FEATURED_PROJECTS, type Project } from "@/data/projects";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }) {
+  const { t } = useLanguage();
+  const copy = t.projects.items[project.id as keyof typeof t.projects.items];
   const domain = new URL(project.url).hostname;
 
   return (
@@ -23,7 +27,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`Відкрити сайт «${project.title}» у новій вкладці`}
+          aria-label={t.projects.openInNewTab.replace("{title}", project.title)}
           className="group relative block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-2xl"
         >
           {/* Ambient glow behind the frame */}
@@ -54,7 +58,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
             <div className="relative aspect-[16/10] overflow-hidden">
               <Image
                 src={project.image}
-                alt={`Скриншот сайту «${project.title}»`}
+                alt={t.projects.screenshotAlt.replace("{title}", project.title)}
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
@@ -62,7 +66,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
               {/* Hover veil with CTA */}
               <div className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black shadow-lg">
-                  Відкрити сайт
+                  {t.projects.openSite}
                   <ArrowUpRight size={15} />
                 </span>
               </div>
@@ -80,7 +84,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
             </span>
             <span className="h-px flex-1 max-w-16 bg-gradient-to-r from-accent/50 to-transparent" />
             <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
-              {project.category}
+              {copy.category}
             </span>
           </div>
 
@@ -89,7 +93,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
           </h3>
 
           <p className="mt-4 text-base leading-relaxed text-white/55">
-            {project.description}
+            {copy.description}
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2">
@@ -112,7 +116,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
             className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
           >
             <span className="border-b border-accent/40 pb-0.5">
-              Живий сайт
+              {t.projects.liveLabel}
             </span>
             <ArrowUpRight
               size={16}
@@ -126,6 +130,8 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
 }
 
 export function Projects() {
+  const { t } = useLanguage();
+
   return (
     <section id="projects" className="relative py-24 sm:py-32">
       {/* Section ambience */}
@@ -136,13 +142,13 @@ export function Projects() {
 
       <Container>
         <SectionHeading
-          eyebrow="Портфоліо"
-          title="Проєкти, які говорять самі за себе"
-          description="Реальні сайти для реальних ніш — від люксової стоматології до fine dining. Кожен можна відкрити та подивитися наживо."
+          eyebrow={t.projects.eyebrow}
+          title={t.projects.title}
+          description={t.projects.description}
         />
 
         <div className="mt-20 flex flex-col gap-24 sm:gap-32">
-          {PROJECTS.map((project, index) => (
+          {FEATURED_PROJECTS.map((project, index) => (
             <ProjectRow
               key={project.id}
               project={project}
@@ -150,6 +156,17 @@ export function Projects() {
             />
           ))}
         </div>
+
+        <Reveal className="mt-24 flex justify-center sm:mt-32">
+          <Button
+            href="/projects"
+            variant="secondary"
+            size="lg"
+            icon={<ArrowRight size={16} />}
+          >
+            {t.projects.viewAll}
+          </Button>
+        </Reveal>
       </Container>
     </section>
   );

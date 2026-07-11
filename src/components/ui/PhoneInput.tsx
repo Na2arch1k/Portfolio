@@ -14,6 +14,7 @@ interface PhoneInputProps {
   name: string;
   required?: boolean;
   className?: string;
+  errorLabel?: string;
   onValidityChange?: (valid: boolean) => void;
 }
 
@@ -22,6 +23,7 @@ export function PhoneInput({
   name,
   required,
   className,
+  errorLabel = "Введіть коректний український номер телефону",
   onValidityChange,
 }: PhoneInputProps) {
   const autoId = useId();
@@ -77,7 +79,7 @@ export function PhoneInput({
       </div>
       {showError && (
         <span id={`${inputId}-error`} className="text-xs text-red-400">
-          Введіть коректний український номер телефону
+          {errorLabel}
         </span>
       )}
     </div>

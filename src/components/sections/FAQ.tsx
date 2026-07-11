@@ -7,22 +7,23 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
-import { FAQ_ITEMS } from "@/data/faq";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { t } = useLanguage();
 
   return (
     <section id="faq" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="FAQ"
-          title="Питання, які часто запитують"
-          description="Не знайшли відповіді? Напишіть напряму — я відповім особисто."
+          eyebrow={t.faq.eyebrow}
+          title={t.faq.title}
+          description={t.faq.description}
         />
 
         <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-4">
-          {FAQ_ITEMS.map((item, index) => {
+          {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <Reveal key={item.question} delay={index * 0.05}>

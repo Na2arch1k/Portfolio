@@ -7,10 +7,45 @@ import { NAV_LINKS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import type { Language } from "@/lib/i18n/dictionaries";
+
+function LanguageToggle({ className }: { className?: string }) {
+  const { language, setLanguage } = useLanguage();
+
+  const options: Language[] = ["uk", "en"];
+
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] p-1 text-xs font-semibold",
+        className
+      )}
+      role="group"
+      aria-label="Мова сайту / Site language"
+    >
+      {options.map((option) => (
+        <button
+          key={option}
+          type="button"
+          onClick={() => setLanguage(option)}
+          aria-pressed={language === option}
+          className={cn(
+            "rounded-full px-2.5 py-1 uppercase tracking-wide transition-colors duration-200",
+            language === option ? "bg-accent text-white" : "text-white/50 hover:text-white"
+          )}
+        >
+          {option}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -54,26 +89,30 @@ export function Navbar() {
                   href={link.href}
                   className="text-sm font-medium text-white/70 transition-colors hover:text-white"
                 >
-                  {link.label}
+                  {t.nav[link.key]}
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-4 lg:flex">
+            <LanguageToggle />
             <Button href="#contact" size="md">
-              Замовити сайт
+              {t.nav.cta}
             </Button>
           </div>
 
-          <button
-            aria-label={open ? "Закрити меню" : "Відкрити меню"}
-            aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full text-white lg:hidden"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageToggle />
+            <button
+              aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
+              aria-expanded={open}
+              className="grid h-10 w-10 place-items-center rounded-full text-white"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </nav>
       </Container>
 
@@ -92,12 +131,12 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
               >
-                {link.label}
+                {t.nav[link.key]}
               </a>
             ))}
             <div className="mt-2 px-4">
               <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
-                Замовити сайт
+                {t.nav.cta}
               </Button>
             </div>
           </div>

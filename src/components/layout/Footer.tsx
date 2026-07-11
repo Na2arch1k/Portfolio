@@ -1,9 +1,13 @@
+"use client";
+
 import { Send, Mail, MapPin } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { NAV_LINKS, SITE } from "@/lib/constants";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="relative border-t border-white/[0.08] bg-surface">
@@ -14,13 +18,13 @@ export function Footer() {
               Назарій<span className="text-accent">.</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
-              {SITE.description}
+              {t.footer.description}
             </p>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-              Навігація
+              {t.footer.navHeading}
             </h3>
             <ul className="mt-4 grid grid-cols-2 gap-3">
               {NAV_LINKS.map((link) => (
@@ -29,7 +33,7 @@ export function Footer() {
                     href={link.href}
                     className="text-sm text-white/60 transition-colors hover:text-white"
                   >
-                    {link.label}
+                    {t.nav[link.key]}
                   </a>
                 </li>
               ))}
@@ -38,7 +42,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-              Контакти
+              {t.footer.contactHeading}
             </h3>
             <ul className="mt-4 flex flex-col gap-3 text-sm text-white/60">
               <li className="flex items-center gap-2">
@@ -68,7 +72,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/[0.08] pt-8 sm:flex-row">
           <p className="text-xs text-white/40">
-            © {year} {SITE.name}. Всі права захищено.
+            © {year} {SITE.name}. {t.footer.rights}
           </p>
         </div>
       </Container>

@@ -93,6 +93,14 @@ function RippleLayer({ ripples }: { ripples: RippleState[] }) {
   );
 }
 
+const CUSTOM_PROP_KEYS = ["variant", "size", "icon", "className", "children", "href", "onClick"] as const;
+
+function omitCustomProps<T extends object>(source: T): Omit<T, (typeof CUSTOM_PROP_KEYS)[number]> {
+  const rest = { ...source } as Record<string, unknown>;
+  for (const key of CUSTOM_PROP_KEYS) delete rest[key];
+  return rest as Omit<T, (typeof CUSTOM_PROP_KEYS)[number]>;
+}
+
 export function Button(props: Props) {
   const { variant = "primary", size = "md", icon, className, children } = props;
   const { ripples, addRipple } = useRipple();
@@ -100,14 +108,14 @@ export function Button(props: Props) {
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ("href" in props && props.href !== undefined) {
-    const { href, onClick, ...rest } = props as AnchorProps;
+    const rest = omitCustomProps(props);
     return (
       <a
-        href={href}
+        href={props.href}
         className={classes}
         onClick={(e) => {
           addRipple(e);
-          onClick?.(e);
+          props.onClick?.(e);
         }}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
       >
@@ -120,13 +128,13 @@ export function Button(props: Props) {
     );
   }
 
-  const { onClick, ...rest } = props as ButtonProps;
+  const rest = omitCustomProps(props);
   return (
     <button
       className={classes}
       onClick={(e) => {
         addRipple(e);
-        onClick?.(e);
+        props.onClick?.(e);
       }}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
     >

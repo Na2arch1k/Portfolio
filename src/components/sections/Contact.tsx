@@ -18,20 +18,17 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 import { SITE } from "@/lib/constants";
+import { SERVICES } from "@/data/services";
 import { toUaE164 } from "@/lib/phone";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 import {
   MESSAGE_MIN_LENGTH,
+  SERVICE_VALUE_BY_ID,
   SERVICE_OPTIONS,
   parseContactPayload,
 } from "@/lib/contact";
 
 type Status = "idle" | "loading" | "success" | "error";
-
-const CONTACT_INFO = [
-  { icon: Send, label: "Telegram", value: SITE.telegramHandle, href: SITE.telegram },
-  { icon: Mail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
-  { icon: MapPin, label: "Локація", value: SITE.location, href: undefined },
-];
 
 const inputClasses =
   "rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white placeholder:text-white/30 outline-none transition-colors focus:border-accent/60 focus:bg-white/[0.05] disabled:opacity-60";
@@ -39,8 +36,20 @@ const inputClasses =
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const isLoading = status === "loading";
+
+  const CONTACT_INFO = [
+    { icon: Send, label: t.contact.telegramLabel, value: SITE.telegramHandle, href: SITE.telegram },
+    { icon: Mail, label: t.contact.emailLabel, value: SITE.email, href: `mailto:${SITE.email}` },
+    { icon: MapPin, label: t.contact.locationLabel, value: SITE.location, href: undefined },
+  ];
+
+  function localizeError(code: string): string {
+    const errors = t.contact.errors as Record<string, string>;
+    return errors[code] ?? errors.generic;
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,10 +67,10 @@ export function Contact() {
       website: String(formData.get("website") ?? ""),
     };
 
-    const parsed = parseContactPayload(payload);
+    const parsed = parseContactPayload(payload, SERVICE_OPTIONS);
     if (!parsed.ok) {
       setStatus("error");
-      setError(parsed.error);
+      setError(localizeError(parsed.error));
       return;
     }
 
@@ -78,7 +87,7 @@ export function Contact() {
 
       if (!response.ok) {
         setStatus("error");
-        setError(result.error ?? "Щось пішло не так. Спробуйте ще раз.");
+        setError(localizeError(result.error ?? "generic"));
         return;
       }
 
@@ -86,7 +95,7 @@ export function Contact() {
       sendGAEvent("event", "generate_lead", { service: parsed.payload.service });
     } catch {
       setStatus("error");
-      setError("Не вдалося з'єднатися з сервером. Перевірте інтернет-з'єднання.");
+      setError(t.contact.errors.network);
     }
   }
 
@@ -94,9 +103,9 @@ export function Contact() {
     <section id="contact" className="relative py-20 sm:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Контакти"
-          title="Готові обговорити ваш проєкт?"
-          description="Залиште заявку — я звʼяжусь з вами протягом одного робочого дня."
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
+          description={t.contact.description}
         />
 
         <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-8 lg:grid-cols-5">
@@ -104,10 +113,10 @@ export function Contact() {
             <div className="glass flex h-full flex-col justify-between rounded-2xl p-8">
               <div>
                 <h3 className="text-xl font-semibold text-white">
-                  Контактна інформація
+                  {t.contact.infoHeading}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">
-                  Оберіть зручний спосіб зв&apos;язку — відповідаю швидко.
+                  {t.contact.infoSubheading}
                 </p>
               </div>
 
@@ -158,14 +167,14 @@ export function Contact() {
                   <CheckCircle2 size={32} />
                 </motion.div>
                 <div>
-                  <h3 className="text-2xl font-semibold text-white">Дякуємо!</h3>
+                  <h3 className="text-2xl font-semibold text-white">{t.contact.form.successTitle}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">
-                    Вашу заявку успішно отримано.
+                    {t.contact.form.successBody}
                     <br />
-                    Я зв&apos;яжуся з вами найближчим часом.
+                    {t.contact.form.successBody2}
                   </p>
                   <p className="mt-3 text-xs text-white/40">
-                    Лист-підтвердження вже прямує на вашу пошту.
+                    {t.contact.form.successNote}
                   </p>
                 </div>
                 <Button
@@ -173,7 +182,7 @@ export function Contact() {
                   variant="secondary"
                   onClick={() => setStatus("idle")}
                 >
-                  Надіслати ще одну заявку
+                  {t.contact.form.sendAnother}
                 </Button>
               </motion.div>
             ) : (
@@ -204,7 +213,7 @@ export function Contact() {
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div className="flex flex-col gap-2">
                       <label htmlFor="name" className="text-sm font-medium text-white/70">
-                        Ім&apos;я
+                        {t.contact.form.name}
                       </label>
                       <input
                         id="name"
@@ -213,22 +222,27 @@ export function Contact() {
                         required
                         minLength={2}
                         maxLength={100}
-                        placeholder="Ваше ім'я"
+                        placeholder={t.contact.form.namePlaceholder}
                         className={inputClasses}
                       />
                     </div>
                     <div className="flex flex-col gap-2">
                       <label htmlFor="phone" className="text-sm font-medium text-white/70">
-                        Телефон
+                        {t.contact.form.phone}
                       </label>
-                      <PhoneInput id="phone" name="phone" required />
+                      <PhoneInput
+                        id="phone"
+                        name="phone"
+                        required
+                        errorLabel={t.contact.form.phoneError}
+                      />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div className="flex flex-col gap-2">
                       <label htmlFor="email" className="text-sm font-medium text-white/70">
-                        Email
+                        {t.contact.form.email}
                       </label>
                       <input
                         id="email"
@@ -241,15 +255,15 @@ export function Contact() {
                     </div>
                     <div className="flex flex-col gap-2">
                       <label htmlFor="company" className="text-sm font-medium text-white/70">
-                        Компанія{" "}
-                        <span className="font-normal text-white/40">(необов&apos;язково)</span>
+                        {t.contact.form.company}{" "}
+                        <span className="font-normal text-white/40">{t.contact.form.companyOptional}</span>
                       </label>
                       <input
                         id="company"
                         name="company"
                         type="text"
                         maxLength={150}
-                        placeholder="Назва компанії"
+                        placeholder={t.contact.form.companyPlaceholder}
                         className={inputClasses}
                       />
                     </div>
@@ -257,7 +271,7 @@ export function Contact() {
 
                   <div className="flex flex-col gap-2">
                     <label htmlFor="service" className="text-sm font-medium text-white/70">
-                      Послуга
+                      {t.contact.form.service}
                     </label>
                     <div className="relative">
                       <select
@@ -268,13 +282,20 @@ export function Contact() {
                         className={`${inputClasses} w-full appearance-none pr-10 invalid:text-white/30`}
                       >
                         <option value="" disabled className="bg-surface text-white/50">
-                          Оберіть послугу
+                          {t.contact.form.selectService}
                         </option>
-                        {SERVICE_OPTIONS.map((option) => (
-                          <option key={option} value={option} className="bg-surface text-white">
-                            {option}
+                        {SERVICES.map((service) => (
+                          <option
+                            key={service.id}
+                            value={SERVICE_VALUE_BY_ID[service.id]}
+                            className="bg-surface text-white"
+                          >
+                            {t.services.items[service.id as keyof typeof t.services.items].title}
                           </option>
                         ))}
+                        <option value={SERVICE_VALUE_BY_ID.other} className="bg-surface text-white">
+                          {t.contact.form.otherService}
+                        </option>
                       </select>
                       <ChevronDown
                         size={16}
@@ -285,7 +306,7 @@ export function Contact() {
 
                   <div className="flex flex-1 flex-col gap-2">
                     <label htmlFor="message" className="text-sm font-medium text-white/70">
-                      Повідомлення
+                      {t.contact.form.message}
                     </label>
                     <textarea
                       id="message"
@@ -294,7 +315,7 @@ export function Contact() {
                       minLength={MESSAGE_MIN_LENGTH}
                       maxLength={3000}
                       rows={5}
-                      placeholder="Розкажіть коротко про ваш проєкт..."
+                      placeholder={t.contact.form.messagePlaceholder}
                       className={`${inputClasses} flex-1 resize-none`}
                     />
                   </div>
@@ -311,7 +332,7 @@ export function Contact() {
                     }
                     className="w-full sm:w-auto sm:self-start"
                   >
-                    {isLoading ? "Надсилання..." : "Надіслати заявку"}
+                    {isLoading ? t.contact.form.submitting : t.contact.form.submit}
                   </Button>
                 </fieldset>
 

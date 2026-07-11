@@ -5,16 +5,11 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
-
-const TRUST_STATS = [
-  { value: "6", label: "запущених проєктів" },
-  { value: "5+", label: "бізнес-ніш" },
-  { value: "2+", label: "роки досвіду" },
-  { value: "100%", label: "адаптивність" },
-];
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
+  const { t } = useLanguage();
 
   return (
     <section
@@ -35,7 +30,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            Відкритий до нових проєктів
+            {t.hero.badge}
           </motion.div>
 
           <motion.h1
@@ -44,8 +39,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-gradient max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl"
           >
-            Преміальні сайти, які приносять бізнесу{" "}
-            <span className="text-gradient-accent">реальних клієнтів</span>
+            {t.hero.titleLine}{" "}
+            <span className="text-gradient-accent">{t.hero.titleAccent}</span>
           </motion.h1>
 
           <motion.p
@@ -54,9 +49,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-white/60 sm:text-xl"
           >
-            Розробляю швидкі та сучасні вебсайти під конкретну нішу бізнесу —
-            від люксової стоматології до fine dining. Дизайн, код і запуск під
-            ключ.
+            {t.hero.description}
           </motion.p>
 
           <motion.div
@@ -66,7 +59,7 @@ export function Hero() {
             className="mt-10 flex flex-col gap-4 sm:flex-row"
           >
             <Button href="#contact" size="lg" icon={<ArrowRight size={18} />}>
-              Обговорити проєкт
+              {t.hero.ctaPrimary}
             </Button>
             <Button
               href="#projects"
@@ -74,7 +67,7 @@ export function Hero() {
               size="lg"
               icon={<ArrowDown size={16} />}
             >
-              Переглянути роботи
+              {t.hero.ctaSecondary}
             </Button>
           </motion.div>
 
@@ -85,7 +78,7 @@ export function Hero() {
             className="mt-20 w-full max-w-3xl"
           >
             <div className="glass grid grid-cols-2 divide-white/[0.06] rounded-2xl py-6 sm:grid-cols-4 sm:divide-x">
-              {TRUST_STATS.map(({ value, label }) => (
+              {t.hero.stats.map(({ value, label }) => (
                 <div
                   key={label}
                   className="flex flex-col items-center gap-1 px-4 py-3 sm:py-0"

@@ -14,13 +14,13 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Головна", href: "#home" },
-  { label: "Про мене", href: "#about" },
-  { label: "Послуги", href: "#services" },
-  { label: "Проєкти", href: "#projects" },
-  { label: "Процес роботи", href: "#process" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Контакти", href: "#contact" },
+  { key: "home", href: "#home" },
+  { key: "about", href: "#about" },
+  { key: "services", href: "#services" },
+  { key: "projects", href: "#projects" },
+  { key: "process", href: "#process" },
+  { key: "faq", href: "#faq" },
+  { key: "contact", href: "#contact" },
 ] as const;
 
 export const SOCIAL_LINKS = [

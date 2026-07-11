@@ -10,46 +10,15 @@ import {
 
 export interface ProcessStep {
   step: number;
+  id: string;
   icon: LucideIcon;
-  title: string;
-  description: string;
 }
 
 export const PROCESS_STEPS: ProcessStep[] = [
-  {
-    step: 1,
-    icon: MessagesSquare,
-    title: "Обговорення",
-    description: "З'ясовуємо цілі бізнесу, побажання та очікуваний результат.",
-  },
-  {
-    step: 2,
-    icon: ChartNoAxesCombined,
-    title: "Аналіз бізнесу",
-    description: "Вивчаю нішу, конкурентів та цільову аудиторію проєкту.",
-  },
-  {
-    step: 3,
-    icon: PenTool,
-    title: "Створення дизайну",
-    description: "Розробляю макет, що відповідає стилю та цінностям бренду.",
-  },
-  {
-    step: 4,
-    icon: Code2,
-    title: "Розробка",
-    description: "Верстаю та програмую сайт із сучасним технологічним стеком.",
-  },
-  {
-    step: 5,
-    icon: FlaskConical,
-    title: "Тестування",
-    description: "Перевіряю швидкість, адаптивність та коректність роботи.",
-  },
-  {
-    step: 6,
-    icon: Rocket,
-    title: "Запуск",
-    description: "Публікую сайт та передаю всі доступи й інструкції клієнту.",
-  },
+  { step: 1, id: "discovery", icon: MessagesSquare },
+  { step: 2, id: "analysis", icon: ChartNoAxesCombined },
+  { step: 3, id: "design", icon: PenTool },
+  { step: 4, id: "development", icon: Code2 },
+  { step: 5, id: "testing", icon: FlaskConical },
+  { step: 6, id: "launch", icon: Rocket },
 ];

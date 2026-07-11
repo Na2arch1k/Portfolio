@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { SITE } from "@/lib/constants";
-import { parseContactPayload } from "@/lib/contact";
+import { parseContactPayload, SERVICE_OPTIONS } from "@/lib/contact";
 import { buildOwnerEmail, buildVisitorEmail } from "@/lib/email-templates";
 import { isRateLimited } from "@/lib/rate-limit";
 import { sendTelegramNotification } from "@/lib/telegram";
@@ -16,17 +16,14 @@ function getClientIp(request: Request): string {
 
 export async function POST(request: Request) {
   if (isRateLimited(getClientIp(request), RATE_LIMIT)) {
-    return NextResponse.json(
-      { error: "Забагато запитів. Спробуйте, будь ласка, трохи пізніше." },
-      { status: 429 }
-    );
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
   let data: unknown;
   try {
     data = await request.json();
   } catch {
-    return NextResponse.json({ error: "Некоректний запит." }, { status: 400 });
+    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
   }
 
   // Honeypot: real visitors never fill this field. Pretend success so
@@ -36,7 +33,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const parsed = parseContactPayload(data);
+  const parsed = parseContactPayload(data, SERVICE_OPTIONS);
   if (!parsed.ok) {
     return NextResponse.json({ error: parsed.error }, { status: 400 });
   }
@@ -52,10 +49,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: true });
     }
     console.error("[contact] RESEND_API_KEY відсутній у production-оточенні.");
-    return NextResponse.json(
-      { error: "Сервіс тимчасово недоступний. Спробуйте пізніше." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "service_unavailable" }, { status: 500 });
   }
 
   const resend = new Resend(apiKey);
@@ -76,10 +70,7 @@ export async function POST(request: Request) {
 
   if (ownerError) {
     console.error("[contact] Не вдалося надіслати лист власнику:", ownerError);
-    return NextResponse.json(
-      { error: "Не вдалося надіслати заявку. Спробуйте пізніше." },
-      { status: 502 }
-    );
+    return NextResponse.json({ error: "send_failed" }, { status: 502 });
   }
 
   // Auto-reply is best-effort: the lead is already delivered, so a
