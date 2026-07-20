@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -20,7 +20,7 @@ export function Hero() {
 
       <Container className="relative z-10">
         <div className="flex flex-col items-center text-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -31,9 +31,9 @@ export function Hero() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
             {t.hero.badge}
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -41,18 +41,18 @@ export function Hero() {
           >
             {t.hero.titleLine}{" "}
             <span className="text-gradient-accent">{t.hero.titleAccent}</span>
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-8 max-w-2xl text-balance text-lg leading-relaxed text-white/60 sm:text-xl"
           >
             {t.hero.description}
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
@@ -69,9 +69,9 @@ export function Hero() {
             >
               {t.hero.ctaSecondary}
             </Button>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.45 }}
@@ -92,24 +92,24 @@ export function Hero() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </Container>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
       >
-        <motion.div
+        <m.div
           animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-white/20 p-1.5"
         >
           <div className="h-1.5 w-1.5 rounded-full bg-accent" />
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

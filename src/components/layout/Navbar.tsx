@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
@@ -117,7 +117,7 @@ export function Navbar() {
       </Container>
 
       {open && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25 }}
@@ -140,7 +140,7 @@ export function Navbar() {
               </Button>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </header>
   );

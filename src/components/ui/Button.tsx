@@ -44,7 +44,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "animate-glow-pulse bg-[linear-gradient(110deg,#2563eb_0%,#3b82f6_45%,#1d4ed8_100%)] bg-[length:200%_auto] bg-left text-white shadow-[0_6px_24px_-6px_rgba(37,99,235,0.55)] hover:bg-right hover:shadow-[0_10px_36px_-6px_rgba(59,130,246,0.7)] hover:brightness-[1.08]",
+    "bg-[linear-gradient(110deg,#2563eb_0%,#3b82f6_45%,#1d4ed8_100%)] bg-[length:200%_auto] bg-left text-white shadow-[0_6px_24px_-6px_rgba(37,99,235,0.55)] hover:bg-right hover:shadow-[0_10px_36px_-6px_rgba(59,130,246,0.7)] hover:brightness-[1.08] hover:animate-glow-pulse focus-visible:animate-glow-pulse",
   secondary:
     "glass text-white hover:border-accent/50 hover:bg-white/[0.08] hover:shadow-[0_8px_28px_-10px_rgba(37,99,235,0.4)]",
   ghost: "text-white/70 hover:text-white",

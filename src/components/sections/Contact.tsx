@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
 import {
   Mail,
@@ -151,21 +151,21 @@ export function Contact() {
 
           <Reveal delay={0.1} className="lg:col-span-3">
             {status === "success" ? (
-              <motion.div
+              <m.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.96, y: 12 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="glass flex h-full min-h-[420px] flex-col items-center justify-center gap-5 rounded-2xl p-10 text-center"
               >
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }}
                   className="grid h-16 w-16 place-items-center rounded-full bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-400/30"
                 >
                   <CheckCircle2 size={32} />
-                </motion.div>
+                </m.div>
                 <div>
                   <h3 className="text-2xl font-semibold text-white">{t.contact.form.successTitle}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">
@@ -184,9 +184,9 @@ export function Contact() {
                 >
                   {t.contact.form.sendAnother}
                 </Button>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.form
+              <m.form
                 key="form"
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -337,7 +337,7 @@ export function Contact() {
                 </fieldset>
 
                 {status === "error" && error && (
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     role="alert"
@@ -345,9 +345,9 @@ export function Contact() {
                   >
                     <AlertCircle size={16} className="mt-0.5 shrink-0 text-red-400" />
                     <p className="text-sm leading-relaxed text-red-300">{error}</p>
-                  </motion.div>
+                  </m.div>
                 )}
-              </motion.form>
+              </m.form>
             )}
           </Reveal>
         </div>

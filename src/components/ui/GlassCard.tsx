@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "framer-motion";
+import { m, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ export function GlassCard({
   ...props
 }: GlassCardProps) {
   return (
-    <motion.div
+    <m.div
       className={cn(
         "glass group relative overflow-hidden rounded-2xl p-6 sm:p-8",
         hover &&
@@ -34,6 +34,6 @@ export function GlassCard({
         </>
       )}
       {children}
-    </motion.div>
+    </m.div>
   );
 }

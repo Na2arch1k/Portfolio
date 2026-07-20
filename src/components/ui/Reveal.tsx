@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface RevealProps {
@@ -24,7 +24,7 @@ export function Reveal({
   once = true,
 }: RevealProps) {
   return (
-    <motion.div
+    <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -36,7 +36,7 @@ export function Reveal({
       transition={{ duration: 0.6, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

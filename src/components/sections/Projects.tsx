@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Globe } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -107,7 +107,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
             ))}
           </ul>
 
-          <motion.a
+          <m.a
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
@@ -122,7 +122,7 @@ function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }
               size={16}
               className="text-accent-soft transition-transform duration-300 group-hover/row:translate-x-0.5"
             />
-          </motion.a>
+          </m.a>
         </Reveal>
       </div>
     </article>

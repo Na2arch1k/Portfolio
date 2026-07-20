@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PROCESS_STEPS } from "@/data/process";
@@ -25,7 +25,7 @@ export function Process() {
             {PROCESS_STEPS.map(({ step, id, icon: Icon }, index) => {
               const copy = t.process.steps[id as keyof typeof t.process.steps];
               return (
-                <motion.div
+                <m.div
                   key={step}
                   initial={{ opacity: 0, y: 32 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export function Process() {
                       {copy.description}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

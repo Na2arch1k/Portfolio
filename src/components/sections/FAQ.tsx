@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Plus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -41,29 +41,26 @@ export function FAQ() {
                     <span className="text-base font-medium text-white sm:text-lg">
                       {item.question}
                     </span>
-                    <motion.span
+                    <m.span
                       animate={{ rotate: isOpen ? 45 : 0 }}
                       transition={{ duration: 0.25 }}
                       className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent/10 text-accent"
                     >
                       <Plus size={16} />
-                    </motion.span>
+                    </m.span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <p className="px-6 pb-6 text-sm leading-relaxed text-white/60 sm:text-base">
-                          {item.answer}
-                        </p>
-                      </motion.div>
+                  <div
+                    className={cn(
+                      "grid transition-[grid-template-rows] duration-300 ease-in-out",
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     )}
-                  </AnimatePresence>
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-6 pb-6 text-sm leading-relaxed text-white/60 sm:text-base">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             );

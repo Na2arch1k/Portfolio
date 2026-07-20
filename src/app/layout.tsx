@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { LazyMotion, domAnimation } from "framer-motion";
 import { SITE } from "@/lib/constants";
 import { FAQ_ITEMS } from "@/data/faq";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
@@ -123,7 +124,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
-        <LanguageProvider>{children}</LanguageProvider>
+        <LazyMotion features={domAnimation} strict>
+          <LanguageProvider>{children}</LanguageProvider>
+        </LazyMotion>
       </body>
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
