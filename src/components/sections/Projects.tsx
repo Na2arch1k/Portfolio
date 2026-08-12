@@ -137,7 +137,7 @@ export function Projects() {
       {/* Section ambience */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
-        <div className="absolute left-1/2 top-24 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-accent/[0.05] blur-[140px]" />
+        <div className="absolute left-1/2 top-24 h-[280px] w-[420px] -translate-x-1/2 rounded-full bg-accent/[0.05] blur-[60px] sm:h-[480px] sm:w-[720px] sm:blur-[140px]" />
       </div>
 
       <Container>

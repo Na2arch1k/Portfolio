@@ -13,7 +13,7 @@ export function WhyChooseMe() {
   return (
     <section id="why-me" className="relative py-20 sm:py-28">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[420px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.04] blur-[130px]" />
+        <div className="absolute left-1/2 top-1/2 h-[250px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.04] blur-[55px] sm:h-[420px] sm:w-[640px] sm:blur-[130px]" />
       </div>
 
       <Container>
