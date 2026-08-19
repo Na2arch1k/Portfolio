@@ -4,7 +4,7 @@ const uk = {
   nav: {
     home: "Головна",
     about: "Про мене",
-    services: "Послуги",
+    services: "Ціни",
     projects: "Проєкти",
     process: "Процес роботи",
     faq: "FAQ",
@@ -49,33 +49,31 @@ const uk = {
     },
   },
   services: {
-    eyebrow: "Послуги",
-    title: "Рішення під цілі вашого бізнесу",
-    description: "Від лендингу до повноцінного корпоративного сайту — беру на себе дизайн, розробку та запуск.",
+    eyebrow: "Послуги та ціни",
+    badge: "-50% на багатосторінковий сайт",
+    title: "Скільки коштує сайт",
+    description: "Це поточні ціни. Далі буде дорожче.",
+    trustLine: "Дешевше, ніж у конкурентів. Якість — преміальна.",
+    from: "від",
+    popularBadge: "Обирають найчастіше",
+    priceNote:
+      "Ціни орієнтовні — фінальна вартість залежить від складності проєкту: сайт може бути і дешевшим, і дорожчим за вказаний діапазон.",
     items: {
-      landing: {
-        title: "Landing Page",
-        description: "Конверсійна сторінка для запуску реклами та збору заявок.",
+      update: {
+        title: "Оновлення сайту",
+        description: "Свіжий дизайн і сучасний код для сайту, який у вас вже є — без старту з нуля.",
       },
-      corporate: {
-        title: "Корпоративний сайт",
-        description: "Представницький сайт, що формує довіру до компанії.",
+      multipage: {
+        title: "Багатосторінковий сайт",
+        description: "Повноцінний сайт під ключ: кілька розділів, унікальний дизайн і адаптивна верстка.",
       },
-      niche: {
-        title: "Сайт під вашу нішу",
-        description: "Ресторани, клініки, авто — дизайн під специфіку галузі.",
+      ecommerce: {
+        title: "Інтернет-магазин",
+        description: "Каталог товарів, кошик і оформлення замовлення — готовий майданчик для продажів.",
       },
-      redesign: {
-        title: "Редизайн сайту",
-        description: "Оновлення застарілого сайту до преміального рівня.",
-      },
-      seo: {
-        title: "SEO-оптимізація",
-        description: "Технічна база, щоб сайт знаходили в Google.",
-      },
-      support: {
-        title: "Підтримка та розвиток",
-        description: "Правки, оновлення й нові розділи після запуску.",
+      automation: {
+        title: "Автоматизація та чат-боти",
+        description: "Боти для Telegram, автоматичні розсилки та інтеграції, що звільняють ваш час.",
       },
     },
   },
@@ -300,7 +298,7 @@ const en: typeof uk = {
   nav: {
     home: "Home",
     about: "About",
-    services: "Services",
+    services: "Pricing",
     projects: "Projects",
     process: "Process",
     faq: "FAQ",
@@ -345,33 +343,31 @@ const en: typeof uk = {
     },
   },
   services: {
-    eyebrow: "Services",
-    title: "Solutions built for your business goals",
-    description: "From a landing page to a full corporate site — I handle design, development, and launch.",
+    eyebrow: "Services & Pricing",
+    badge: "-50% off multi-page sites",
+    title: "How much a website costs",
+    description: "These are today's prices. They'll go up later.",
+    trustLine: "Cheaper than the competition. Premium quality.",
+    from: "from",
+    popularBadge: "Most picked",
+    priceNote:
+      "Prices are a starting point — final cost depends on project complexity and can land lower or higher than the range shown.",
     items: {
-      landing: {
-        title: "Landing Page",
-        description: "A conversion-focused page for running ads and collecting leads.",
+      update: {
+        title: "Website Update",
+        description: "A fresh design and modern code for a site you already have — no rebuild from scratch.",
       },
-      corporate: {
-        title: "Corporate Website",
-        description: "A representative site that builds trust in your company.",
+      multipage: {
+        title: "Multi-page Website",
+        description: "A complete site, built to order: several sections, a unique design, and full responsiveness.",
       },
-      niche: {
-        title: "Niche-specific site",
-        description: "Restaurants, clinics, auto — design tailored to the industry.",
+      ecommerce: {
+        title: "Online Store",
+        description: "A product catalog, cart, and checkout — a ready-made platform for selling online.",
       },
-      redesign: {
-        title: "Website Redesign",
-        description: "Upgrading an outdated site to a premium standard.",
-      },
-      seo: {
-        title: "SEO Optimization",
-        description: "A technical foundation so your site gets found on Google.",
-      },
-      support: {
-        title: "Support & Growth",
-        description: "Edits, updates, and new sections after launch.",
+      automation: {
+        title: "Automation & Chatbots",
+        description: "Telegram bots, automated messaging, and integrations that save you time.",
       },
     },
   },
