@@ -30,5 +30,5 @@ export const SERVICES: Service[] = [
     popular: true,
   },
   { id: "ecommerce", icon: ShoppingCart, priceMin: 200 },
-  { id: "automation", icon: Bot, priceMin: 50, priceMax: 100 },
+  { id: "automation", icon: Bot, priceMin: 50, priceMax: 200 },
 ];
