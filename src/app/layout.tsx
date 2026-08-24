@@ -5,6 +5,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import { SITE } from "@/lib/constants";
 import { FAQ_ITEMS } from "@/data/faq";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,8 +29,11 @@ export const metadata: Metadata = {
   description: SITE.description,
   keywords: [
     "розробка сайтів",
-    "веброзробник",
     "створення сайтів для бізнесу",
+    "CRM для бізнесу",
+    "чат-боти для бізнесу",
+    "автоматизація бізнес-процесів",
+    "система для клініки",
     "Claude Code",
     "landing page",
     "корпоративний сайт",
@@ -125,6 +129,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
         <LazyMotion features={domAnimation} strict>
+          <SmoothScroll />
           <LanguageProvider>{children}</LanguageProvider>
         </LazyMotion>
       </body>

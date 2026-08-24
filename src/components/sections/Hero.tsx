@@ -4,6 +4,7 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function Hero() {
@@ -26,12 +27,18 @@ export function Hero() {
             {t.hero.badge}
           </div>
 
-          <h1
-            className="animate-fade-up text-gradient max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl"
-            style={{ animationDelay: "60ms" }}
-          >
-            {t.hero.titleLine}{" "}
-            <span className="text-gradient-accent">{t.hero.titleAccent}</span>
+          <h1 className="text-gradient max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
+            <TextReveal
+              as="span"
+              text={t.hero.titleLine}
+              className="inline"
+            />{" "}
+            <TextReveal
+              as="span"
+              text={t.hero.titleAccent}
+              delay={0.35}
+              className="text-gradient-accent inline"
+            />
           </h1>
 
           <p

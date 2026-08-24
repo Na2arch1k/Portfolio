@@ -9,16 +9,16 @@ const uk = {
     process: "Процес роботи",
     faq: "FAQ",
     contact: "Контакти",
-    cta: "Замовити сайт",
+    cta: "Обговорити проєкт",
     openMenu: "Відкрити меню",
     closeMenu: "Закрити меню",
   },
   hero: {
     badge: "Відкритий до нових проєктів",
-    titleLine: "Преміальні сайти, які приносять бізнесу",
+    titleLine: "Цифрові рішення, які приносять бізнесу",
     titleAccent: "реальних клієнтів",
     description:
-      "Розробляю швидкі та сучасні вебсайти під конкретну нішу бізнесу — від люксової стоматології до fine dining. Дизайн, код і запуск під ключ.",
+      "Створюю сайти, CRM-системи, чат-боти та автоматизації під конкретні задачі бізнесу — від запису пацієнтів до обробки заявок. Дизайн, код і запуск під ключ.",
     ctaPrimary: "Обговорити проєкт",
     ctaSecondary: "Переглянути роботи",
     stats: [
@@ -30,9 +30,9 @@ const uk = {
   },
   about: {
     eyebrow: "Про мене",
-    title: "Розробляю сайти, які працюють на результат",
+    title: "Створюю цифрові рішення, які працюють на результат",
     description:
-      "Створюю сучасні вебсайти для бізнесу — від люксових клінік до ресторанів fine dining. Поєдную дизайнерське мислення з сучасним стеком технологій, щоб компанії виглядали професійно в інтернеті та отримували більше клієнтів.",
+      "Створюю сайти, CRM-системи для управління клієнтами, чат-боти та автоматизації для бізнесу. Поєдную дизайнерське мислення з сучасним стеком технологій, щоб процеси працювали самі, а компанія отримувала більше клієнтів.",
     pillars: {
       ai: {
         title: "AI-підсилена розробка",
@@ -44,14 +44,24 @@ const uk = {
       },
       result: {
         title: "Результат для бізнесу",
-        description: "Сайт — не просто вітрина, а інструмент для залучення нових клієнтів.",
+        description: "Не просто сайт-вітрина, а робочий інструмент: система, яка приймає заявки, веде клієнтів і автоматизує рутину.",
       },
     },
+  },
+  capabilities: {
+    items: [
+      "Сайти для бізнесу",
+      "CRM-системи",
+      "Чат-боти",
+      "Автоматизація процесів",
+      "Системи для клінік",
+      "Інтеграції та API",
+    ],
   },
   services: {
     eyebrow: "Послуги та ціни",
     badge: "-50% на багатосторінковий сайт",
-    title: "Скільки коштує сайт",
+    title: "Скільки коштує проєкт",
     description: "Це поточні ціни. Далі буде дорожче.",
     trustLine: "Дешевше, ніж у конкурентів. Якість — преміальна.",
     from: "від",
@@ -72,8 +82,8 @@ const uk = {
         description: "Каталог товарів, кошик і оформлення замовлення — готовий майданчик для продажів.",
       },
       automation: {
-        title: "Автоматизація та чат-боти",
-        description: "Боти для Telegram, автоматичні розсилки та інтеграції, що звільняють ваш час.",
+        title: "Чат-боти, CRM та автоматизація",
+        description: "Боти для Telegram, CRM та системи обліку клієнтів (як Clinic Card), автоматичні розсилки та інтеграції, що звільняють ваш час.",
       },
     },
   },
@@ -81,7 +91,7 @@ const uk = {
     eyebrow: "Портфоліо",
     title: "Проєкти, які говорять самі за себе",
     description:
-      "Реальні сайти для реальних ніш — від люксової стоматології до fine dining. Кожен можна відкрити та подивитися наживо.",
+      "Реальні проєкти для реального бізнесу — сайти, системи та автоматизації. Кожен можна відкрити та подивитися наживо.",
     viewAll: "Переглянути всі проєкти",
     openSite: "Відкрити сайт",
     liveLabel: "Живий сайт",
@@ -144,7 +154,7 @@ const uk = {
     eyebrow: "Портфоліо",
     title: "Усі проєкти",
     description:
-      "реалізованих сайтів для різних ніш бізнесу — від стоматології та архітектури до fine dining та 3D-туру нерухомістю. Кожен можна відкрити та подивитися наживо.",
+      "реалізованих проєктів для різного бізнесу — сайти, системи для клінік та автоматизації. Кожен можна відкрити та подивитися наживо.",
     back: "На головну",
     open: "Відкрити",
   },
@@ -287,7 +297,7 @@ const uk = {
   },
   footer: {
     description:
-      "Розробляю швидкі, сучасні та красиві вебсайти для бізнесу за допомогою Claude Code. Створюю сайти, які реально приносять заявки.",
+      "Створюю сайти, CRM-системи, чат-боти та автоматизації для бізнесу за допомогою Claude Code. Рішення, які реально приносять заявки.",
     navHeading: "Навігація",
     contactHeading: "Контакти",
     rights: "Всі права захищено.",
@@ -303,16 +313,16 @@ const en: typeof uk = {
     process: "Process",
     faq: "FAQ",
     contact: "Contact",
-    cta: "Get a website",
+    cta: "Discuss a project",
     openMenu: "Open menu",
     closeMenu: "Close menu",
   },
   hero: {
     badge: "Open to new projects",
-    titleLine: "Premium websites that bring your business",
+    titleLine: "Digital solutions that bring your business",
     titleAccent: "real customers",
     description:
-      "I build fast, modern websites tailored to your business niche — from luxury dental clinics to fine dining. Design, code, and launch, end to end.",
+      "I build websites, CRM systems, chatbots, and automations for specific business needs — from patient booking to lead handling. Design, code, and launch, end to end.",
     ctaPrimary: "Discuss a project",
     ctaSecondary: "View my work",
     stats: [
@@ -324,9 +334,9 @@ const en: typeof uk = {
   },
   about: {
     eyebrow: "About me",
-    title: "I build websites that work for results",
+    title: "I build digital solutions that work for results",
     description:
-      "I create modern websites for businesses — from luxury clinics to fine dining restaurants. I combine design thinking with a modern tech stack so companies look professional online and win more customers.",
+      "I build websites, CRM systems for managing customers, chatbots, and automations for businesses. I combine design thinking with a modern tech stack so processes run themselves and companies win more customers.",
     pillars: {
       ai: {
         title: "AI-powered development",
@@ -338,14 +348,24 @@ const en: typeof uk = {
       },
       result: {
         title: "Results for your business",
-        description: "A website isn't just a showcase — it's a tool for winning new customers.",
+        description: "Not just a showcase site — a working tool: a system that takes bookings, manages customers, and automates the routine.",
       },
     },
+  },
+  capabilities: {
+    items: [
+      "Business websites",
+      "CRM systems",
+      "Chatbots",
+      "Process automation",
+      "Clinic management systems",
+      "Integrations & APIs",
+    ],
   },
   services: {
     eyebrow: "Services & Pricing",
     badge: "-50% off multi-page sites",
-    title: "How much a website costs",
+    title: "How much a project costs",
     description: "These are today's prices. They'll go up later.",
     trustLine: "Cheaper than the competition. Premium quality.",
     from: "from",
@@ -366,8 +386,8 @@ const en: typeof uk = {
         description: "A product catalog, cart, and checkout — a ready-made platform for selling online.",
       },
       automation: {
-        title: "Automation & Chatbots",
-        description: "Telegram bots, automated messaging, and integrations that save you time.",
+        title: "Chatbots, CRM & Automation",
+        description: "Telegram bots, CRM and customer-management systems (like Clinic Card), automated messaging, and integrations that save you time.",
       },
     },
   },
@@ -375,7 +395,7 @@ const en: typeof uk = {
     eyebrow: "Portfolio",
     title: "Projects that speak for themselves",
     description:
-      "Real sites for real niches — from luxury dentistry to fine dining. Every one of them can be opened and viewed live.",
+      "Real projects for real businesses — websites, systems, and automations. Every one of them can be opened and viewed live.",
     viewAll: "View all projects",
     openSite: "Open site",
     liveLabel: "Live site",
@@ -438,7 +458,7 @@ const en: typeof uk = {
     eyebrow: "Portfolio",
     title: "All projects",
     description:
-      "shipped sites across different business niches — from dentistry and architecture to fine dining and 3D real estate tours. Every one of them can be opened and viewed live.",
+      "shipped projects across different businesses — websites, clinic systems, and automations. Every one of them can be opened and viewed live.",
     back: "Back to home",
     open: "Open",
   },
@@ -581,7 +601,7 @@ const en: typeof uk = {
   },
   footer: {
     description:
-      "I build fast, modern, and beautiful websites for businesses using Claude Code. I make sites that actually bring in leads.",
+      "I build websites, CRM systems, chatbots, and automations for businesses using Claude Code. Solutions that actually bring in leads.",
     navHeading: "Navigation",
     contactHeading: "Contact",
     rights: "All rights reserved.",

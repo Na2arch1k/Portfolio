@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -31,11 +32,12 @@ export function SectionHeading({
           </span>
         </Reveal>
       )}
-      <Reveal delay={0.08}>
-        <h2 className="text-gradient max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-          {title}
-        </h2>
-      </Reveal>
+      <TextReveal
+        as="h2"
+        text={title}
+        delay={0.08}
+        className="text-gradient max-w-3xl text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl"
+      />
       {description && (
         <Reveal delay={0.16}>
           <p

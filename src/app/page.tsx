@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
+import { Capabilities } from "@/components/sections/Capabilities";
 
 const About = dynamic(() => import("@/components/sections/About").then((m) => m.About));
 const Services = dynamic(() =>
@@ -27,6 +28,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <Capabilities />
         <About />
         <Services />
         <Projects />
