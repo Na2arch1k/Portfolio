@@ -17,7 +17,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1 pt-32 pb-24 sm:pt-40 sm:pb-32">
+      <main className="flex-1 bg-[#090908] pb-24 pt-32 sm:pb-36 sm:pt-40">
         <ProjectsGrid />
       </main>
       <Footer />

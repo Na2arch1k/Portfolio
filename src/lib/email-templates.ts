@@ -21,8 +21,8 @@ function formatKyivDateTime(date: Date): string {
   }).format(date);
 }
 
-const ACCENT = "#2563eb";
-const ACCENT_SOFT = "#60a5fa";
+const ACCENT = "#ff5b33";
+const ACCENT_SOFT = "#ff9a80";
 
 function emailShell(preheader: string, content: string): string {
   return `<!DOCTYPE html>
@@ -48,7 +48,7 @@ function emailShell(preheader: string, content: string): string {
 <tr>
 <td style="background-color:#0a0a0d;border:1px solid rgba(255,255,255,0.09);border-radius:20px;overflow:hidden;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-<tr><td style="height:3px;background:linear-gradient(90deg,${ACCENT_SOFT} 0%,${ACCENT} 55%,#1d4ed8 100%);font-size:0;line-height:0;">&nbsp;</td></tr>
+<tr><td style="height:3px;background:linear-gradient(90deg,${ACCENT_SOFT} 0%,${ACCENT} 55%,#d73c1b 100%);font-size:0;line-height:0;">&nbsp;</td></tr>
 <tr><td style="padding:36px 36px 40px;">
 ${content}
 </td></tr>
@@ -113,7 +113,7 @@ ${rows}
 </div>
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:28px;">
 <tr>
-<td style="border-radius:999px;background:linear-gradient(110deg,#2563eb 0%,#3b82f6 45%,#1d4ed8 100%);">
+<td style="background:linear-gradient(110deg,#ff5b33 0%,#ff7958 45%,#d73c1b 100%);">
 <a href="mailto:${escapeHtml(payload.email)}" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:500;color:#ffffff;text-decoration:none;">Відповісти ${escapeHtml(payload.name)}</a>
 </td>
 </tr>
@@ -160,7 +160,7 @@ export function buildVisitorEmail(payload: ContactPayload): {
 </p>
 <table role="presentation" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
 <tr>
-<td style="border-radius:999px;background:linear-gradient(110deg,#2563eb 0%,#3b82f6 45%,#1d4ed8 100%);">
+<td style="background:linear-gradient(110deg,#ff5b33 0%,#ff7958 45%,#d73c1b 100%);">
 <a href="${SITE.telegram}" style="display:inline-block;padding:12px 28px;font-size:14px;font-weight:500;color:#ffffff;text-decoration:none;">Написати в Telegram</a>
 </td>
 </tr>

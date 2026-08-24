@@ -8,7 +8,6 @@ export function AnimatedBackground({ className }: { className?: string }) {
       <div className="animate-float-slow absolute -left-32 top-[33dvh] h-[250px] w-[250px] rounded-full bg-[#3b82f6]/15 blur-[60px] sm:h-[400px] sm:w-[400px] sm:blur-[100px]" />
       <div className="animate-float-slower absolute -right-32 bottom-0 hidden h-[450px] w-[450px] rounded-full bg-[#1d4ed8]/20 blur-[110px] sm:block" />
       <div className="absolute right-1/4 top-[50dvh] hidden h-[320px] w-[320px] rounded-full bg-accent-soft/10 blur-[100px] sm:block" />
-      <div className="noise-overlay hidden sm:block" />
     </div>
   );
 }

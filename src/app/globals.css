@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #030304;
-  --foreground: #f5f5f7;
-  --accent: #2563eb;
-  --accent-light: #3b82f6;
-  --accent-soft: #60a5fa;
-  --accent-deep: #1d4ed8;
-  --surface: #0a0a0d;
-  --border: rgba(255, 255, 255, 0.08);
+  --background: #090908;
+  --foreground: #efeee8;
+  --accent: #ff5b33;
+  --accent-light: #ff7958;
+  --accent-soft: #ff9a80;
+  --accent-deep: #d73c1b;
+  --surface: #0f0f0d;
+  --border: rgba(239, 238, 232, 0.12);
 }
 
 @theme inline {
@@ -44,6 +44,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: repeating-radial-gradient(circle at 24% 18%, rgba(255,255,255,.32) 0 0.45px, transparent 0.6px 3px);
+  background-size: 5px 5px;
+  mix-blend-mode: soft-light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -73,12 +86,108 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
+  background: rgba(239, 238, 232, 0.18);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(37, 99, 235, 0.55);
+  background: rgba(255, 91, 51, 0.72);
+}
+
+.hero-stage {
+  background:
+    radial-gradient(circle at 77% 47%, rgba(255, 91, 51, 0.12), transparent 23%),
+    linear-gradient(180deg, #0b0b0a 0%, #070707 100%);
+}
+
+.hero-grid {
+  opacity: 0.34;
+  background-image:
+    linear-gradient(to right, rgba(239, 238, 232, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 238, 232, 0.07) 1px, transparent 1px);
+  background-size: min(12vw, 10rem) min(12vw, 10rem);
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.hero-title {
+  text-wrap: balance;
+}
+
+.scene-grid {
+  background-image:
+    linear-gradient(to right, rgba(239, 238, 232, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 238, 232, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 50% 50%, black, transparent 88%);
+}
+
+.clinic-preview::after {
+  content: "";
+  position: absolute;
+  inset: -80% -40%;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 42%, rgba(255, 255, 255, 0.08) 49%, transparent 56%);
+  transform: translateX(-55%);
+  animation: clinic-shine 7s ease-in-out infinite;
+}
+
+.scene-float {
+  animation: scene-float 5.5s ease-in-out infinite;
+}
+
+.scene-float-delayed {
+  animation: scene-float 6.5s ease-in-out 1.2s infinite;
+}
+
+@keyframes clinic-shine {
+  0%, 68%, 100% { transform: translateX(-55%); }
+  82% { transform: translateX(55%); }
+}
+
+@keyframes scene-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -14px, 0); }
+}
+
+.hero-orbit-a {
+  animation: hero-spin 16s linear infinite;
+  border-top-color: var(--accent);
+  border-left-color: transparent;
+}
+
+.hero-orbit-b {
+  animation: hero-spin-reverse 11s linear infinite;
+  border-right-color: transparent;
+}
+
+.hero-orbit-a::after,
+.hero-orbit-b::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -3px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+@keyframes hero-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hero-spin-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+@media (max-width: 639px) {
+  .hero-object {
+    top: 43%;
+    right: -3rem;
+    opacity: 0.65 !important;
+  }
+
+  .hero-title {
+    max-width: 10ch;
+  }
 }
 
 /*
@@ -141,7 +250,7 @@ body {
   }
 
   .text-gradient-accent {
-    background: linear-gradient(90deg, #60a5fa 0%, #2563eb 55%, #1d4ed8 100%);
+    background: linear-gradient(90deg, #ff9a80 0%, #ff5b33 55%, #d73c1b 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -152,14 +261,6 @@ body {
       linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     background-size: 64px 64px;
-  }
-
-  .noise-overlay {
-    position: absolute;
-    inset: 0;
-    opacity: 0.035;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   @keyframes aurora {
@@ -252,13 +353,13 @@ body {
     0%,
     100% {
       box-shadow:
-        0 6px 24px -6px rgba(37, 99, 235, 0.55),
-        0 0 0 0 rgba(59, 130, 246, 0);
+        0 6px 24px -6px rgba(255, 91, 51, 0.55),
+        0 0 0 0 rgba(255, 121, 88, 0);
     }
     50% {
       box-shadow:
-        0 10px 34px -6px rgba(37, 99, 235, 0.75),
-        0 0 22px 2px rgba(59, 130, 246, 0.35);
+        0 10px 34px -6px rgba(255, 91, 51, 0.75),
+        0 0 22px 2px rgba(255, 121, 88, 0.35);
     }
   }
 

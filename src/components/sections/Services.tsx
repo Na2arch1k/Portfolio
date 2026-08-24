@@ -1,162 +1,97 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { animate, m, useInView, useReducedMotion } from "framer-motion";
-import { Sparkles, BadgeCheck } from "lucide-react";
+import { useState } from "react";
+import { AnimatePresence, m } from "framer-motion";
+import { ArrowUpRight, Check, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlassCard } from "@/components/ui/GlassCard";
-import { Reveal } from "@/components/ui/Reveal";
-import { SERVICES } from "@/data/services";
+import { SERVICES, type ServiceId } from "@/data/services";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-/**
- * Counts up from 0 to `value` once the number scrolls into view, instead of
- * just appearing — a small, cheap "premium" touch on the one element of this
- * section people actually linger on (the price). Respects reduced-motion by
- * snapping straight to the final value instead of skipping the number.
- */
-function AnimatedNumber({ value, delay = 0 }: { value: number; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduceMotion = useReducedMotion();
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    // Reduced motion: a 0-duration animate() still resolves through the same
-    // onUpdate callback (one call, straight to the final value) instead of a
-    // synchronous setState in the effect body, which cascading-render lint
-    // rules flag — see react-hooks/set-state-in-effect.
-    const controls = animate(0, value, {
-      duration: reduceMotion ? 0 : 1,
-      delay: reduceMotion ? 0 : delay,
-      ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => setDisplay(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, value, delay, reduceMotion]);
-
-  return <span ref={ref}>{display}</span>;
-}
-
-/**
- * The struck-through "was" price for the one discounted service — a
- * secondary reference next to the real (much bigger) price, not competing
- * with it. The strike is a hand-marked-looking diagonal slash, drawn in on
- * scroll, rather than a perfectly straight typographic line-through.
- */
-function StruckPrice({ min, max, delay = 0 }: { min: number; max?: number; delay?: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <span ref={ref} className="relative inline-block text-sm font-medium text-white/40 tabular-nums sm:text-base">
-      ${min}
-      {max !== undefined && <>{"–"}{max}</>}
-      <m.span
-        className="absolute left-0 top-1/2 h-[2px] w-full origin-center rounded-full bg-rose-400"
-        initial={{ scaleX: 0, rotate: 6 }}
-        animate={inView ? { scaleX: 1, rotate: 6 } : { rotate: 6 }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 0.45, delay: delay + 0.5, ease: "easeOut" }}
-      />
-    </span>
-  );
-}
 
 export function Services() {
   const { t } = useLanguage();
+  const [activeId, setActiveId] = useState<ServiceId>("cliniccard");
+  const activeService = SERVICES.find((service) => service.id === activeId) ?? SERVICES[0];
+  const activeCopy = t.services.items[activeId];
+  const ActiveIcon = activeService.icon;
 
   return (
-    <section id="services" className="relative py-20 sm:py-28">
-      <Container>
-        <Reveal className="flex justify-center">
-          <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent-soft">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-soft opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-soft" />
-            </span>
-            {t.services.badge}
-          </div>
-        </Reveal>
-
-        <SectionHeading
-          eyebrow={t.services.eyebrow}
-          title={t.services.title}
-          description={t.services.description}
-        />
-
-        <Reveal delay={0.2} className="flex justify-center">
-          <p className="mt-3 flex items-center gap-1.5 text-sm text-white/50">
-            <BadgeCheck size={15} className="text-accent-soft" />
-            {t.services.trustLine}
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map(({ id, icon: Icon, priceMin, priceMax, originalPriceMin, originalPriceMax, popular }, index) => {
-            const copy = t.services.items[id as keyof typeof t.services.items];
-            const numberDelay = (index % 4) * 0.08 + 0.35;
-            const discountPercent = originalPriceMin
-              ? Math.round((1 - priceMin / originalPriceMin) * 100)
-              : null;
-
-            return (
-              <Reveal key={id} delay={(index % 4) * 0.08}>
-                <GlassCard
-                  className={`flex h-full flex-col ${popular ? "border-accent/40 shadow-[0_20px_48px_-20px_rgba(37,99,235,0.45)]" : ""}`}
-                >
-                  {popular && (
-                    <span className="absolute right-6 top-6 inline-flex items-center gap-1 rounded-full border border-accent/40 bg-accent/15 px-3 py-1 text-[0.65rem] font-medium uppercase tracking-widest text-accent-soft">
-                      <Sparkles size={11} />
-                      {t.services.popularBadge}
-                    </span>
-                  )}
-
-                  <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-                    <Icon size={22} />
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-white">{copy.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/55">{copy.description}</p>
-
-                  <div className="mt-6 border-t border-white/10 pt-5">
-                    {discountPercent !== null && originalPriceMin !== undefined && (
-                      <div className="mb-1.5 flex items-center gap-2">
-                        <StruckPrice min={originalPriceMin} max={originalPriceMax} delay={numberDelay} />
-                        <span className="rounded-full bg-rose-500/15 px-2 py-0.5 text-xs font-bold text-rose-300">
-                          -{discountPercent}%
-                        </span>
-                      </div>
-                    )}
-                    <div className="flex items-baseline gap-1.5">
-                      {priceMax === undefined && (
-                        <span className="text-sm font-medium text-white/45">{t.services.from}</span>
-                      )}
-                      <span className="text-gradient-accent text-3xl font-bold tracking-tight tabular-nums">
-                        $<AnimatedNumber value={priceMin} delay={numberDelay} />
-                        {priceMax !== undefined && (
-                          <>
-                            {"–"}
-                            <AnimatedNumber value={priceMax} delay={numberDelay + 0.12} />
-                          </>
-                        )}
-                      </span>
-                    </div>
-                  </div>
-                </GlassCard>
-              </Reveal>
-            );
-          })}
+    <section id="services" className="relative overflow-hidden border-b border-white/10 bg-[#efeee8] py-24 text-[#090908] sm:py-36">
+      <div className="pointer-events-none absolute -right-24 top-20 text-[28vw] font-black leading-none tracking-[-.1em] text-black/[.025]">04</div>
+      <Container className="relative">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-black/25 pt-5 font-mono text-[9px] uppercase tracking-[.18em]">
+          <span className="inline-flex items-center gap-2 text-[#d73c1b]"><Sparkles size={12} />{t.services.badge}</span>
+          <span className="text-black/42">{t.services.trustLine}</span>
         </div>
 
-        <Reveal delay={0.3}>
-          <p className="mx-auto mt-8 flex max-w-2xl items-start gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 text-center text-sm leading-relaxed text-white/50 sm:items-center sm:text-left">
-            <Sparkles size={16} className="mt-0.5 shrink-0 text-accent-soft sm:mt-0" />
-            {t.services.priceNote}
-          </p>
-        </Reveal>
+        <div className="mt-12 grid gap-12 lg:grid-cols-[.95fr_1.05fr] lg:gap-20">
+          <div>
+            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-black/42">{t.services.eyebrow}</span>
+            <h2 className="mt-7 max-w-[9ch] text-[clamp(3.4rem,7vw,7rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{t.services.title}</h2>
+            <p className="mt-7 max-w-lg border-l border-[#d73c1b] pl-5 text-sm leading-relaxed text-black/58">{t.services.description}</p>
+
+            <div className="mt-14 border-t border-black/22">
+              {SERVICES.map((service) => {
+                const copy = t.services.items[service.id];
+                const Icon = service.icon;
+                const active = service.id === activeId;
+                return (
+                  <button
+                    key={service.id}
+                    type="button"
+                    onClick={() => setActiveId(service.id)}
+                    onMouseEnter={() => setActiveId(service.id)}
+                    aria-pressed={active}
+                    className={`group grid w-full grid-cols-[2.5rem_2.2rem_1fr_auto] items-center gap-3 border-b border-black/22 py-5 text-left transition-all duration-300 ${active ? "bg-[#090908] px-4 text-white" : "hover:px-3"}`}
+                  >
+                    <span className={`font-mono text-[8px] tracking-[.18em] ${active ? "text-accent" : "text-black/40"}`}>{service.index}</span>
+                    <Icon size={18} strokeWidth={1.35} className={active ? "text-accent" : "text-black/55"} />
+                    <span className="text-lg font-semibold uppercase tracking-[-.035em] sm:text-xl">{copy.title}</span>
+                    <ArrowUpRight size={17} className={`transition-transform ${active ? "text-accent" : "text-black/35 group-hover:-translate-y-1 group-hover:translate-x-1"}`} />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="relative min-h-[38rem] self-end overflow-hidden bg-[#090908] text-white shadow-[0_40px_100px_rgba(0,0,0,.22)]">
+            <div className="scene-grid pointer-events-none absolute inset-0 opacity-45" />
+            <AnimatePresence mode="wait">
+              <m.article
+                key={activeId}
+                initial={{ opacity: 0, y: 36, rotateX: -5 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                exit={{ opacity: 0, y: -25 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex min-h-[38rem] flex-col p-6 sm:p-10"
+              >
+                <div className="flex items-start justify-between">
+                  <span className="grid h-14 w-14 place-items-center bg-accent text-black"><ActiveIcon size={25} strokeWidth={1.35} /></span>
+                  <span className="font-mono text-[8px] uppercase tracking-[.18em] text-white/32">Solution / {activeService.index}</span>
+                </div>
+
+                <div className="mt-14">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">{activeCopy.tagline}</span>
+                    {activeId === "cliniccard" && <span className="bg-accent px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em] text-black">{t.services.popularBadge}</span>}
+                  </div>
+                  <h3 className="mt-5 text-[clamp(3rem,6vw,6rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{activeCopy.title}</h3>
+                  <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/48">{activeCopy.description}</p>
+                </div>
+
+                <ul className="mt-9 grid gap-px bg-white/12 sm:grid-cols-2">
+                  {activeCopy.features.map((feature) => <li key={feature} className="flex items-center gap-3 bg-[#0d0d0b] p-4 text-xs text-white/62"><Check size={13} className="text-accent" />{feature}</li>)}
+                </ul>
+
+                <div className="mt-auto flex flex-wrap items-end justify-between gap-6 border-t border-white/14 pt-7">
+                  <div><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{t.services.investmentLabel}</span><strong className="mt-2 block text-2xl uppercase tracking-[-.04em] text-white">{activeCopy.price}</strong></div>
+                  <a href="#contact" className="group inline-flex items-center gap-3 bg-[#efeee8] px-5 py-4 text-xs font-bold uppercase tracking-[.08em] text-black transition-colors hover:bg-accent">{activeCopy.cta}<ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></a>
+                </div>
+              </m.article>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        <p className="mt-8 max-w-3xl font-mono text-[8px] uppercase leading-relaxed tracking-[.14em] text-black/36">* {t.services.priceNote}</p>
       </Container>
     </section>
   );

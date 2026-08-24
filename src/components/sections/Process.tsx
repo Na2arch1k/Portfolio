@@ -1,8 +1,9 @@
 "use client";
 
-import { m } from "framer-motion";
+import { ArrowDownRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 import { PROCESS_STEPS } from "@/data/process";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -10,53 +11,31 @@ export function Process() {
   const { t } = useLanguage();
 
   return (
-    <section id="process" className="relative py-20 sm:py-28">
+    <section id="process" className="relative border-y border-white/10 bg-[#0c0c0a] py-24 sm:py-36">
       <Container>
-        <SectionHeading
-          eyebrow={t.process.eyebrow}
-          title={t.process.title}
-          description={t.process.description}
-        />
+        <SectionHeading eyebrow={t.process.eyebrow} title={t.process.title} description={t.process.description} />
 
-        <div className="relative mx-auto mt-14 max-w-2xl">
-          <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-accent/60 via-white/10 to-transparent sm:left-1/2 sm:-translate-x-1/2" />
-
-          <div className="flex flex-col gap-12">
-            {PROCESS_STEPS.map(({ step, id, icon: Icon }, index) => {
-              const copy = t.process.steps[id as keyof typeof t.process.steps];
-              return (
-                <m.div
-                  key={step}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className="relative flex items-start gap-6 sm:justify-center"
-                >
-                  <div className="glass relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-full border-accent/40 text-accent sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                    <Icon size={20} />
-                  </div>
-
-                  <div
-                    className={
-                      "glass w-full rounded-2xl p-6 transition-colors duration-300 hover:border-accent/40 sm:w-[calc(50%-2.5rem)] " +
-                      (index % 2 === 0 ? "sm:mr-auto sm:text-right" : "sm:ml-auto")
-                    }
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-widest text-accent-soft">
-                      {t.process.stepLabel} {step}
-                    </span>
-                    <h3 className="mt-2 text-lg font-semibold text-white">
+        <div className="mt-20 border-t border-white/15">
+          {PROCESS_STEPS.map(({ step, id, icon: Icon }, index) => {
+            const copy = t.process.steps[id as keyof typeof t.process.steps];
+            return (
+              <Reveal key={step} delay={index * 0.045}>
+                <article className="group grid items-start gap-5 border-b border-white/15 py-7 transition-colors hover:text-accent sm:grid-cols-[4rem_minmax(12rem,.8fr)_minmax(18rem,1fr)_3rem] sm:items-center sm:py-9">
+                  <span className="font-mono text-xs tracking-[0.2em] text-white/35 group-hover:text-accent/60">
+                    {String(step).padStart(2, "0")}
+                  </span>
+                  <div className="flex items-center gap-4">
+                    <Icon size={22} strokeWidth={1.35} className="text-accent" />
+                    <h3 className="text-2xl font-semibold uppercase tracking-[-0.045em] text-white transition-colors group-hover:text-accent sm:text-3xl">
                       {copy.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/60">
-                      {copy.description}
-                    </p>
                   </div>
-                </m.div>
-              );
-            })}
-          </div>
+                  <p className="max-w-xl text-sm leading-relaxed text-white/48">{copy.description}</p>
+                  <ArrowDownRight size={20} className="hidden text-white/28 transition-transform duration-300 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:text-accent sm:block" />
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </Container>
     </section>

@@ -4,8 +4,8 @@ const uk = {
   nav: {
     home: "Головна",
     about: "Про мене",
-    services: "Ціни",
-    projects: "Проєкти",
+    services: "Рішення",
+    projects: "Кейси",
     process: "Процес роботи",
     faq: "FAQ",
     contact: "Контакти",
@@ -14,13 +14,13 @@ const uk = {
     closeMenu: "Закрити меню",
   },
   hero: {
-    badge: "Відкритий до нових проєктів",
-    titleLine: "Цифрові рішення, які приносять бізнесу",
-    titleAccent: "реальних клієнтів",
+    badge: "ClinicCard готовий до впровадження",
+    titleLine: "ClinicCard:",
+    titleAccent: "клініка під контролем",
     description:
-      "Створюю сайти, CRM-системи, чат-боти та автоматизації під конкретні задачі бізнесу — від запису пацієнтів до обробки заявок. Дизайн, код і запуск під ключ.",
-    ctaPrimary: "Обговорити проєкт",
-    ctaSecondary: "Переглянути роботи",
+      "Повноцінна система для записів, пацієнтів, команди й аналітики клініки. Також створюю сайти, чат-боти та CRM під конкретні процеси бізнесу.",
+    ctaPrimary: "Запросити демо",
+    ctaSecondary: "Як це працює",
     stats: [
       { value: "15+", label: "запущених проєктів" },
       { value: "5+", label: "бізнес-ніш" },
@@ -29,10 +29,40 @@ const uk = {
     ],
   },
   about: {
-    eyebrow: "Про мене",
-    title: "Створюю цифрові рішення, які працюють на результат",
+    eyebrow: "Екосистема рішень",
+    title: "Від готового продукту до системи під ваш бізнес",
     description:
-      "Створюю сайти, CRM-системи для управління клієнтами, чат-боти та автоматизації для бізнесу. Поєдную дизайнерське мислення з сучасним стеком технологій, щоб процеси працювали самі, а компанія отримувала більше клієнтів.",
+      "Прокручуйте далі — кожна сцена показує окремий рівень цифрової екосистеми: ClinicCard, сайти, чат-боти та CRM.",
+    journey: [
+      {
+        label: "Головний продукт",
+        title: "ClinicCard",
+        kicker: "Операційна система для клініки",
+        description: "Записи, база пацієнтів, команда, нагадування й ключова аналітика працюють в одному захищеному просторі.",
+        points: ["Розклад і пацієнти", "Ролі для команди", "Аналітика в реальному часі"],
+      },
+      {
+        label: "Digital presence",
+        title: "Сайти",
+        kicker: "Перший контакт із вашим брендом",
+        description: "Не просто красива сторінка, а продуманий маршрут від першого враження до заявки або покупки.",
+        points: ["Унікальний дизайн", "Анімації та адаптивність", "Фокус на конверсії"],
+      },
+      {
+        label: "Automation layer",
+        title: "Чат-боти",
+        kicker: "Бізнес відповідає навіть коли ви офлайн",
+        description: "Боти для консультацій, записів, кваліфікації лідів і автоматичної передачі даних у ваші системи.",
+        points: ["Telegram та месенджери", "Автоматичні сценарії", "Інтеграції з API"],
+      },
+      {
+        label: "Custom systems",
+        title: "CRM",
+        kicker: "Процеси, зібрані навколо вашої команди",
+        description: "Кастомні кабінети, воронки, ролі та звіти без зайвих модулів, які не потрібні вашому бізнесу.",
+        points: ["Воронки та клієнти", "Права доступу", "Звіти й автоматизації"],
+      },
+    ],
     pillars: {
       ai: {
         title: "AI-підсилена розробка",
@@ -50,53 +80,94 @@ const uk = {
   },
   capabilities: {
     items: [
-      "Сайти для бізнесу",
-      "CRM-системи",
+      "ClinicCard",
+      "Сайти під ключ",
       "Чат-боти",
+      "CRM-системи",
       "Автоматизація процесів",
-      "Системи для клінік",
       "Інтеграції та API",
     ],
   },
   services: {
-    eyebrow: "Послуги та ціни",
-    badge: "-50% на багатосторінковий сайт",
-    title: "Скільки коштує проєкт",
-    description: "Це поточні ціни. Далі буде дорожче.",
-    trustLine: "Дешевше, ніж у конкурентів. Якість — преміальна.",
+    eyebrow: "Що можна запустити",
+    badge: "ClinicCard — пріоритетний продукт",
+    title: "Не прайс. Конкретні рішення.",
+    description: "Оберіть напрям — справа побачите, що саме входить у рішення та з чого починається співпраця.",
+    trustLine: "Демо → оцінка → запуск",
+    investmentLabel: "Інвестиція",
     from: "від",
-    popularBadge: "Обирають найчастіше",
+    popularBadge: "Флагман",
     priceNote:
-      "Ціни орієнтовні — фінальна вартість залежить від складності проєкту: сайт може бути і дешевшим, і дорожчим за вказаний діапазон.",
+      "Фінальна вартість залежить від кількості ролей, інтеграцій і бізнес-сценаріїв. Після короткого дзвінка ви отримуєте чітку оцінку без прихованих пунктів.",
     items: {
-      update: {
-        title: "Оновлення сайту",
-        description: "Свіжий дизайн і сучасний код для сайту, який у вас вже є — без старту з нуля.",
+      cliniccard: {
+        title: "ClinicCard",
+        tagline: "Готова система для приватних клінік",
+        description: "Центр керування записами, пацієнтами, лікарями та показниками клініки. Показую живе демо й адаптую впровадження під ваш процес.",
+        price: "Вартість після демо",
+        cta: "Запросити демонстрацію",
+        features: ["Онлайн-розклад", "Картки пацієнтів", "Команда й ролі", "Звіти та нагадування"],
       },
-      multipage: {
-        title: "Багатосторінковий сайт",
-        description: "Повноцінний сайт під ключ: кілька розділів, унікальний дизайн і адаптивна верстка.",
+      websites: {
+        title: "Сайти під ключ",
+        tagline: "Від позиціонування до запуску",
+        description: "Лендинги, корпоративні сайти та каталоги з авторським дизайном, сильною мобільною версією й анімаціями.",
+        price: "Від $80",
+        cta: "Обговорити сайт",
+        features: ["Структура й тексти", "Унікальний UI", "Анімації", "SEO та запуск"],
       },
-      ecommerce: {
-        title: "Інтернет-магазин",
-        description: "Каталог товарів, кошик і оформлення замовлення — готовий майданчик для продажів.",
+      chatbots: {
+        title: "Чат-боти",
+        tagline: "Автоматичні сценарії без рутини",
+        description: "Telegram-боти для записів, консультацій, заявок, нагадувань і синхронізації з вашими сервісами.",
+        price: "Від $50",
+        cta: "Описати сценарій",
+        features: ["Логіка діалогів", "Адмін-панель", "Сповіщення", "API-інтеграції"],
       },
-      automation: {
-        title: "Чат-боти, CRM та автоматизація",
-        description: "Боти для Telegram, CRM та системи обліку клієнтів (як Clinic Card), автоматичні розсилки та інтеграції, що звільняють ваш час.",
+      crm: {
+        title: "CRM-системи",
+        tagline: "Інструмент під реальний процес",
+        description: "Кастомна система обліку клієнтів, задач і воронок, яка повторює логіку вашої команди, а не змушує команду підлаштовуватись.",
+        price: "Індивідуальна оцінка",
+        cta: "Розібрати процес",
+        features: ["Клієнтська база", "Воронки", "Ролі й доступи", "Дашборди"],
       },
     },
   },
   projects: {
-    eyebrow: "Портфоліо",
-    title: "Проєкти, які говорять самі за себе",
+    eyebrow: "Продукти та кейси",
+    title: "Системи, які вирішують бізнес-задачі",
     description:
-      "Реальні проєкти для реального бізнесу — сайти, системи та автоматизації. Кожен можна відкрити та подивитися наживо.",
-    viewAll: "Переглянути всі проєкти",
+      "ClinicCard уже готовий до демонстрації. Під CRM і чат-бот зарезервовані місця — детальні кейси з’являться після оформлення матеріалів.",
+    viewAll: "Переглянути всі сайти",
     openSite: "Відкрити сайт",
     liveLabel: "Живий сайт",
     openInNewTab: "Відкрити сайт «{title}» у новій вкладці",
     screenshotAlt: "Скриншот сайту «{title}»",
+    websitesLabel: "Вибрані сайти",
+    productCases: {
+      cliniccard: {
+        status: "Готовий продукт",
+        title: "ClinicCard",
+        category: "Clinic OS",
+        description: "Повноцінна система керування приватною клінікою: записи, пацієнти, команда, нагадування та аналітика в одному середовищі.",
+        action: "Запросити демо",
+      },
+      chatbot: {
+        status: "Кейс готується",
+        title: "AI Chatbot",
+        category: "Automation",
+        description: "Зарезервоване місце для кейсу чат-бота. Пізніше тут з’являться сценарії, інтеграції та результат автоматизації.",
+        action: "Скоро",
+      },
+      crm: {
+        status: "Кейс готується",
+        title: "Custom CRM",
+        category: "Business system",
+        description: "Зарезервоване місце для CRM-кейсу з воронками, ролями, клієнтською базою та аналітичними дашбордами.",
+        action: "Скоро",
+      },
+    },
     items: {
       dental: {
         category: "Стоматологічна клініка",
@@ -151,17 +222,17 @@ const uk = {
     },
   },
   projectsPage: {
-    eyebrow: "Портфоліо",
-    title: "Усі проєкти",
+    eyebrow: "Каталог робіт",
+    title: "Продукти, системи та сайти",
     description:
-      "реалізованих проєктів для різного бізнесу — сайти, системи для клінік та автоматизації. Кожен можна відкрити та подивитися наживо.",
+      "сайтів уже доступні наживо. ClinicCard, CRM і чат-бот винесені окремо як головні продуктові напрями.",
     back: "На головну",
     open: "Відкрити",
   },
   process: {
     eyebrow: "Процес роботи",
-    title: "Прозорий шлях від ідеї до запуску",
-    description: "Кожен проєкт проходить шість чітких етапів, щоб результат відповідав очікуванням.",
+    title: "Від задачі бізнесу до робочого рішення",
+    description: "Кожне рішення проходить шість чітких етапів — незалежно від того, це ClinicCard, сайт, бот чи окрема CRM.",
     stepLabel: "Крок",
     steps: {
       discovery: {
@@ -178,7 +249,7 @@ const uk = {
       },
       development: {
         title: "Розробка",
-        description: "Верстаю та програмую сайт із сучасним технологічним стеком.",
+        description: "Збираю інтерфейс, бізнес-логіку та потрібні інтеграції в єдиний продукт.",
       },
       testing: {
         title: "Тестування",
@@ -186,72 +257,72 @@ const uk = {
       },
       launch: {
         title: "Запуск",
-        description: "Публікую сайт та передаю всі доступи й інструкції клієнту.",
+        description: "Запускаю рішення, передаю доступи та допомагаю команді почати роботу.",
       },
     },
   },
   whyChooseMe: {
     eyebrow: "Стандарт якості",
-    title: "Що отримує кожен проєкт",
-    description: "Незалежно від масштабу — від лендингу до корпоративного сайту — ці речі входять у кожну роботу за замовчуванням.",
+    title: "Система має працювати, а не заважати",
+    description: "Однаковий стандарт для ClinicCard, сайтів, ботів і CRM: зрозуміла логіка, надійність та можливість розвивати продукт після запуску.",
     items: {
       responsive: {
-        title: "Адаптивний дизайн",
-        description: "Бездоганний вигляд на смартфоні, планшеті й десктопі.",
+        title: "Логіка без хаосу",
+        description: "Кожен сценарій короткий, зрозумілий і відповідає реальній роботі команди.",
       },
       seo: {
-        title: "SEO-friendly",
-        description: "Семантика, метадані та структура, які любить Google.",
+        title: "Захист даних",
+        description: "Ролі, перевірка введення та контроль доступу закладаються в архітектуру системи.",
       },
       speed: {
-        title: "Висока швидкість",
-        description: "Оптимізовані зображення й код — сайт відкривається миттєво.",
+        title: "Швидка робота",
+        description: "Інтерфейс не змушує чекати й однаково добре працює на різних пристроях.",
       },
       animations: {
-        title: "Преміальні анімації",
-        description: "Плавні мікровзаємодії, які відчуваються дорого.",
+        title: "Живий UX",
+        description: "Рух і мікровзаємодії пояснюють стан системи, а не просто прикрашають екран.",
       },
       stack: {
-        title: "Сучасні технології",
-        description: "Next.js, TypeScript і Tailwind — стек провідних продуктів.",
+        title: "Готовність до росту",
+        description: "Модульна архітектура дозволяє додавати ролі, інтеграції та нові процеси.",
       },
       delivery: {
-        title: "Швидка здача",
-        description: "Від брифу до запуску — без затягнутих дедлайнів.",
+        title: "Підтримка після запуску",
+        description: "Допомагаю з впровадженням, навчаю команду та залишаюсь на зв'язку.",
       },
     },
   },
   faq: {
     eyebrow: "FAQ",
-    title: "Питання, які часто запитують",
-    description: "Не знайшли відповіді? Напишіть напряму — я відповім особисто.",
+    title: "Перед демонстрацією ClinicCard",
+    description: "Коротко про систему, впровадження та інші цифрові продукти, які можна замовити.",
     items: [
       {
-        question: "Скільки коштує сайт?",
+        question: "Що саме робить ClinicCard?",
         answer:
-          "Вартість залежить від складності проєкту: кількості сторінок, функціоналу та дизайну. Після обговорення деталей я формую точну пропозицію під ваш бюджет і цілі.",
+          "Система об'єднує розклад, записи пацієнтів, картки, роботу команди, нагадування та аналітику в одному зрозумілому інтерфейсі.",
       },
       {
-        question: "Скільки часу займає розробка?",
+        question: "Для яких клінік підходить система?",
         answer:
-          "Прості сайти (лендинги) займають від 1 до 3 днів. Більш складні та багатосторінкові проєкти — близько тижня.",
+          "ClinicCard створений для приватних клінік і кабінетів, які вже переросли таблиці, паперові журнали та робочі чати.",
       },
       {
-        question: "Чи буде сайт працювати на телефоні?",
+        question: "Скільки коштує впровадження?",
         answer:
-          "Так, кожен сайт розробляється адаптивним з нуля — він однаково добре виглядає й працює на телефонах, планшетах і комп'ютерах.",
+          "Точну вартість визначаю після демонстрації й короткого розбору процесів. Вона залежить від кількості користувачів, ролей, перенесення даних та інтеграцій.",
       },
       {
-        question: "Чи допоможете після запуску?",
+        question: "Чи можна замовити сайт, чат-бота або окрему CRM?",
         answer:
-          "Так, після запуску я залишаюсь на зв'язку для правок, консультацій та технічної підтримки, щоб сайт продовжував ефективно працювати.",
+          "Так. ClinicCard — головний готовий продукт, але я також створюю сайти, Telegram-ботів та індивідуальні CRM під конкретні процеси бізнесу.",
       },
     ],
   },
   contact: {
     eyebrow: "Контакти",
-    title: "Готові обговорити ваш проєкт?",
-    description: "Залиште заявку — я звʼяжусь з вами протягом одного робочого дня.",
+    title: "Готові побачити ClinicCard у роботі?",
+    description: "Залиште заявку на демо або коротко опишіть інший цифровий продукт — я звʼяжусь протягом одного робочого дня.",
     infoHeading: "Контактна інформація",
     infoSubheading: "Оберіть зручний спосіб зв'язку — відповідаю швидко.",
     telegramLabel: "Telegram",
@@ -297,7 +368,7 @@ const uk = {
   },
   footer: {
     description:
-      "Створюю сайти, CRM-системи, чат-боти та автоматизації для бізнесу за допомогою Claude Code. Рішення, які реально приносять заявки.",
+      "ClinicCard — мій головний продукт для приватних клінік. Також створюю сайти, чат-боти та CRM, які прибирають рутину й допомагають бізнесу зростати.",
     navHeading: "Навігація",
     contactHeading: "Контакти",
     rights: "Всі права захищено.",
@@ -308,8 +379,8 @@ const en: typeof uk = {
   nav: {
     home: "Home",
     about: "About",
-    services: "Pricing",
-    projects: "Projects",
+    services: "Solutions",
+    projects: "Cases",
     process: "Process",
     faq: "FAQ",
     contact: "Contact",
@@ -318,13 +389,13 @@ const en: typeof uk = {
     closeMenu: "Close menu",
   },
   hero: {
-    badge: "Open to new projects",
-    titleLine: "Digital solutions that bring your business",
-    titleAccent: "real customers",
+    badge: "ClinicCard is ready to implement",
+    titleLine: "ClinicCard:",
+    titleAccent: "your clinic in control",
     description:
-      "I build websites, CRM systems, chatbots, and automations for specific business needs — from patient booking to lead handling. Design, code, and launch, end to end.",
-    ctaPrimary: "Discuss a project",
-    ctaSecondary: "View my work",
+      "A complete system for appointments, patients, teams, and clinic analytics. I also build websites, chatbots, and custom CRM solutions for real business workflows.",
+    ctaPrimary: "Request a demo",
+    ctaSecondary: "See how it works",
     stats: [
       { value: "15+", label: "shipped projects" },
       { value: "5+", label: "business niches" },
@@ -333,10 +404,40 @@ const en: typeof uk = {
     ],
   },
   about: {
-    eyebrow: "About me",
-    title: "I build digital solutions that work for results",
+    eyebrow: "Solution ecosystem",
+    title: "From a ready product to a system built for your business",
     description:
-      "I build websites, CRM systems for managing customers, chatbots, and automations for businesses. I combine design thinking with a modern tech stack so processes run themselves and companies win more customers.",
+      "Keep scrolling — each scene reveals a layer of the ecosystem: ClinicCard, websites, chatbots, and CRM systems.",
+    journey: [
+      {
+        label: "Flagship product",
+        title: "ClinicCard",
+        kicker: "An operating system for clinics",
+        description: "Appointments, patient records, team access, reminders, and core analytics live in one secure workspace.",
+        points: ["Schedule and patients", "Team roles", "Real-time analytics"],
+      },
+      {
+        label: "Digital presence",
+        title: "Websites",
+        kicker: "The first contact with your brand",
+        description: "Not just a beautiful page, but a deliberate journey from the first impression to an inquiry or purchase.",
+        points: ["Custom design", "Motion and responsiveness", "Conversion focus"],
+      },
+      {
+        label: "Automation layer",
+        title: "Chatbots",
+        kicker: "Your business responds while you are offline",
+        description: "Bots for consultations, bookings, lead qualification, and automatic data transfer into your systems.",
+        points: ["Telegram and messengers", "Automated scenarios", "API integrations"],
+      },
+      {
+        label: "Custom systems",
+        title: "CRM",
+        kicker: "Processes shaped around your team",
+        description: "Custom workspaces, pipelines, roles, and reports without modules your business will never use.",
+        points: ["Pipelines and clients", "Access control", "Reports and automation"],
+      },
+    ],
     pillars: {
       ai: {
         title: "AI-powered development",
@@ -354,53 +455,94 @@ const en: typeof uk = {
   },
   capabilities: {
     items: [
-      "Business websites",
-      "CRM systems",
+      "ClinicCard",
+      "Websites",
       "Chatbots",
+      "CRM systems",
       "Process automation",
-      "Clinic management systems",
       "Integrations & APIs",
     ],
   },
   services: {
-    eyebrow: "Services & Pricing",
-    badge: "-50% off multi-page sites",
-    title: "How much a project costs",
-    description: "These are today's prices. They'll go up later.",
-    trustLine: "Cheaper than the competition. Premium quality.",
+    eyebrow: "What we can launch",
+    badge: "ClinicCard — flagship product",
+    title: "Not a price list. Concrete solutions.",
+    description: "Choose a direction to see what is included and how the engagement starts.",
+    trustLine: "Demo → estimate → launch",
+    investmentLabel: "Investment",
     from: "from",
-    popularBadge: "Most picked",
+    popularBadge: "Flagship",
     priceNote:
-      "Prices are a starting point — final cost depends on project complexity and can land lower or higher than the range shown.",
+      "Final cost depends on roles, integrations, and business scenarios. After a short call, you receive a clear estimate with no hidden items.",
     items: {
-      update: {
-        title: "Website Update",
-        description: "A fresh design and modern code for a site you already have — no rebuild from scratch.",
+      cliniccard: {
+        title: "ClinicCard",
+        tagline: "A ready system for private clinics",
+        description: "A control center for appointments, patients, doctors, and clinic performance. I show a live demo and adapt implementation to your workflow.",
+        price: "Price after demo",
+        cta: "Request a demo",
+        features: ["Online schedule", "Patient records", "Team roles", "Reports and reminders"],
       },
-      multipage: {
-        title: "Multi-page Website",
-        description: "A complete site, built to order: several sections, a unique design, and full responsiveness.",
+      websites: {
+        title: "Websites",
+        tagline: "From positioning to launch",
+        description: "Landing pages, corporate sites, and catalogs with custom design, strong mobile UX, and deliberate motion.",
+        price: "From $80",
+        cta: "Discuss a website",
+        features: ["Structure and copy", "Custom UI", "Motion", "SEO and launch"],
       },
-      ecommerce: {
-        title: "Online Store",
-        description: "A product catalog, cart, and checkout — a ready-made platform for selling online.",
+      chatbots: {
+        title: "Chatbots",
+        tagline: "Automated scenarios without routine",
+        description: "Telegram bots for bookings, consultations, inquiries, reminders, and synchronization with your services.",
+        price: "From $50",
+        cta: "Describe the scenario",
+        features: ["Conversation logic", "Admin panel", "Notifications", "API integrations"],
       },
-      automation: {
-        title: "Chatbots, CRM & Automation",
-        description: "Telegram bots, CRM and customer-management systems (like Clinic Card), automated messaging, and integrations that save you time.",
+      crm: {
+        title: "CRM systems",
+        tagline: "A tool built around the real process",
+        description: "A custom system for clients, tasks, and pipelines that mirrors your team's logic instead of forcing the team to adapt.",
+        price: "Custom estimate",
+        cta: "Map the process",
+        features: ["Client database", "Pipelines", "Roles and access", "Dashboards"],
       },
     },
   },
   projects: {
-    eyebrow: "Portfolio",
-    title: "Projects that speak for themselves",
+    eyebrow: "Products and cases",
+    title: "Systems built to solve business problems",
     description:
-      "Real projects for real businesses — websites, systems, and automations. Every one of them can be opened and viewed live.",
-    viewAll: "View all projects",
+      "ClinicCard is ready for a live demo. CRM and chatbot slots are reserved for the detailed cases that will be added later.",
+    viewAll: "View all websites",
     openSite: "Open site",
     liveLabel: "Live site",
     openInNewTab: "Open the «{title}» website in a new tab",
     screenshotAlt: "Screenshot of the «{title}» website",
+    websitesLabel: "Selected websites",
+    productCases: {
+      cliniccard: {
+        status: "Ready product",
+        title: "ClinicCard",
+        category: "Clinic OS",
+        description: "A complete operating system for private clinics: appointments, patients, team access, reminders, and analytics in one environment.",
+        action: "Request a demo",
+      },
+      chatbot: {
+        status: "Case in progress",
+        title: "AI Chatbot",
+        category: "Automation",
+        description: "Reserved for the chatbot case. Scenarios, integrations, and automation outcomes will be added here later.",
+        action: "Coming soon",
+      },
+      crm: {
+        status: "Case in progress",
+        title: "Custom CRM",
+        category: "Business system",
+        description: "Reserved for the CRM case with pipelines, access roles, a client database, and analytical dashboards.",
+        action: "Coming soon",
+      },
+    },
     items: {
       dental: {
         category: "Dental clinic",
@@ -455,17 +597,17 @@ const en: typeof uk = {
     },
   },
   projectsPage: {
-    eyebrow: "Portfolio",
-    title: "All projects",
+    eyebrow: "Work catalog",
+    title: "Products, systems, and websites",
     description:
-      "shipped projects across different businesses — websites, clinic systems, and automations. Every one of them can be opened and viewed live.",
+      "websites are already available live. ClinicCard, CRM, and chatbot work are presented separately as the main product directions.",
     back: "Back to home",
     open: "Open",
   },
   process: {
     eyebrow: "Work process",
-    title: "A transparent path from idea to launch",
-    description: "Every project goes through six clear stages so the result matches expectations.",
+    title: "From a business task to a working solution",
+    description: "Every solution goes through six clear stages — whether it is ClinicCard, a website, a bot, or a custom CRM.",
     stepLabel: "Step",
     steps: {
       discovery: {
@@ -482,7 +624,7 @@ const en: typeof uk = {
       },
       development: {
         title: "Development",
-        description: "I build and code the site with a modern technology stack.",
+        description: "I bring the interface, business logic, and required integrations together in one product.",
       },
       testing: {
         title: "Testing",
@@ -490,72 +632,72 @@ const en: typeof uk = {
       },
       launch: {
         title: "Launch",
-        description: "I publish the site and hand over all access and instructions to the client.",
+        description: "I launch the solution, hand over access, and help the team start using it.",
       },
     },
   },
   whyChooseMe: {
     eyebrow: "Quality standard",
-    title: "What every project gets",
-    description: "Regardless of scale — from a landing page to a corporate site — these things are included by default.",
+    title: "A system should work, not get in the way",
+    description: "One standard across ClinicCard, websites, bots, and CRM: clear logic, reliability, and room to evolve after launch.",
     items: {
       responsive: {
-        title: "Responsive design",
-        description: "Flawless on smartphone, tablet, and desktop.",
+        title: "Logic without chaos",
+        description: "Every scenario is short, clear, and aligned with how the team actually works.",
       },
       seo: {
-        title: "SEO-friendly",
-        description: "Semantics, metadata, and structure that Google loves.",
+        title: "Data protection",
+        description: "Roles, input validation, and access control are built into the system architecture.",
       },
       speed: {
-        title: "High performance",
-        description: "Optimized images and code — the site loads instantly.",
+        title: "Fast operation",
+        description: "The interface does not keep people waiting and works smoothly across devices.",
       },
       animations: {
-        title: "Premium animations",
-        description: "Smooth micro-interactions that feel expensive.",
+        title: "Alive UX",
+        description: "Motion and micro-interactions explain system state instead of merely decorating the screen.",
       },
       stack: {
-        title: "Modern technology",
-        description: "Next.js, TypeScript, and Tailwind — the stack behind leading products.",
+        title: "Ready to grow",
+        description: "A modular architecture makes it possible to add roles, integrations, and new processes.",
       },
       delivery: {
-        title: "Fast delivery",
-        description: "From brief to launch — no dragged-out deadlines.",
+        title: "Post-launch support",
+        description: "I help with implementation, train the team, and stay available after launch.",
       },
     },
   },
   faq: {
     eyebrow: "FAQ",
-    title: "Frequently asked questions",
-    description: "Didn't find your answer? Reach out directly — I'll reply personally.",
+    title: "Before the ClinicCard demo",
+    description: "A quick overview of the system, implementation, and other digital products you can order.",
     items: [
       {
-        question: "How much does a website cost?",
+        question: "What exactly does ClinicCard do?",
         answer:
-          "The price depends on project complexity: number of pages, functionality, and design. After discussing the details, I put together an exact proposal for your budget and goals.",
+          "It combines schedules, patient appointments, records, team workflows, reminders, and analytics in one clear interface.",
       },
       {
-        question: "How long does development take?",
+        question: "Which clinics is it designed for?",
         answer:
-          "Simple sites (landing pages) take 1 to 3 days. More complex, multi-page projects take about a week.",
+          "ClinicCard is designed for private clinics and practices that have outgrown spreadsheets, paper logs, and work chats.",
       },
       {
-        question: "Will the site work on mobile?",
+        question: "How much does implementation cost?",
         answer:
-          "Yes, every site is built responsive from the ground up — it looks and works equally well on phones, tablets, and computers.",
+          "I provide an exact price after a demo and a short workflow review. It depends on user count, roles, data migration, and integrations.",
       },
       {
-        question: "Do you help after launch?",
+        question: "Can I order a website, chatbot, or separate CRM?",
         answer:
-          "Yes, after launch I stay available for edits, consultations, and technical support so the site keeps working effectively.",
+          "Yes. ClinicCard is the main ready-to-use product, and I also build websites, Telegram bots, and custom CRM systems for specific business processes.",
       },
     ],
   },
   contact: {
     eyebrow: "Contact",
-    title: "Ready to discuss your project?",
-    description: "Leave a request — I'll get back to you within one business day.",
+    title: "Ready to see ClinicCard in action?",
+    description: "Request a demo or briefly describe another digital product — I'll get back to you within one business day.",
     infoHeading: "Contact information",
     infoSubheading: "Pick whichever channel is convenient — I reply fast.",
     telegramLabel: "Telegram",
@@ -601,7 +743,7 @@ const en: typeof uk = {
   },
   footer: {
     description:
-      "I build websites, CRM systems, chatbots, and automations for businesses using Claude Code. Solutions that actually bring in leads.",
+      "ClinicCard is my flagship product for private clinics. I also build websites, chatbots, and CRM systems that remove routine and help businesses grow.",
     navHeading: "Navigation",
     contactHeading: "Contact",
     rights: "All rights reserved.",

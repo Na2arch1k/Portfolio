@@ -40,19 +40,19 @@ type AnchorProps = SharedProps &
 type Props = ButtonProps | AnchorProps;
 
 const base =
-  "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full font-medium tracking-tight transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:animate-none disabled:shadow-none active:scale-[0.97]";
+  "relative inline-flex items-center justify-center gap-2 overflow-hidden font-semibold uppercase tracking-[0.06em] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 disabled:animate-none disabled:shadow-none active:scale-[0.97]";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[linear-gradient(110deg,#2563eb_0%,#3b82f6_45%,#1d4ed8_100%)] bg-[length:200%_auto] bg-left text-white shadow-[0_6px_24px_-6px_rgba(37,99,235,0.55)] hover:bg-right hover:shadow-[0_10px_36px_-6px_rgba(59,130,246,0.7)] hover:brightness-[1.08] hover:animate-glow-pulse focus-visible:animate-glow-pulse",
+    "bg-[#efeee8] text-[#090908] hover:bg-accent hover:shadow-[0_14px_40px_-18px_rgba(255,91,51,0.85)]",
   secondary:
-    "glass text-white hover:border-accent/50 hover:bg-white/[0.08] hover:shadow-[0_8px_28px_-10px_rgba(37,99,235,0.4)]",
+    "border border-white/20 bg-transparent text-white hover:border-accent hover:text-accent",
   ghost: "text-white/70 hover:text-white",
 };
 
 const sizes: Record<Size, string> = {
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  md: "px-5 py-3 text-xs",
+  lg: "px-7 py-4 text-sm",
 };
 
 function useRipple() {

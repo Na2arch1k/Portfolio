@@ -1,6 +1,6 @@
 "use client";
 
-import { Send, Mail, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, Mail, Send } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -10,70 +10,32 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="relative border-t border-white/[0.08] bg-surface">
-      <Container className="py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
-          <div>
-            <a href="#home" className="text-xl font-semibold tracking-tight text-white">
-              Назарій<span className="text-accent">.</span>
-            </a>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
-              {t.footer.description}
-            </p>
-          </div>
+    <footer className="border-t border-white/12 bg-[#070706]">
+      <Container className="py-10 sm:py-14">
+        <div className="flex items-start justify-between gap-8">
+          <a href="#home" className="flex items-center gap-3">
+            <span className="grid h-10 w-10 place-items-center bg-[#efeee8] text-lg font-black text-black">N.</span>
+            <span className="font-mono text-[9px] uppercase leading-relaxed tracking-[0.16em] text-white/45">Independent<br />digital creator</span>
+          </a>
+          <a href="#home" aria-label="Вгору" className="grid h-11 w-11 place-items-center border border-white/18 text-white/55 transition-colors hover:border-accent hover:bg-accent hover:text-black">
+            <ArrowUp size={17} />
+          </a>
+        </div>
 
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-              {t.footer.navHeading}
-            </h3>
-            <ul className="mt-4 grid grid-cols-2 gap-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-white/60 transition-colors hover:text-white"
-                  >
-                    {t.nav[link.key]}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/40">
-              {t.footer.contactHeading}
-            </h3>
-            <ul className="mt-4 flex flex-col gap-3 text-sm text-white/60">
-              <li className="flex items-center gap-2">
-                <Mail size={16} className="text-accent" aria-hidden="true" />
-                <a href={`mailto:${SITE.email}`} className="hover:text-white">
-                  {SITE.email}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Send size={16} className="text-accent" aria-hidden="true" />
-                <a
-                  href={SITE.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white"
-                >
-                  Telegram
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={16} className="text-accent" aria-hidden="true" />
-                {SITE.location}
-              </li>
-            </ul>
+        <div className="mt-16 grid gap-12 border-t border-white/12 pt-8 md:grid-cols-[1.4fr_1fr_1fr]">
+          <p className="max-w-sm text-sm leading-relaxed text-white/42">{t.footer.description}</p>
+          <nav className="grid grid-cols-2 gap-x-8 gap-y-3">
+            {NAV_LINKS.map((link) => <a key={link.href} href={link.href} className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/45 transition-colors hover:text-accent">{t.nav[link.key]}</a>)}
+          </nav>
+          <div className="flex flex-col items-start gap-3 font-mono text-[9px] uppercase tracking-[0.14em]">
+            <a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-2 text-white/48 hover:text-accent"><Mail size={13} />{SITE.email}</a>
+            <a href={SITE.telegram} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/48 hover:text-accent"><Send size={13} />Telegram <ArrowUpRight size={11} /></a>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t border-white/[0.08] pt-8 sm:flex-row">
-          <p className="text-xs text-white/40">
-            © {year} {SITE.name}. {t.footer.rights}
-          </p>
+        <div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-white/12 pt-6 font-mono text-[8px] uppercase tracking-[0.18em] text-white/28">
+          <span>© {year} {SITE.name}. {t.footer.rights}</span>
+          <span>{SITE.location} · 49.8397° N / 24.0297° E</span>
         </div>
       </Container>
     </footer>

@@ -1,9 +1,8 @@
 "use client";
 
-import { Check } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 import { ADVANTAGES } from "@/data/advantages";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
@@ -11,43 +10,44 @@ export function WhyChooseMe() {
   const { t } = useLanguage();
 
   return (
-    <section id="why-me" className="relative py-20 sm:py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-1/2 top-1/2 h-[250px] w-[380px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/[0.04] blur-[55px] sm:h-[420px] sm:w-[640px] sm:blur-[130px]" />
-      </div>
-
+    <section id="why-me" className="bg-[#efeee8] py-24 text-[#090908] sm:py-36">
       <Container>
-        <SectionHeading
-          eyebrow={t.whyChooseMe.eyebrow}
-          title={t.whyChooseMe.title}
-          description={t.whyChooseMe.description}
-        />
+        <div className="grid gap-12 border-t border-black/25 pt-5 lg:grid-cols-[.85fr_1.15fr]">
+          <div>
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#d73c1b]">
+              <span className="h-1.5 w-1.5 bg-[#d73c1b]" /> {t.whyChooseMe.eyebrow}
+            </span>
+            <TextReveal
+              as="h2"
+              text={t.whyChooseMe.title}
+              delay={0.05}
+              className="mt-7 max-w-[10ch] text-[clamp(3.2rem,7vw,7rem)] font-semibold uppercase leading-[0.83] tracking-[-0.07em]"
+            />
+          </div>
+          <div className="self-end">
+            <Reveal>
+              <p className="max-w-xl border-l border-[#d73c1b] pl-5 text-sm leading-relaxed text-black/60 sm:text-base">
+                {t.whyChooseMe.description}
+              </p>
+            </Reveal>
+          </div>
+        </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 grid border-l border-t border-black/20 sm:grid-cols-2 lg:grid-cols-3">
           {ADVANTAGES.map(({ id, icon: Icon }, index) => {
             const copy = t.whyChooseMe.items[id as keyof typeof t.whyChooseMe.items];
             return (
-              <Reveal key={id} delay={(index % 3) * 0.08}>
-                <div className="glass group relative flex h-full items-start gap-4 overflow-hidden rounded-2xl p-5 transition-all duration-300 hover:border-accent/40 hover:bg-white/[0.05]">
-                  <div className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-accent/20 to-accent/5 text-accent-soft transition-transform duration-300 group-hover:scale-110">
-                    <Icon size={20} />
+              <Reveal key={id} delay={(index % 3) * 0.06}>
+                <article className="group flex min-h-64 flex-col border-b border-r border-black/20 p-6 transition-colors hover:bg-[#ff5b33] sm:p-8">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-black/42">NO—00{index + 1}</span>
+                    <Icon size={21} strokeWidth={1.4} />
                   </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="text-base font-semibold text-white">
-                        {copy.title}
-                      </h3>
-                      <Check
-                        size={14}
-                        className="shrink-0 text-emerald-400/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                      />
-                    </div>
-                    <p className="mt-1 text-sm leading-relaxed text-white/50">
-                      {copy.description}
-                    </p>
+                  <div className="mt-auto pt-16">
+                    <h3 className="text-xl font-semibold uppercase tracking-[-0.035em] sm:text-2xl">{copy.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-black/58">{copy.description}</p>
                   </div>
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-soft/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                </div>
+                </article>
               </Reveal>
             );
           })}

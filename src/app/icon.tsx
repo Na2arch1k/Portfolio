@@ -13,19 +13,19 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#030304",
-          borderRadius: 8,
+          background: "#efeee8",
         }}
       >
         <div
           style={{
+            display: "flex",
             fontSize: 20,
             fontWeight: 700,
-            color: "#2563eb",
+            color: "#090908",
             fontFamily: "sans-serif",
           }}
         >
-          N.
+          N<span style={{ color: "#ff5b33" }}>.</span>
         </div>
       </div>
     ),

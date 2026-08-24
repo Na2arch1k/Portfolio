@@ -28,6 +28,10 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   keywords: [
+    "ClinicCard",
+    "система управління клінікою",
+    "CRM для клініки",
+    "електронна картка пацієнта",
     "розробка сайтів",
     "створення сайтів для бізнесу",
     "CRM для бізнесу",
@@ -55,10 +59,10 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og.png",
         width: 1200,
         height: 630,
-        alt: SITE.name,
+        alt: "ClinicCard — клініка під контролем",
       },
     ],
   },
@@ -66,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.role}`,
     description: SITE.description,
-    images: ["/opengraph-image"],
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -119,7 +123,7 @@ export default function RootLayout({
       lang="uk"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-white">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-black">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

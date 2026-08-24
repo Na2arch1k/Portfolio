@@ -13,50 +13,59 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#030304",
-          backgroundImage:
-            "radial-gradient(circle at 30% 20%, rgba(37,99,235,0.4), transparent 55%), radial-gradient(circle at 80% 80%, rgba(29,78,216,0.3), transparent 50%)",
-          padding: 80,
+          alignItems: "flex-start",
+          justifyContent: "space-between",
+          backgroundColor: "#090908",
+          backgroundImage: "linear-gradient(90deg, rgba(239,238,232,.08) 1px, transparent 1px), linear-gradient(rgba(239,238,232,.08) 1px, transparent 1px)",
+          backgroundSize: "120px 120px",
+          padding: 54,
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 12,
-            fontSize: 32,
-            fontWeight: 600,
-            color: "rgba(255,255,255,0.6)",
-            marginBottom: 32,
-          }}
-        >
-          {SITE.name}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 64,
+            width: "100%",
+            justifyContent: "space-between",
+            fontSize: 20,
             fontWeight: 700,
-            color: "#ffffff",
-            textAlign: "center",
-            lineHeight: 1.15,
-            maxWidth: 960,
+            color: "#ff5b33",
+            letterSpacing: 3,
+            textTransform: "uppercase",
           }}
         >
-          Створюю сучасні вебсайти, які приносять більше клієнтів
+          <span>{SITE.name}</span>
+          <span style={{ color: "rgba(239,238,232,.45)" }}>DESIGN × CODE × MOTION</span>
         </div>
         <div
           style={{
             display: "flex",
-            marginTop: 40,
-            fontSize: 28,
-            color: "#60a5fa",
-            fontWeight: 600,
+            fontSize: 76,
+            fontWeight: 700,
+            color: "#efeee8",
+            textAlign: "left",
+            lineHeight: 0.95,
+            letterSpacing: -4,
+            maxWidth: 1040,
+            textTransform: "uppercase",
           }}
         >
-          Розробка з Claude Code
+          CLINICCARD — КЛІНІКА ПІД КОНТРОЛЕМ
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignSelf: "flex-end",
+            background: "#ff5b33",
+            padding: "14px 20px",
+            fontSize: 18,
+            color: "#090908",
+            fontWeight: 800,
+            letterSpacing: 2,
+            textTransform: "uppercase",
+          }}
+        >
+          Clinic OS · Сайти · Чат-боти · CRM
         </div>
       </div>
     ),

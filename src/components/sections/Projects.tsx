@@ -1,172 +1,87 @@
 "use client";
 
 import Image from "next/image";
-import { m } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Globe } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bot, Check, Columns3, Stethoscope } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils";
-import { FEATURED_PROJECTS, type Project } from "@/data/projects";
+import { FEATURED_PROJECTS } from "@/data/projects";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-function ProjectRow({ project, flipped }: { project: Project; flipped: boolean }) {
-  const { t } = useLanguage();
-  const copy = t.projects.items[project.id as keyof typeof t.projects.items];
-  const domain = new URL(project.url).hostname;
-
+function ClinicCaseVisual() {
   return (
-    <article className="group/row relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
-      {/* Screenshot */}
-      <Reveal
-        className={cn("lg:col-span-7", flipped && "lg:order-2")}
-        delay={0.05}
-      >
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t.projects.openInNewTab.replace("{title}", project.title)}
-          className="group relative block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-background rounded-2xl"
-        >
-          {/* Ambient glow behind the frame */}
-          <div
-            className={cn(
-              "pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-700 group-hover:opacity-100",
-              project.accent
-            )}
-          />
-
-          {/* Browser frame */}
-          <div className="glass overflow-hidden rounded-2xl transition-all duration-500 group-hover:border-white/20 group-hover:shadow-[0_32px_80px_-24px_rgba(0,0,0,0.8)]">
-            <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.03] px-4 py-3">
-              <div className="flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#ff5f57]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#febc2e]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-[#28c840]" />
-              </div>
-              <div className="flex min-w-0 flex-1 items-center justify-center">
-                <span className="inline-flex max-w-full items-center gap-1.5 truncate rounded-md bg-black/30 px-3 py-1 text-[11px] font-medium tracking-wide text-white/40 transition-colors duration-300 group-hover:text-white/70">
-                  <Globe size={11} className="shrink-0" />
-                  <span className="truncate">{domain}</span>
-                </span>
-              </div>
-              <div className="w-[52px]" aria-hidden />
-            </div>
-
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <Image
-                src={project.image}
-                alt={t.projects.screenshotAlt.replace("{title}", project.title)}
-                fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-              />
-              {/* Hover veil with CTA */}
-              <div className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-black/50 via-transparent to-transparent p-5 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-black shadow-lg">
-                  {t.projects.openSite}
-                  <ArrowUpRight size={15} />
-                </span>
-              </div>
-            </div>
-          </div>
-        </a>
-      </Reveal>
-
-      {/* Copy */}
-      <div className={cn("lg:col-span-5", flipped && "lg:order-1")}>
-        <Reveal delay={0.15}>
-          <div className="flex items-baseline gap-4">
-            <span className="font-mono text-sm font-medium tracking-widest text-accent-soft/70">
-              {project.index}
-            </span>
-            <span className="h-px flex-1 max-w-16 bg-gradient-to-r from-accent/50 to-transparent" />
-            <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
-              {copy.category}
-            </span>
-          </div>
-
-          <h3 className="mt-5 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            {project.title}
-          </h3>
-
-          <p className="mt-4 text-base leading-relaxed text-white/55">
-            {copy.description}
-          </p>
-
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {project.tech.map((tech) => (
-              <li
-                key={tech}
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/60 transition-colors duration-300 hover:border-accent/30 hover:text-white/85"
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
-
-          <m.a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ x: 4 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-colors duration-300 hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm"
-          >
-            <span className="border-b border-accent/40 pb-0.5">
-              {t.projects.liveLabel}
-            </span>
-            <ArrowUpRight
-              size={16}
-              className="text-accent-soft transition-transform duration-300 group-hover/row:translate-x-0.5"
-            />
-          </m.a>
-        </Reveal>
+    <div className="absolute inset-x-5 bottom-5 top-[42%] overflow-hidden border border-white/14 bg-[#0b0b09] sm:inset-x-8 sm:bottom-8">
+      <div className="grid h-full grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr]">
+        <div className="flex flex-col items-center border-r border-white/10 py-4"><span className="grid h-8 w-8 place-items-center bg-accent text-sm font-black text-black">C.</span><div className="mt-8 space-y-3"><span className="grid h-8 w-8 place-items-center bg-white text-black"><Columns3 size={13} /></span><span className="grid h-8 w-8 place-items-center text-white/25"><Stethoscope size={13} /></span></div></div>
+        <div className="p-4 sm:p-6">
+          <div className="flex items-center justify-between border-b border-white/10 pb-4"><span className="font-mono text-[7px] uppercase tracking-[.16em] text-accent">Clinic dashboard</span><span className="text-[7px] text-white/25">24.08.2026</span></div>
+          <div className="mt-4 grid grid-cols-3 gap-2">{[["14", "Visits"], ["8", "Patients"], ["92%", "Load"]].map(([value, label], index) => <div key={label} className={`${index === 0 ? "bg-accent text-black" : "border border-white/10"} p-3`}><strong className="block text-xl tracking-[-.05em]">{value}</strong><span className="mt-2 block font-mono text-[6px] uppercase tracking-[.12em] opacity-45">{label}</span></div>)}</div>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2"><div className="border border-white/10 p-3">{["09:30 · Олена", "11:00 · Марія", "12:30 · Андрій"].map((item) => <div key={item} className="flex items-center justify-between border-b border-white/8 py-2 text-[8px] text-white/48 last:border-0"><span>{item}</span><Check size={9} className="text-accent" /></div>)}</div><div className="hidden border border-white/10 p-3 sm:block"><span className="text-[7px] uppercase tracking-[.12em] text-white/28">Efficiency</span><div className="mt-5 h-16 bg-[linear-gradient(135deg,transparent_30%,rgba(255,91,51,.8)_31%_34%,transparent_35%_45%,rgba(255,91,51,.45)_46%_49%,transparent_50%)]" /></div></div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function PlaceholderCard({ type }: { type: "chatbot" | "crm" }) {
+  const { t } = useLanguage();
+  const copy = t.projects.productCases[type];
+  const Icon = type === "chatbot" ? Bot : Columns3;
+  return (
+    <article className="group relative flex min-h-[19rem] flex-col overflow-hidden border border-white/14 bg-[#10100e] p-6 transition-colors duration-500 hover:bg-[#151410] sm:p-7">
+      <div className="scene-grid pointer-events-none absolute inset-0 opacity-30" />
+      <div className="relative flex items-start justify-between"><span className="font-mono text-[8px] uppercase tracking-[.16em] text-accent">{copy.status}</span><Icon size={19} strokeWidth={1.3} className="text-white/32" /></div>
+      <div className="relative mt-auto">
+        <span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{copy.category}</span>
+        <h3 className="mt-3 text-3xl font-semibold uppercase leading-[.88] tracking-[-.055em] sm:text-4xl">{copy.title}</h3>
+        <p className="mt-4 text-xs leading-relaxed text-white/40">{copy.description}</p>
+        <div className="mt-6 flex items-center gap-2 font-mono text-[8px] uppercase tracking-[.16em] text-white/30"><span>{copy.action}</span><span className="flex gap-1"><i className="h-1 w-1 animate-pulse rounded-full bg-accent" /><i className="h-1 w-1 animate-pulse rounded-full bg-accent [animation-delay:150ms]" /><i className="h-1 w-1 animate-pulse rounded-full bg-accent [animation-delay:300ms]" /></span></div>
+      </div>
+      <span className="absolute bottom-0 left-0 h-1 w-0 bg-accent transition-all duration-500 group-hover:w-full" />
     </article>
   );
 }
 
 export function Projects() {
   const { t } = useLanguage();
+  const clinic = t.projects.productCases.cliniccard;
+  const selectedWebsites = FEATURED_PROJECTS.slice(0, 3);
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
-      {/* Section ambience */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.07] to-transparent" />
-        <div className="absolute left-1/2 top-24 h-[280px] w-[420px] -translate-x-1/2 rounded-full bg-accent/[0.05] blur-[60px] sm:h-[480px] sm:w-[720px] sm:blur-[140px]" />
-      </div>
+    <section id="projects" className="relative overflow-hidden bg-[#080807] py-24 sm:py-36">
+      <div className="pointer-events-none absolute left-1/2 top-[18%] h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-accent/[.055] blur-[140px]" />
+      <Container className="relative">
+        <SectionHeading eyebrow={t.projects.eyebrow} title={t.projects.title} description={t.projects.description} />
 
-      <Container>
-        <SectionHeading
-          eyebrow={t.projects.eyebrow}
-          title={t.projects.title}
-          description={t.projects.description}
-        />
-
-        <div className="mt-20 flex flex-col gap-24 sm:gap-32">
-          {FEATURED_PROJECTS.map((project, index) => (
-            <ProjectRow
-              key={project.id}
-              project={project}
-              flipped={index % 2 === 1}
-            />
-          ))}
+        <div className="mt-20 grid gap-4 lg:grid-cols-[1.35fr_.65fr]">
+          <Reveal>
+            <article className="group relative min-h-[39rem] overflow-hidden border border-white/14 bg-[#11110f] p-6 sm:min-h-[42rem] sm:p-8">
+              <div className="scene-grid pointer-events-none absolute inset-0 opacity-45" />
+              <div className="relative flex items-start justify-between"><div><span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">{clinic.status}</span><span className="ml-3 font-mono text-[8px] uppercase tracking-[.15em] text-white/28">/ {clinic.category}</span></div><span className="grid h-11 w-11 place-items-center bg-accent text-black"><Stethoscope size={20} /></span></div>
+              <div className="relative mt-10 max-w-2xl"><h3 className="text-[clamp(3.6rem,7vw,7rem)] font-semibold uppercase leading-[.78] tracking-[-.08em]">{clinic.title}</h3><p className="mt-6 max-w-xl text-sm leading-relaxed text-white/46">{clinic.description}</p><a href="#contact" className="group/link mt-6 inline-flex items-center gap-3 border-b border-accent pb-2 text-xs font-bold uppercase tracking-[.08em]">{clinic.action}<ArrowUpRight size={15} className="transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1" /></a></div>
+              <ClinicCaseVisual />
+            </article>
+          </Reveal>
+          <div className="grid gap-4"><Reveal delay={0.06}><PlaceholderCard type="chatbot" /></Reveal><Reveal delay={0.11}><PlaceholderCard type="crm" /></Reveal></div>
         </div>
 
-        <Reveal className="mt-24 flex justify-center sm:mt-32">
-          <Button
-            href="/projects"
-            variant="secondary"
-            size="lg"
-            icon={<ArrowRight size={16} />}
-          >
-            {t.projects.viewAll}
-          </Button>
-        </Reveal>
+        <div className="mt-28 flex items-end justify-between gap-6 border-t border-white/15 pt-5"><div><span className="font-mono text-[8px] uppercase tracking-[.18em] text-accent">Archive / Websites</span><h3 className="mt-4 text-3xl font-semibold uppercase tracking-[-.055em] sm:text-5xl">{t.projects.websitesLabel}</h3></div><span className="hidden font-mono text-[8px] uppercase tracking-[.16em] text-white/28 sm:block">03 selected / {FEATURED_PROJECTS.length} total</span></div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {selectedWebsites.map((project, index) => {
+            const copy = t.projects.items[project.id as keyof typeof t.projects.items];
+            return (
+              <Reveal key={project.id} delay={index * 0.06}>
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className="group block border border-white/14 bg-[#10100e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                  <div className="relative aspect-[4/3] overflow-hidden"><Image src={project.image} alt={t.projects.screenshotAlt.replace("{title}", project.title)} fill sizes="(max-width:1024px) 100vw, 33vw" className="object-cover object-top saturate-[.6] transition-[transform,filter] duration-1000 group-hover:scale-[1.06] group-hover:saturate-100" /><div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" /><span className="absolute right-4 top-4 grid h-10 w-10 place-items-center bg-[#efeee8] text-black transition-colors group-hover:bg-accent"><ArrowUpRight size={16} /></span><div className="absolute inset-x-0 bottom-0 p-5"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-accent">0{index + 1} / {copy.category}</span><h4 className="mt-2 text-2xl font-semibold uppercase tracking-[-.05em]">{project.title}</h4></div></div>
+                </a>
+              </Reveal>
+            );
+          })}
+        </div>
+
+        <Reveal className="mt-10 flex justify-end"><Button href="/projects" variant="secondary" size="lg" icon={<ArrowRight size={16} />}>{t.projects.viewAll}</Button></Reveal>
       </Container>
     </section>
   );

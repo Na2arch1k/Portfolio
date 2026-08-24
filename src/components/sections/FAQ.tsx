@@ -14,54 +14,36 @@ export function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section id="faq" className="relative py-20 sm:py-28">
+    <section id="faq" className="relative py-24 sm:py-36">
       <Container>
-        <SectionHeading
-          eyebrow={t.faq.eyebrow}
-          title={t.faq.title}
-          description={t.faq.description}
-        />
+        <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} description={t.faq.description} />
 
-        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-4">
+        <div className="mt-20 border-t border-white/15">
           {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <Reveal key={item.question} delay={index * 0.05}>
-                <div
-                  className={cn(
-                    "glass overflow-hidden rounded-2xl transition-colors duration-300",
-                    isOpen && "border-accent/40"
-                  )}
-                >
+              <Reveal key={item.question} delay={index * 0.045}>
+                <article className={cn("border-b border-white/15 transition-colors", isOpen && "bg-white/[0.025]")}>
                   <button
+                    type="button"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
                     aria-expanded={isOpen}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="grid w-full grid-cols-[2.5rem_1fr_2.5rem] items-center gap-4 py-6 text-left sm:grid-cols-[5rem_1fr_3rem] sm:py-8"
                   >
-                    <span className="text-base font-medium text-white sm:text-lg">
-                      {item.question}
-                    </span>
-                    <m.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent/10 text-accent"
-                    >
-                      <Plus size={16} />
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-accent">0{index + 1}</span>
+                    <span className="text-xl font-semibold uppercase tracking-[-0.035em] text-white sm:text-2xl">{item.question}</span>
+                    <m.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.25 }} className="grid h-10 w-10 place-items-center border border-white/18 text-accent">
+                      <Plus size={17} />
                     </m.span>
                   </button>
-                  <div
-                    className={cn(
-                      "grid transition-[grid-template-rows] duration-300 ease-in-out",
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    )}
-                  >
+                  <div className={cn("grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.16,1,.3,1)]", isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}>
                     <div className="overflow-hidden">
-                      <p className="px-6 pb-6 text-sm leading-relaxed text-white/60 sm:text-base">
+                      <p className="max-w-2xl pb-7 pl-[4.1rem] text-sm leading-relaxed text-white/48 sm:pb-9 sm:pl-[9rem] sm:text-base">
                         {item.answer}
                       </p>
                     </div>
                   </div>
-                </div>
+                </article>
               </Reveal>
             );
           })}

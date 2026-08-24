@@ -1,10 +1,10 @@
 import {
-  Smartphone,
-  Search,
+  Workflow,
+  ShieldCheck,
   Gauge,
-  Sparkles,
-  Layers,
-  Rocket,
+  MousePointer2,
+  Blocks,
+  Headphones,
   type LucideIcon,
 } from "lucide-react";
 
@@ -14,10 +14,10 @@ export interface Advantage {
 }
 
 export const ADVANTAGES: Advantage[] = [
-  { id: "responsive", icon: Smartphone },
-  { id: "seo", icon: Search },
+  { id: "responsive", icon: Workflow },
+  { id: "seo", icon: ShieldCheck },
   { id: "speed", icon: Gauge },
-  { id: "animations", icon: Sparkles },
-  { id: "stack", icon: Layers },
-  { id: "delivery", icon: Rocket },
+  { id: "animations", icon: MousePointer2 },
+  { id: "stack", icon: Blocks },
+  { id: "delivery", icon: Headphones },
 ];
