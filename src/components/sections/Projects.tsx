@@ -45,7 +45,7 @@ export function Projects() {
   const secondRow = FEATURED_PROJECTS.slice(3, 6);
 
   return (
-    <section ref={sectionRef} id="projects" className="relative overflow-hidden bg-[#080807] py-24 sm:py-36">
+    <section ref={sectionRef} id="projects" className="relative scroll-mt-24 overflow-hidden bg-[#080807] py-24 sm:py-36">
       <div className="scene-grid pointer-events-none absolute inset-0 opacity-25" />
       <m.div style={reduceMotion ? undefined : { x: haloX }} className="pointer-events-none absolute left-0 top-[23%] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(255,91,51,.1),transparent_68%)]" />
 

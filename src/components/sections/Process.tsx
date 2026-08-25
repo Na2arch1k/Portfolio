@@ -25,7 +25,7 @@ export function Process() {
   const { t } = useLanguage();
 
   return (
-    <section id="process" className="relative overflow-hidden border-y border-white/10 bg-[#0c0c0a] py-24 sm:py-36">
+    <section id="process" className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-[#0c0c0a] py-24 sm:py-36">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_24%,rgba(255,91,51,.07),transparent_28%)]" />
       <Container className="relative">
         <div className="grid gap-10 border-t border-white/15 pt-5 lg:grid-cols-[.8fr_1.2fr] lg:items-end">

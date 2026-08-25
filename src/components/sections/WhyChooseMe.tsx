@@ -15,7 +15,7 @@ export function WhyChooseMe() {
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section ref={sectionRef} id="why-me" className="relative overflow-clip bg-[#efeee8] py-24 text-[#090908] sm:py-36">
+    <section ref={sectionRef} id="why-me" className="relative scroll-mt-24 overflow-clip bg-[#efeee8] py-24 text-[#090908] sm:py-36">
       <Container>
         <div className="border-t border-black/25 pt-5">
           <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[.18em] text-black/42">

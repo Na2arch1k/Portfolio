@@ -17,7 +17,7 @@ export function Services() {
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section ref={sectionRef} id="services" className="relative h-[330svh] border-b border-black/20 bg-[#efeee8] text-[#090908] motion-reduce:h-auto">
+    <section ref={sectionRef} id="services" className="relative scroll-mt-20 h-[330svh] border-b border-black/20 bg-[#efeee8] text-[#090908] motion-reduce:h-auto">
       <div className="sticky top-0 h-[100svh] overflow-hidden pt-28 motion-reduce:relative motion-reduce:h-auto motion-reduce:overflow-visible motion-reduce:pb-24">
         <div className="pointer-events-none absolute -right-20 top-12 text-[32vw] font-black leading-none tracking-[-.12em] text-black/[.025]">04</div>
         <Container className="relative">
@@ -36,7 +36,7 @@ export function Services() {
             const copy = t.services.items[service.id];
             const Icon = service.icon;
             return (
-              <article key={service.id} className="premium-card group relative flex h-[48vh] min-h-[25rem] w-[82vw] shrink-0 flex-col overflow-hidden border border-black/15 bg-[#0b0b09] p-6 text-white shadow-[0_32px_80px_rgba(0,0,0,.17)] motion-reduce:w-auto sm:h-[50vh] sm:min-h-[29rem] sm:w-[68vw] sm:p-8 lg:w-[48vw] xl:w-[42vw]">
+              <article key={service.id} className="premium-card group relative flex h-[48vh] min-h-[25rem] w-[82vw] shrink-0 flex-col overflow-hidden border border-black/15 bg-[#0b0b09] p-6 text-white shadow-[0_32px_80px_rgba(0,0,0,.17)] motion-reduce:h-auto motion-reduce:min-h-0 motion-reduce:w-auto sm:h-[50vh] sm:min-h-[29rem] sm:w-[68vw] sm:p-8 lg:w-[48vw] xl:w-[42vw]">
                 <div className="scene-grid pointer-events-none absolute inset-0 opacity-35" />
                 <div className="pointer-events-none absolute -right-4 -top-12 text-[13rem] font-black tracking-[-.1em] text-white/[.025]">0{index + 1}</div>
                 <div className="relative flex items-start justify-between">

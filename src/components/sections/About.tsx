@@ -23,7 +23,7 @@ function ClinicVisual() {
           {["09:30 · Олена Коваль", "11:00 · Марія Бондар", "12:30 · Андрій Лев"].map((item, index) => <div key={item} className="flex items-center justify-between border-b border-white/8 py-2 text-[9px] text-white/55 last:border-0"><span>{item}</span><Check size={11} className={index === 0 ? "text-accent" : "text-white/20"} /></div>)}
         </div>
       </div>
-      <div className="scene-float absolute right-0 top-[12%] border border-white/12 bg-[#efeee8] px-4 py-3 text-black shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em]">Нове нагадування</span><strong className="mt-1 block text-sm">Надіслано пацієнту</strong></div>
+      <div className="scene-float absolute right-2 top-[12%] border border-white/12 bg-[#efeee8] px-4 py-3 text-black shadow-xl sm:right-0"><span className="font-mono text-[7px] uppercase tracking-[.15em]">Нове нагадування</span><strong className="mt-1 block text-sm">Надіслано пацієнту</strong></div>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function BotVisual() {
         </div>
         <div className="mt-5 flex gap-2"><span className="flex-1 border border-white/10 p-3 text-[9px] text-white/25">Введіть повідомлення...</span><span className="grid h-10 w-10 place-items-center bg-accent text-black"><Send size={14} /></span></div>
       </div>
-      <div className="scene-float-delayed absolute -right-2 top-[15%] border border-accent/35 bg-[#0c0c0a] px-4 py-3"><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/35">Automation</span><strong className="mt-1 block text-sm text-accent">24/7 response</strong></div>
+      <div className="scene-float-delayed absolute right-2 top-[15%] border border-accent/35 bg-[#0c0c0a] px-4 py-3 sm:-right-2"><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/35">Automation</span><strong className="mt-1 block text-sm text-accent">24/7 response</strong></div>
     </div>
   );
 }
@@ -79,7 +79,9 @@ function CrmVisual() {
 
 const VISUALS = [WebsiteVisual, ClinicVisual, BotVisual, CrmVisual];
 
-function JourneyScene({ item, index, progress }: { item: { label: string; title: string; kicker: string; description: string; points: string[] }; index: number; progress: MotionValue<number> }) {
+type JourneyItem = { label: string; title: string; kicker: string; description: string; points: string[] };
+
+function JourneyScene({ item, index, progress }: { item: JourneyItem; index: number; progress: MotionValue<number> }) {
   const ranges = index === 0 ? [0, 0.18, 0.28] : index === 3 ? [0.66, 0.76, 1] : [index * 0.24 - 0.08, index * 0.24, index * 0.24 + 0.17, index * 0.24 + 0.27];
   const opacityValues = index === 0 ? [1, 1, 0] : index === 3 ? [0, 1, 1] : [0, 1, 1, 0];
   const yValues = index === 0 ? [0, 0, -160] : index === 3 ? [180, 0, 0] : [180, 0, 0, -160];
@@ -90,15 +92,15 @@ function JourneyScene({ item, index, progress }: { item: { label: string; title:
   const Visual = VISUALS[index];
 
   return (
-    <m.article style={{ opacity, y, scale }} className="absolute inset-0 grid items-center gap-8 pt-24 lg:grid-cols-[.85fr_1.15fr] lg:gap-16 lg:pt-28">
+    <m.article style={{ opacity, y, scale }} className="absolute inset-0 grid items-center gap-4 overflow-hidden bg-[#080807] pt-16 sm:gap-8 sm:overflow-visible sm:bg-transparent sm:pt-24 lg:grid-cols-[.85fr_1.15fr] lg:gap-16 lg:pt-28">
       <div>
         <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[.18em] text-accent"><span>0{index + 1}</span><span className="h-px w-10 bg-accent/50" /><span>{item.label}</span></div>
-        <h3 className="mt-6 text-[clamp(3.5rem,8vw,8rem)] font-semibold uppercase leading-[.8] tracking-[-.075em] text-white">{item.title}</h3>
-        <p className="mt-6 max-w-md text-lg font-medium uppercase leading-tight tracking-[-.025em] text-white/78 sm:text-2xl">{item.kicker}</p>
-        <p className="mt-5 max-w-lg text-sm leading-relaxed text-white/46">{item.description}</p>
-        <ul className="mt-7 grid gap-2 font-mono text-[8px] uppercase tracking-[.14em] text-white/42 sm:grid-cols-3">{item.points.map((point) => <li key={point} className="flex items-center gap-2 border-t border-white/12 pt-2"><Check size={10} className="text-accent" />{point}</li>)}</ul>
+        <h3 className="mt-3 text-[clamp(2.2rem,8vw,8rem)] font-semibold uppercase leading-[.85] tracking-[-.065em] text-white sm:mt-6 sm:leading-[.8] sm:tracking-[-.075em]">{item.title}</h3>
+        <p className="mt-3 max-w-md text-base font-medium uppercase leading-tight tracking-[-.02em] text-white/78 sm:mt-6 sm:text-lg sm:tracking-[-.025em] lg:text-2xl">{item.kicker}</p>
+        <p className="mt-2 max-w-lg text-xs leading-relaxed text-white/46 sm:mt-5 sm:text-sm">{item.description}</p>
+        <ul className="mt-3 hidden gap-2 font-mono text-[8px] uppercase tracking-[.14em] text-white/42 sm:mt-7 sm:grid sm:grid-cols-3">{item.points.map((point) => <li key={point} className="flex items-center gap-2 border-t border-white/12 pt-2"><Check size={10} className="text-accent" />{point}</li>)}</ul>
       </div>
-      <div className="h-[40vh] min-h-72 sm:h-[50vh]"><Visual /></div>
+      <div className="h-[24vh] min-h-48 sm:h-[40vh] sm:min-h-72 lg:h-[50vh]"><Visual /></div>
     </m.article>
   );
 }
@@ -111,7 +113,7 @@ export function About() {
   const backgroundX = useTransform(scrollYProgress, [0, 1], [80, -1250]);
 
   return (
-    <section ref={sectionRef} id="about" className="relative h-[360svh] border-b border-white/10 bg-[#080807]">
+    <section ref={sectionRef} id="about" className="relative scroll-mt-20 h-[360svh] border-b border-white/10 bg-[#080807]">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         <div className="scene-grid pointer-events-none absolute inset-0" />
         <m.div style={{ x: backgroundX }} className="pointer-events-none absolute bottom-[8%] left-0 whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-[-.09em] text-white/[.018]">
@@ -122,10 +124,10 @@ export function About() {
             <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">{t.about.eyebrow}</span>
             <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">Scroll / 01—04</span>
           </div>
-          {t.about.journey.map((item, index) => <JourneyScene key={item.title} item={item} index={index} progress={scrollYProgress} />)}
+          {t.about.journey.map((item: JourneyItem, index: number) => <JourneyScene key={item.title} item={item} index={index} progress={scrollYProgress} />)}
         </Container>
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/8"><m.div style={{ scaleX: progressScale, transformOrigin: "left" }} className="h-full bg-accent" /></div>
-        <div className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">{t.about.journey.map((item, index) => <span key={item.title} className="font-mono text-[7px] uppercase tracking-[.16em] text-white/25">0{index + 1}</span>)}</div>
+        <div className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">{t.about.journey.map((item: JourneyItem) => <span key={item.title} className="font-mono text-[7px] uppercase tracking-[.16em] text-white/25">0{t.about.journey.indexOf(item) + 1}</span>)}</div>
       </div>
     </section>
   );

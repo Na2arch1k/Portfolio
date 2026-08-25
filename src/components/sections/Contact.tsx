@@ -78,7 +78,7 @@ export function Contact() {
   }
 
   return (
-    <section ref={sectionRef} id="contact" className="relative overflow-hidden border-t border-black/20 bg-accent text-black">
+    <section ref={sectionRef} id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-black/20 bg-accent text-black">
       <Container className="py-20 sm:py-28">
         <div className="flex items-center justify-between border-t border-black/30 pt-5 font-mono text-[10px] uppercase tracking-[0.2em]">
           <span>{t.contact.eyebrow}</span>

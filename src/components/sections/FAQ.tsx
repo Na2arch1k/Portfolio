@@ -14,7 +14,7 @@ export function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section id="faq" className="relative py-24 sm:py-36">
+    <section id="faq" className="relative scroll-mt-24 py-24 sm:py-36">
       <Container>
         <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} description={t.faq.description} />
 
