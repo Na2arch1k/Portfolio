@@ -77,10 +77,9 @@ export function Hero() {
             <m.div style={reduceMotion ? undefined : { x: frontX, rotateZ: frontRotate }} className="absolute inset-0">
               <ProjectFrame image="/projects/dental.jpg" label="Dental / Digital presence" priority className="bottom-[2%] right-[4%] h-[78%] w-[64%] rotate-[4deg]" />
             </m.div>
-            <m.div style={reduceMotion ? undefined : { x: chipX }} className="scene-float absolute left-[2%] top-[56%] z-20 hidden min-w-48 border border-white/15 bg-[#0c0c0a]/95 p-4 shadow-2xl sm:block">
-              <span className="flex items-center gap-2 font-mono text-[7px] uppercase tracking-[.16em] text-accent"><Blocks size={12} /> {t.hero.ownProductLabel}</span>
-              <strong className="mt-2 block text-lg uppercase tracking-[-.04em]">ClinicCard</strong>
-              <span className="mt-1 block text-[8px] text-white/35">{t.hero.clinicCardLabel}</span>
+            <m.div style={reduceMotion ? undefined : { x: chipX }} className="scene-float absolute left-[2%] top-[51%] z-20 hidden w-56 overflow-hidden border border-cyan-300/25 bg-[#071512] shadow-2xl sm:block">
+              <div className="relative h-24 overflow-hidden"><Image src="/projects/cliniccard-dashboard.png" alt="" fill sizes="14rem" className="object-cover object-left-top" /><div className="absolute inset-0 bg-gradient-to-t from-[#071512] via-transparent to-transparent" /></div>
+              <div className="p-3"><span className="flex items-center gap-2 font-mono text-[7px] uppercase tracking-[.16em] text-cyan-300"><Blocks size={12} /> {t.hero.ownProductLabel}</span><div className="mt-1 flex items-end justify-between gap-3"><div><strong className="block text-base uppercase tracking-[-.04em]">ClinicCard</strong><span className="mt-0.5 block text-[7px] text-white/38">{t.hero.clinicCardLabel}</span></div><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]" /></div></div>
             </m.div>
             <div className="scene-float-delayed absolute right-1 top-1 z-20 border border-black/15 bg-[#efeee8] px-3 py-2.5 text-black sm:right-0 sm:top-0 sm:px-5 sm:py-4">
               <span className="flex items-center gap-2 font-mono text-[7px] uppercase tracking-[.15em]"><Sparkles size={11} /> {t.hero.motionLabel}</span>

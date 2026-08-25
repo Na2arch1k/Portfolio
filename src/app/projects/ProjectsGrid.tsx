@@ -3,13 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Bot, Columns3, Stethoscope } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { ProductCaseCover } from "@/components/projects/ProductCaseCover";
 import { ALL_PROJECTS } from "@/data/projects";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-const PRODUCT_ICONS = { cliniccard: Stethoscope, chatbot: Bot, crm: Columns3 } as const;
-const PRODUCT_URLS = { cliniccard: "https://clinic-card-demo.vercel.app", crm: "https://crm-demo-snowy-two.vercel.app" } as const;
 
 export function ProjectsGrid() {
   const { t } = useLanguage();
@@ -53,20 +51,9 @@ export function ProjectsGrid() {
 
       <div className="mt-28 flex flex-wrap items-end justify-between gap-7 border-t border-white/15 pt-5"><div><span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">Products / Systems</span><h2 className="mt-4 max-w-[10ch] text-4xl font-semibold uppercase leading-[.88] tracking-[-.06em] sm:text-6xl">{t.projects.systemsLabel}</h2></div><p className="max-w-md text-sm leading-relaxed text-white/42">{t.projects.systemsDescription}</p></div>
 
-      <div className="mt-10 grid gap-4 lg:grid-cols-3">
-        {(["cliniccard", "chatbot", "crm"] as const).map((id, index) => {
-          const copy = t.projects.productCases[id];
-          const Icon = PRODUCT_ICONS[id];
-          const url = id === "cliniccard" || id === "crm" ? PRODUCT_URLS[id] : undefined;
-          const ready = Boolean(url);
-          return (
-            <article key={id} className={`group relative flex min-h-[22rem] flex-col overflow-hidden border p-6 transition-transform duration-500 hover:-translate-y-2 sm:p-8 ${ready ? "border-accent/45 bg-[#11110f]" : "border-white/14 bg-[#0e0e0c]"}`}>
-              <div className="scene-grid pointer-events-none absolute inset-0 opacity-25" />
-              <div className="relative flex items-start justify-between"><span className="font-mono text-[8px] uppercase tracking-[.16em] text-accent">0{index + 1} / {copy.status}</span><Icon size={20} strokeWidth={1.3} className="text-white/35" /></div>
-              <div className="relative mt-auto"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{copy.category}</span><h3 className="mt-3 text-4xl font-semibold uppercase leading-[.84] tracking-[-.065em]">{copy.title}</h3><p className="mt-5 text-xs leading-relaxed text-white/42">{copy.description}</p>{url ? <a href={url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-accent pb-2 text-[9px] font-bold uppercase tracking-[.1em]">{copy.action}<ArrowUpRight size={14} /></a> : <span className="mt-6 inline-flex items-center gap-2 font-mono text-[8px] uppercase tracking-[.15em] text-white/26">{copy.action}<i className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" /></span>}</div>
-            </article>
-          );
-        })}
+      <div className="mt-10 grid gap-4 lg:grid-cols-12 lg:items-stretch">
+        <m.div className="lg:col-span-7 lg:row-span-2" initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .72, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id="cliniccard" index={0} copy={t.projects.productCases.cliniccard} variant="featured" featuredLabel={t.projects.featuredProduct} /></m.div>
+        {(["crm", "chatbot"] as const).map((id, index) => <m.div className="lg:col-span-5" key={id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .66, delay: (index + 1) * .07, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id={id} index={index + 1} copy={t.projects.productCases[id]} variant="compact" /></m.div>)}
       </div>
     </Container>
   );

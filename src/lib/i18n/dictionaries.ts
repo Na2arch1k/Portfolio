@@ -196,7 +196,8 @@ const uk = {
     screenshotAlt: "Скриншот сайту «{title}»",
     websitesLabel: "Вибрані сайти",
     systemsLabel: "Власні продукти та автоматизація",
-    systemsDescription: "ClinicCard і CRM уже доступні як живі демо. Для чат-бота залишена акуратна заготівка — кейс з'явиться, коли будуть готові матеріали.",
+    featuredProduct: "Основний продукт",
+    systemsDescription: "ClinicCard і CRM доступні як живі демо, а для чат-бота вже підготовлено окремий концепт інтерфейсу в стилі Telegram та Instagram Direct.",
     productCases: {
       cliniccard: {
         status: "Готовий продукт",
@@ -206,11 +207,11 @@ const uk = {
         action: "Переглянути демо",
       },
       chatbot: {
-        status: "Кейс готується",
+        status: "Демо-концепт",
         title: "AI Chatbot",
-        category: "Automation",
-        description: "Зарезервоване місце для кейсу чат-бота. Пізніше тут з’являться сценарії, інтеграції та результат автоматизації.",
-        action: "Скоро",
+        category: "Telegram / Instagram",
+        description: "Концепт бізнес-бота для Telegram та Instagram Direct: автоматичні відповіді, запис, швидкі кнопки й передача заявки менеджеру.",
+        action: "Концепт інтерфейсу",
       },
       crm: {
         status: "Готовий продукт",
@@ -623,7 +624,8 @@ const en: typeof uk = {
     screenshotAlt: "Screenshot of the «{title}» website",
     websitesLabel: "Selected websites",
     systemsLabel: "Owned products and automation",
-    systemsDescription: "ClinicCard and CRM are already available as live demos. A clean placeholder is reserved for the chatbot case until its supporting materials are ready.",
+    featuredProduct: "Flagship product",
+    systemsDescription: "ClinicCard and CRM are available as live demos, while the chatbot now has a dedicated Telegram and Instagram Direct interface concept.",
     productCases: {
       cliniccard: {
         status: "Ready product",
@@ -633,11 +635,11 @@ const en: typeof uk = {
         action: "View demo",
       },
       chatbot: {
-        status: "Case in progress",
+        status: "Demo concept",
         title: "AI Chatbot",
-        category: "Automation",
-        description: "Reserved for the chatbot case. Scenarios, integrations, and automation outcomes will be added here later.",
-        action: "Coming soon",
+        category: "Telegram / Instagram",
+        description: "A business-bot concept for Telegram and Instagram Direct with automated replies, bookings, quick actions, and manager handoff.",
+        action: "Interface concept",
       },
       crm: {
         status: "Ready product",

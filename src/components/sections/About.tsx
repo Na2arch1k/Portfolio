@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Check, Send, UserRound, CalendarDays, BarChart3 } from "lucide-react";
+import { Check, UserRound } from "lucide-react";
 import { m, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
@@ -10,21 +10,13 @@ import { getStoryMotion } from "@/lib/story-motion";
 
 function ClinicVisual() {
   return (
-    <div className="relative h-full w-full">
-      <div className="absolute inset-[8%] border border-white/12 bg-[#11110f] p-5 shadow-[0_50px_110px_rgba(0,0,0,.7)] sm:p-7">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <span className="font-mono text-[8px] uppercase tracking-[.18em] text-accent">ClinicCard / Live</span>
-          <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]" />
-        </div>
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <div className="bg-accent p-4 text-black"><CalendarDays size={18} /><strong className="mt-7 block text-3xl tracking-[-.06em]">14</strong><span className="text-[8px] uppercase tracking-[.14em] text-black/55">записів сьогодні</span></div>
-          <div className="border border-white/10 p-4"><BarChart3 size={18} className="text-accent" /><strong className="mt-7 block text-3xl tracking-[-.06em]">92%</strong><span className="text-[8px] uppercase tracking-[.14em] text-white/35">завантаження</span></div>
-        </div>
-        <div className="mt-3 border border-white/10 p-4">
-          {["09:30 · Олена Коваль", "11:00 · Марія Бондар", "12:30 · Андрій Лев"].map((item, index) => <div key={item} className="flex items-center justify-between border-b border-white/8 py-2 text-[9px] text-white/55 last:border-0"><span>{item}</span><Check size={11} className={index === 0 ? "text-accent" : "text-white/20"} /></div>)}
-        </div>
+    <div className="relative h-full w-full [perspective:1100px]">
+      <div className="absolute inset-[5%] -rotate-2 overflow-hidden border border-cyan-300/25 bg-[#071512] shadow-[0_45px_110px_rgba(0,0,0,.75)]">
+        <Image src="/projects/cliniccard-dashboard.png" alt="" fill sizes="(max-width: 768px) 90vw, 48vw" className="object-cover object-left-top" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#06110f]/70 via-transparent to-cyan-400/5" />
       </div>
-      <div className="scene-float absolute right-2 top-[12%] border border-white/12 bg-[#efeee8] px-4 py-3 text-black shadow-xl sm:right-0"><span className="font-mono text-[7px] uppercase tracking-[.15em]">Нове нагадування</span><strong className="mt-1 block text-sm">Надіслано пацієнту</strong></div>
+      <div className="scene-float absolute -left-1 bottom-[10%] border border-cyan-300/30 bg-[#08211c]/95 px-4 py-3 shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-cyan-300">Live schedule</span><strong className="mt-1 block text-sm text-white">Лікарі · записи · пацієнти</strong></div>
+      <div className="scene-float-delayed absolute right-0 top-[9%] border border-black/15 bg-[#efeee8] px-4 py-3 text-black shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em]">ClinicCard / Live</span><strong className="mt-1 block text-sm">Повний робочий день</strong></div>
     </div>
   );
 }
@@ -45,17 +37,13 @@ function WebsiteVisual() {
 
 function BotVisual() {
   return (
-    <div className="relative mx-auto flex h-full max-w-lg flex-col justify-center px-5">
-      <div className="border border-white/12 bg-[#11110f] p-5 shadow-[0_40px_100px_rgba(0,0,0,.65)]">
-        <div className="flex items-center gap-3 border-b border-white/10 pb-4"><span className="grid h-9 w-9 place-items-center rounded-full bg-accent text-black"><Send size={16} /></span><div><strong className="block text-sm">Business Assistant</strong><span className="text-[8px] text-emerald-400">● online</span></div></div>
-        <div className="mt-5 space-y-3 text-xs">
-          <div className="max-w-[78%] bg-white/[.06] p-3 text-white/65">Вітаю! Чим можу допомогти?</div>
-          <div className="ml-auto max-w-[72%] bg-accent p-3 text-black">Хочу записатися на консультацію</div>
-          <div className="max-w-[82%] bg-white/[.06] p-3 text-white/65">Чудово. Оберіть зручний день — вільні години вже синхронізовані.</div>
-        </div>
-        <div className="mt-5 flex gap-2"><span className="flex-1 border border-white/10 p-3 text-[9px] text-white/25">Введіть повідомлення...</span><span className="grid h-10 w-10 place-items-center bg-accent text-black"><Send size={14} /></span></div>
+    <div className="relative h-full w-full [perspective:1100px]">
+      <div className="absolute inset-[5%] rotate-2 overflow-hidden border border-sky-300/20 bg-[#0b1724] shadow-[0_45px_110px_rgba(0,0,0,.75)]">
+        <Image src="/projects/chatbot-dashboard.png" alt="" fill sizes="(max-width: 768px) 90vw, 48vw" className="object-cover object-center" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07101c]/72 via-transparent to-sky-400/5" />
       </div>
-      <div className="scene-float-delayed absolute right-2 top-[15%] border border-accent/35 bg-[#0c0c0a] px-4 py-3 sm:-right-2"><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/35">Automation</span><strong className="mt-1 block text-sm text-accent">24/7 response</strong></div>
+      <div className="scene-float absolute -left-1 top-[16%] border border-sky-300/30 bg-[#0c1a2b]/95 px-4 py-3 shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.14em] text-sky-300">Telegram / Instagram</span><strong className="mt-1 block text-sm text-white">Business Assistant</strong></div>
+      <div className="scene-float-delayed absolute bottom-[8%] right-0 border border-accent/35 bg-[#0c0c0a]/95 px-4 py-3 shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/35">Automation</span><strong className="mt-1 block text-sm text-accent">Відповідає 24/7</strong></div>
     </div>
   );
 }
