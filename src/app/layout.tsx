@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "ClinicCard — клініка під контролем",
+        alt: "Назарій Гарасимчук — сайти та цифрові продукти для росту бізнесу",
       },
     ],
   },

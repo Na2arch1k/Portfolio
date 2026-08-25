@@ -15,19 +15,37 @@ export function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t: number) => 1 - Math.pow(1 - t, 3),
+      lerp: 0.12,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.2,
+      wheelMultiplier: 0.92,
+      touchMultiplier: 1,
     });
 
-    let frameId: number;
+    let frameId = 0;
     function raf(time: number) {
       lenis.raf(time);
       frameId = requestAnimationFrame(raf);
     }
-    frameId = requestAnimationFrame(raf);
+
+    function startLoop() {
+      if (frameId) return;
+      lenis.start();
+      frameId = requestAnimationFrame(raf);
+    }
+
+    function stopLoop() {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = 0;
+      lenis.stop();
+    }
+
+    function onVisibilityChange() {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    }
+
+    startLoop();
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     // In-page anchors (nav links, "scroll to projects") should ease through
     // Lenis too, not jump-cut via the browser's native anchor handling.
@@ -45,7 +63,8 @@ export function SmoothScroll() {
 
     return () => {
       document.removeEventListener("click", onAnchorClick);
-      cancelAnimationFrame(frameId);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      stopLoop();
       lenis.destroy();
     };
   }, []);

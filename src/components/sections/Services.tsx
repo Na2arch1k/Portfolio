@@ -1,98 +1,61 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, m } from "framer-motion";
+import { useRef } from "react";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Check, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
-import { SERVICES, type ServiceId } from "@/data/services";
+import { SERVICES } from "@/data/services";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export function Services() {
   const { t } = useLanguage();
-  const [activeId, setActiveId] = useState<ServiceId>("cliniccard");
-  const activeService = SERVICES.find((service) => service.id === activeId) ?? SERVICES[0];
-  const activeCopy = t.services.items[activeId];
-  const ActiveIcon = activeService.icon;
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const trackX = useTransform(scrollYProgress, [0.04, 0.96], ["0%", "-72%"]);
+  const titleX = useTransform(scrollYProgress, [0, 0.9], [0, -180]);
+  const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="services" className="relative overflow-hidden border-b border-white/10 bg-[#efeee8] py-24 text-[#090908] sm:py-36">
-      <div className="pointer-events-none absolute -right-24 top-20 text-[28vw] font-black leading-none tracking-[-.1em] text-black/[.025]">04</div>
-      <Container className="relative">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-black/25 pt-5 font-mono text-[9px] uppercase tracking-[.18em]">
-          <span className="inline-flex items-center gap-2 text-[#d73c1b]"><Sparkles size={12} />{t.services.badge}</span>
-          <span className="text-black/42">{t.services.trustLine}</span>
-        </div>
-
-        <div className="mt-12 grid gap-12 lg:grid-cols-[.95fr_1.05fr] lg:gap-20">
-          <div>
-            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-black/42">{t.services.eyebrow}</span>
-            <h2 className="mt-7 max-w-[9ch] text-[clamp(3.4rem,7vw,7rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{t.services.title}</h2>
-            <p className="mt-7 max-w-lg border-l border-[#d73c1b] pl-5 text-sm leading-relaxed text-black/58">{t.services.description}</p>
-
-            <div className="mt-14 border-t border-black/22">
-              {SERVICES.map((service) => {
-                const copy = t.services.items[service.id];
-                const Icon = service.icon;
-                const active = service.id === activeId;
-                return (
-                  <button
-                    key={service.id}
-                    type="button"
-                    onClick={() => setActiveId(service.id)}
-                    onMouseEnter={() => setActiveId(service.id)}
-                    aria-pressed={active}
-                    className={`group grid w-full grid-cols-[2.5rem_2.2rem_1fr_auto] items-center gap-3 border-b border-black/22 py-5 text-left transition-all duration-300 ${active ? "bg-[#090908] px-4 text-white" : "hover:px-3"}`}
-                  >
-                    <span className={`font-mono text-[8px] tracking-[.18em] ${active ? "text-accent" : "text-black/40"}`}>{service.index}</span>
-                    <Icon size={18} strokeWidth={1.35} className={active ? "text-accent" : "text-black/55"} />
-                    <span className="text-lg font-semibold uppercase tracking-[-.035em] sm:text-xl">{copy.title}</span>
-                    <ArrowUpRight size={17} className={`transition-transform ${active ? "text-accent" : "text-black/35 group-hover:-translate-y-1 group-hover:translate-x-1"}`} />
-                  </button>
-                );
-              })}
-            </div>
+    <section ref={sectionRef} id="services" className="relative h-[330svh] border-b border-black/20 bg-[#efeee8] text-[#090908] motion-reduce:h-auto">
+      <div className="sticky top-0 h-[100svh] overflow-hidden pt-28 motion-reduce:relative motion-reduce:h-auto motion-reduce:overflow-visible motion-reduce:pb-24">
+        <div className="pointer-events-none absolute -right-20 top-12 text-[32vw] font-black leading-none tracking-[-.12em] text-black/[.025]">04</div>
+        <Container className="relative">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-t border-black/25 pt-4 font-mono text-[8px] uppercase tracking-[.18em] sm:text-[9px]">
+            <span className="inline-flex items-center gap-2 text-[#d73c1b]"><Sparkles size={12} />{t.services.badge}</span>
+            <span className="text-black/42">Scroll → 01—04</span>
           </div>
-
-          <div className="relative min-h-[38rem] self-end overflow-hidden bg-[#090908] text-white shadow-[0_40px_100px_rgba(0,0,0,.22)]">
-            <div className="scene-grid pointer-events-none absolute inset-0 opacity-45" />
-            <AnimatePresence mode="wait">
-              <m.article
-                key={activeId}
-                initial={{ opacity: 0, y: 36, rotateX: -5 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                exit={{ opacity: 0, y: -25 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex min-h-[38rem] flex-col p-6 sm:p-10"
-              >
-                <div className="flex items-start justify-between">
-                  <span className="grid h-14 w-14 place-items-center bg-accent text-black"><ActiveIcon size={25} strokeWidth={1.35} /></span>
-                  <span className="font-mono text-[8px] uppercase tracking-[.18em] text-white/32">Solution / {activeService.index}</span>
-                </div>
-
-                <div className="mt-14">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">{activeCopy.tagline}</span>
-                    {activeId === "cliniccard" && <span className="bg-accent px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em] text-black">{t.services.popularBadge}</span>}
-                  </div>
-                  <h3 className="mt-5 text-[clamp(3rem,6vw,6rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{activeCopy.title}</h3>
-                  <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/48">{activeCopy.description}</p>
-                </div>
-
-                <ul className="mt-9 grid gap-px bg-white/12 sm:grid-cols-2">
-                  {activeCopy.features.map((feature) => <li key={feature} className="flex items-center gap-3 bg-[#0d0d0b] p-4 text-xs text-white/62"><Check size={13} className="text-accent" />{feature}</li>)}
-                </ul>
-
-                <div className="mt-auto flex flex-wrap items-end justify-between gap-6 border-t border-white/14 pt-7">
-                  <div><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{t.services.investmentLabel}</span><strong className="mt-2 block text-2xl uppercase tracking-[-.04em] text-white">{activeCopy.price}</strong></div>
-                  <a href="#contact" className="group inline-flex items-center gap-3 bg-[#efeee8] px-5 py-4 text-xs font-bold uppercase tracking-[.08em] text-black transition-colors hover:bg-accent">{activeCopy.cta}<ArrowUpRight size={16} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" /></a>
-                </div>
-              </m.article>
-            </AnimatePresence>
+          <div className="mt-8 grid items-end gap-6 md:grid-cols-[1fr_minmax(18rem,28rem)]">
+            <m.h2 style={reduceMotion ? undefined : { x: titleX }} className="max-w-[9ch] text-[clamp(3.2rem,6.5vw,6.7rem)] font-semibold uppercase leading-[.8] tracking-[-.075em]">{t.services.title}</m.h2>
+            <p className="border-l border-[#d73c1b] pl-5 text-sm leading-relaxed text-black/58">{t.services.description}</p>
           </div>
-        </div>
+        </Container>
 
-        <p className="mt-8 max-w-3xl font-mono text-[8px] uppercase leading-relaxed tracking-[.14em] text-black/36">* {t.services.priceNote}</p>
-      </Container>
+        <m.div style={reduceMotion ? undefined : { x: trackX }} className="motion-track mt-9 flex w-max gap-[3vw] pl-[max(1.5rem,calc((100vw-90rem)/2))] pr-[18vw] motion-reduce:grid motion-reduce:w-auto motion-reduce:grid-cols-1 motion-reduce:gap-4 motion-reduce:px-6 sm:mt-12">
+          {SERVICES.map((service, index) => {
+            const copy = t.services.items[service.id];
+            const Icon = service.icon;
+            return (
+              <article key={service.id} className="premium-card group relative flex h-[48vh] min-h-[25rem] w-[82vw] shrink-0 flex-col overflow-hidden border border-black/15 bg-[#0b0b09] p-6 text-white shadow-[0_32px_80px_rgba(0,0,0,.17)] motion-reduce:w-auto sm:h-[50vh] sm:min-h-[29rem] sm:w-[68vw] sm:p-8 lg:w-[48vw] xl:w-[42vw]">
+                <div className="scene-grid pointer-events-none absolute inset-0 opacity-35" />
+                <div className="pointer-events-none absolute -right-4 -top-12 text-[13rem] font-black tracking-[-.1em] text-white/[.025]">0{index + 1}</div>
+                <div className="relative flex items-start justify-between">
+                  <span className="grid h-12 w-12 place-items-center border border-white/15 bg-white/[.04] text-accent transition-colors duration-500 group-hover:bg-accent group-hover:text-black sm:h-14 sm:w-14"><Icon size={23} strokeWidth={1.35} /></span>
+                  <div className="text-right"><span className="block font-mono text-[7px] uppercase tracking-[.17em] text-white/28">Solution / {service.index}</span>{service.id === "cliniccard" && <span className="mt-2 inline-block border border-accent/40 px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em] text-accent">{t.services.popularBadge}</span>}</div>
+                </div>
+                <div className="relative mt-auto">
+                  <span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">{copy.tagline}</span>
+                  <h3 className="mt-4 text-[clamp(2.8rem,5vw,5.6rem)] font-semibold uppercase leading-[.8] tracking-[-.075em]">{copy.title}</h3>
+                  <p className="mt-5 max-w-xl text-xs leading-relaxed text-white/45 sm:text-sm">{copy.description}</p>
+                  <ul className="mt-6 grid gap-px bg-white/10 sm:grid-cols-2">{copy.features.map((feature) => <li key={feature} className="flex items-center gap-2 bg-[#0f0f0d] p-3 text-[9px] text-white/55"><Check size={11} className="text-accent" />{feature}</li>)}</ul>
+                  <div className="mt-6 flex items-end justify-between gap-4 border-t border-white/12 pt-5"><div><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/25">{t.services.investmentLabel}</span><strong className="mt-1 block text-lg uppercase tracking-[-.035em]">{copy.price}</strong></div><a href="#contact" className="grid h-12 w-12 shrink-0 place-items-center bg-[#efeee8] text-black transition-[background-color,transform] duration-300 hover:-translate-y-1 hover:bg-accent" aria-label={copy.cta}><ArrowUpRight size={17} /></a></div>
+                </div>
+              </article>
+            );
+          })}
+        </m.div>
+        <Container className="relative mt-6 flex items-center gap-4"><div className="h-px flex-1 bg-black/15"><m.div style={{ scaleX: progressScale, transformOrigin: "left" }} className="h-full bg-[#d73c1b]" /></div><span className="font-mono text-[7px] uppercase tracking-[.15em] text-black/38">{t.services.trustLine}</span></Container>
+      </div>
     </section>
   );
 }

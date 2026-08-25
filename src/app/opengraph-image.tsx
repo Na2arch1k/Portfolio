@@ -50,7 +50,7 @@ export default function OpengraphImage() {
             textTransform: "uppercase",
           }}
         >
-          CLINICCARD — КЛІНІКА ПІД КОНТРОЛЕМ
+          ДОПОМАГАЮ БІЗНЕСАМ РОЗВИВАТИСЯ ОНЛАЙН
         </div>
         <div
           style={{
@@ -65,7 +65,7 @@ export default function OpengraphImage() {
             textTransform: "uppercase",
           }}
         >
-          Clinic OS · Сайти · Чат-боти · CRM
+          Сайти · Системи · Автоматизація
         </div>
       </div>
     ),

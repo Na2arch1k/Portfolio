@@ -9,8 +9,8 @@ export interface Service {
 }
 
 export const SERVICES: Service[] = [
-  { id: "cliniccard", icon: Stethoscope, index: "01" },
-  { id: "websites", icon: PanelsTopLeft, index: "02" },
+  { id: "websites", icon: PanelsTopLeft, index: "01" },
+  { id: "cliniccard", icon: Stethoscope, index: "02" },
   { id: "chatbots", icon: Bot, index: "03" },
   { id: "crm", icon: Workflow, index: "04" },
 ];

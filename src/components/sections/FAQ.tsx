@@ -23,7 +23,7 @@ export function FAQ() {
             const isOpen = openIndex === index;
             return (
               <Reveal key={item.question} delay={index * 0.045}>
-                <article className={cn("border-b border-white/15 transition-colors", isOpen && "bg-white/[0.025]")}>
+                <article className={cn("group border-b border-white/15 transition-colors duration-500 hover:bg-white/[.025]", isOpen && "bg-white/[0.025]")}>
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : index)}
@@ -31,8 +31,8 @@ export function FAQ() {
                     className="grid w-full grid-cols-[2.5rem_1fr_2.5rem] items-center gap-4 py-6 text-left sm:grid-cols-[5rem_1fr_3rem] sm:py-8"
                   >
                     <span className="font-mono text-[10px] tracking-[0.2em] text-accent">0{index + 1}</span>
-                    <span className="text-xl font-semibold uppercase tracking-[-0.035em] text-white sm:text-2xl">{item.question}</span>
-                    <m.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.25 }} className="grid h-10 w-10 place-items-center border border-white/18 text-accent">
+                    <span className="text-xl font-semibold uppercase tracking-[-0.035em] text-white transition-[transform,color] duration-500 group-hover:translate-x-2 group-hover:text-accent sm:text-2xl">{item.question}</span>
+                    <m.span animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.25 }} className="grid h-10 w-10 place-items-center border border-white/18 text-accent transition-[background-color,color] group-hover:bg-accent group-hover:text-black">
                       <Plus size={17} />
                     </m.span>
                   </button>

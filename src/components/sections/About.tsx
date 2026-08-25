@@ -77,7 +77,7 @@ function CrmVisual() {
   );
 }
 
-const VISUALS = [ClinicVisual, WebsiteVisual, BotVisual, CrmVisual];
+const VISUALS = [WebsiteVisual, ClinicVisual, BotVisual, CrmVisual];
 
 function JourneyScene({ item, index, progress }: { item: { label: string; title: string; kicker: string; description: string; points: string[] }; index: number; progress: MotionValue<number> }) {
   const ranges = index === 0 ? [0, 0.18, 0.28] : index === 3 ? [0.66, 0.76, 1] : [index * 0.24 - 0.08, index * 0.24, index * 0.24 + 0.17, index * 0.24 + 0.27];
@@ -108,11 +108,15 @@ export function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const backgroundX = useTransform(scrollYProgress, [0, 1], [80, -1250]);
 
   return (
-    <section ref={sectionRef} id="about" className="relative h-[440svh] border-b border-white/10 bg-[#080807]">
+    <section ref={sectionRef} id="about" className="relative h-[360svh] border-b border-white/10 bg-[#080807]">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         <div className="scene-grid pointer-events-none absolute inset-0" />
+        <m.div style={{ x: backgroundX }} className="pointer-events-none absolute bottom-[8%] left-0 whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-[-.09em] text-white/[.018]">
+          Websites · Products · Bots · CRM · Websites · Products
+        </m.div>
         <Container className="relative h-full">
           <div className="absolute inset-x-6 top-5 z-20 flex items-center justify-between border-t border-white/15 pt-4 lg:inset-x-8">
             <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">{t.about.eyebrow}</span>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { m } from "framer-motion";
+import { useRef, useState, type FormEvent } from "react";
+import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { sendGAEvent } from "@next/third-parties/google";
 import { ArrowUpRight, CheckCircle2, AlertCircle, ChevronDown, Loader2, Send } from "lucide-react";
 import { Container } from "@/components/ui/Container";
@@ -21,6 +21,10 @@ const inputClasses =
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const titleX = useTransform(scrollYProgress, [0, .58], [-85, 0]);
   const { t } = useLanguage();
   const isLoading = status === "loading";
 
@@ -74,16 +78,16 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative border-t border-black/20 bg-accent text-black">
+    <section ref={sectionRef} id="contact" className="relative overflow-hidden border-t border-black/20 bg-accent text-black">
       <Container className="py-20 sm:py-28">
         <div className="flex items-center justify-between border-t border-black/30 pt-5 font-mono text-[10px] uppercase tracking-[0.2em]">
           <span>{t.contact.eyebrow}</span>
           <span>No—007</span>
         </div>
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
-          <h2 className="max-w-[10ch] text-[clamp(4rem,9vw,9rem)] font-semibold uppercase leading-[0.8] tracking-[-0.08em]">
+          <m.h2 style={reduceMotion ? undefined : { x: titleX }} className="max-w-[10ch] text-[clamp(4rem,9vw,9rem)] font-semibold uppercase leading-[0.8] tracking-[-0.08em]">
             {t.contact.title}
-          </h2>
+          </m.h2>
           <div className="max-w-md border-l border-black/35 pl-5">
             <p className="text-sm leading-relaxed text-black/65 sm:text-base">{t.contact.description}</p>
             <a href={`mailto:${SITE.email}`} className="group mt-6 inline-flex items-center gap-2 border-b border-black pb-2 text-sm font-bold uppercase tracking-[0.08em]">

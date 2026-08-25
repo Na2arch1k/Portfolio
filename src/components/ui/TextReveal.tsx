@@ -49,7 +49,7 @@ export function TextReveal({ text, as = "span", className, delay = 0, once = tru
     >
       {words.map((w, i) => (
         <span key={i} className="inline-block overflow-hidden pb-[0.1em]">
-          <m.span className="inline-block will-change-transform" variants={word}>
+          <m.span className="inline-block" variants={word}>
             {w}
             {i < words.length - 1 ? " " : ""}
           </m.span>
