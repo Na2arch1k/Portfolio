@@ -17,6 +17,7 @@ export const NAV_LINKS = [
   { key: "home", href: "#home" },
   { key: "about", href: "#about" },
   { key: "services", href: "#services" },
+  { key: "pricing", href: "#pricing" },
   { key: "projects", href: "#projects" },
   { key: "process", href: "#process" },
   { key: "faq", href: "#faq" },

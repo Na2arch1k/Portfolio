@@ -142,7 +142,7 @@ export const ALL_PROJECTS: Project[] = [
   },
 ];
 
-const FEATURED_ORDER = ["structure", "dental", "atelier", "osnova", "crystal-smile", "arkhe"];
+const FEATURED_ORDER = ["structure", "dental", "atelier", "osnova", "crystal-smile", "3d-home"];
 
 export const FEATURED_PROJECTS: Project[] = FEATURED_ORDER.map((id, i) => {
   const project = ALL_PROJECTS.find((p) => p.id === id)!;

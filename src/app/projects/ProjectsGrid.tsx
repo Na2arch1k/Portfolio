@@ -9,6 +9,7 @@ import { ALL_PROJECTS } from "@/data/projects";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const PRODUCT_ICONS = { cliniccard: Stethoscope, chatbot: Bot, crm: Columns3 } as const;
+const PRODUCT_URLS = { cliniccard: "https://clinic-card-demo.vercel.app", crm: "https://crm-demo-snowy-two.vercel.app" } as const;
 
 export function ProjectsGrid() {
   const { t } = useLanguage();
@@ -56,12 +57,13 @@ export function ProjectsGrid() {
         {(["cliniccard", "chatbot", "crm"] as const).map((id, index) => {
           const copy = t.projects.productCases[id];
           const Icon = PRODUCT_ICONS[id];
-          const ready = id === "cliniccard";
+          const url = id === "cliniccard" || id === "crm" ? PRODUCT_URLS[id] : undefined;
+          const ready = Boolean(url);
           return (
             <article key={id} className={`group relative flex min-h-[22rem] flex-col overflow-hidden border p-6 transition-transform duration-500 hover:-translate-y-2 sm:p-8 ${ready ? "border-accent/45 bg-[#11110f]" : "border-white/14 bg-[#0e0e0c]"}`}>
               <div className="scene-grid pointer-events-none absolute inset-0 opacity-25" />
               <div className="relative flex items-start justify-between"><span className="font-mono text-[8px] uppercase tracking-[.16em] text-accent">0{index + 1} / {copy.status}</span><Icon size={20} strokeWidth={1.3} className="text-white/35" /></div>
-              <div className="relative mt-auto"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{copy.category}</span><h3 className="mt-3 text-4xl font-semibold uppercase leading-[.84] tracking-[-.065em]">{copy.title}</h3><p className="mt-5 text-xs leading-relaxed text-white/42">{copy.description}</p>{ready ? <Link href="/#contact" className="mt-6 inline-flex items-center gap-2 border-b border-accent pb-2 text-[9px] font-bold uppercase tracking-[.1em]">{copy.action}<ArrowUpRight size={14} /></Link> : <span className="mt-6 inline-flex items-center gap-2 font-mono text-[8px] uppercase tracking-[.15em] text-white/26">{copy.action}<i className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" /></span>}</div>
+              <div className="relative mt-auto"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/28">{copy.category}</span><h3 className="mt-3 text-4xl font-semibold uppercase leading-[.84] tracking-[-.065em]">{copy.title}</h3><p className="mt-5 text-xs leading-relaxed text-white/42">{copy.description}</p>{url ? <a href={url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-accent pb-2 text-[9px] font-bold uppercase tracking-[.1em]">{copy.action}<ArrowUpRight size={14} /></a> : <span className="mt-6 inline-flex items-center gap-2 font-mono text-[8px] uppercase tracking-[.15em] text-white/26">{copy.action}<i className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" /></span>}</div>
             </article>
           );
         })}

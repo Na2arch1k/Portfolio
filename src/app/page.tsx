@@ -8,6 +8,9 @@ const About = dynamic(() => import("@/components/sections/About").then((m) => m.
 const Services = dynamic(() =>
   import("@/components/sections/Services").then((m) => m.Services)
 );
+const Pricing = dynamic(() =>
+  import("@/components/sections/Pricing").then((m) => m.Pricing)
+);
 const Projects = dynamic(() =>
   import("@/components/sections/Projects").then((m) => m.Projects)
 );
@@ -31,6 +34,7 @@ export default function Home() {
         <Capabilities />
         <About />
         <Services />
+        <Pricing />
         <Projects />
         <Process />
         <WhyChooseMe />

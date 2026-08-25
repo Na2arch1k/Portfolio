@@ -84,9 +84,41 @@ body {
   }
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .premium-card:active {
+    transform: scale(.985);
+    border-color: rgba(255, 91, 51, .55);
+  }
+}
+
 @media (max-width: 639px) {
   .motion-track {
     contain: paint;
+  }
+}
+
+@media (max-width: 767px) and (max-height: 700px) {
+  .mobile-story-description,
+  .mobile-story-points,
+  .mobile-service-description,
+  .mobile-project-description {
+    display: none;
+  }
+
+  .mobile-story-visual {
+    height: 56%;
+  }
+
+  .mobile-service-features li:nth-child(n + 3) {
+    display: none;
+  }
+
+  .mobile-service-card h3 {
+    font-size: 2rem;
+  }
+
+  .mobile-service-card .mobile-service-features {
+    margin-top: .75rem;
   }
 }
 

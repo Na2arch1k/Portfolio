@@ -6,6 +6,7 @@ import { m, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { getStoryMotion } from "@/lib/story-motion";
 
 function ClinicVisual() {
   return (
@@ -105,29 +106,88 @@ function JourneyScene({ item, index, progress }: { item: JourneyItem; index: num
   );
 }
 
+function MobileJourneyCard({ item, index, progress }: { item: JourneyItem; index: number; progress: MotionValue<number> }) {
+  const Visual = VISUALS[index];
+  const story = getStoryMotion(index, 4, 170);
+  const opacity = useTransform(progress, story.range, story.opacity);
+  const y = useTransform(progress, story.range, story.y);
+  const x = useTransform(progress, story.range, story.x);
+  const scale = useTransform(progress, story.range, story.scale);
+  const rotateZ = useTransform(progress, story.range, story.rotate);
+  const pointerEvents = useTransform(opacity, (value) => value > .8 ? "auto" : "none");
+  const visualY = useTransform(progress, [0, 1], [30, -30]);
+  const visualScale = useTransform(progress, [0, .5, 1], [.96, 1.04, .98]);
+  const numberY = useTransform(progress, [0, 1], [55, -65]);
+
+  return (
+    <m.article
+      style={{ opacity, y, x, scale, rotateZ, pointerEvents }}
+      className="mobile-story-card absolute inset-0 overflow-hidden border border-white/14 bg-[#0e0e0c] p-5 shadow-[0_24px_70px_rgba(0,0,0,.34)]"
+    >
+      <span className="absolute inset-y-0 left-0 w-1 bg-accent" />
+      <m.span style={{ y: numberY }} className="pointer-events-none absolute -right-4 top-4 text-[9rem] font-black leading-none tracking-[-.12em] text-white/[.025]">0{index + 1}</m.span>
+      <div className="flex items-center gap-3 font-mono text-[8px] uppercase tracking-[.17em] text-accent"><span>0{index + 1}</span><span className="h-px w-8 bg-accent/45" /><span>{item.label}</span></div>
+      <h3 className="relative mt-5 text-[2.5rem] font-semibold uppercase leading-[.82] tracking-[-.07em] text-white">{item.title}</h3>
+      <p className="mt-4 text-base font-medium uppercase leading-tight tracking-[-.025em] text-white/78">{item.kicker}</p>
+      <p className="mobile-story-description mt-3 text-xs leading-relaxed text-white/48">{item.description}</p>
+      <ul className="mobile-story-points mt-4 grid grid-cols-3 gap-1 font-mono text-[7px] uppercase leading-tight tracking-[.1em] text-white/46">{item.points.map((point) => <li key={point} className="border-t border-white/10 pt-2"><Check size={9} className="mb-1 text-accent" />{point}</li>)}</ul>
+      <div className="mobile-story-visual absolute inset-x-4 bottom-3 h-[42%] overflow-hidden border-t border-white/10">
+        <m.div style={{ y: visualY, scale: visualScale }} className="absolute -inset-x-2 -inset-y-8"><Visual /></m.div>
+      </div>
+    </m.article>
+  );
+}
+
 export function About() {
   const { t } = useLanguage();
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end end"] });
+  const { scrollYProgress: mobileProgress } = useScroll({ target: mobileRef, offset: ["start start", "end end"] });
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const mobileProgressScale = useTransform(mobileProgress, [0, 1], [0, 1]);
   const backgroundX = useTransform(scrollYProgress, [0, 1], [80, -1250]);
 
   return (
-    <section ref={sectionRef} id="about" className="relative scroll-mt-20 h-[360svh] border-b border-white/10 bg-[#080807]">
-      <div className="sticky top-0 h-[100svh] overflow-hidden">
-        <div className="scene-grid pointer-events-none absolute inset-0" />
-        <m.div style={{ x: backgroundX }} className="pointer-events-none absolute bottom-[8%] left-0 whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-[-.09em] text-white/[.018]">
-          Websites · Products · Bots · CRM · Websites · Products
-        </m.div>
-        <Container className="relative h-full">
-          <div className="absolute inset-x-6 top-5 z-20 flex items-center justify-between border-t border-white/15 pt-4 lg:inset-x-8">
-            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">{t.about.eyebrow}</span>
-            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">Scroll / 01—04</span>
-          </div>
-          {t.about.journey.map((item: JourneyItem, index: number) => <JourneyScene key={item.title} item={item} index={index} progress={scrollYProgress} />)}
+    <section id="about" className="relative scroll-mt-20 border-b border-white/10 bg-[#080807]">
+      <div className="relative overflow-hidden pb-12 pt-24 md:hidden">
+        <div className="scene-grid pointer-events-none absolute inset-0 opacity-45" />
+        <Container className="relative px-4">
+          <div className="flex items-center justify-between border-t border-white/15 pt-4 font-mono text-[8px] uppercase tracking-[.18em] text-white/36"><span className="text-accent">{t.about.eyebrow}</span><span>01—04</span></div>
+          <h2 className="mt-8 max-w-[11ch] text-[2.8rem] font-semibold uppercase leading-[.82] tracking-[-.072em]">{t.about.title}</h2>
+          <p className="mt-6 border-l border-accent pl-4 text-sm leading-relaxed text-white/50">{t.about.description}</p>
         </Container>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/8"><m.div style={{ scaleX: progressScale, transformOrigin: "left" }} className="h-full bg-accent" /></div>
-        <div className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">{t.about.journey.map((item: JourneyItem) => <span key={item.title} className="font-mono text-[7px] uppercase tracking-[.16em] text-white/25">0{t.about.journey.indexOf(item) + 1}</span>)}</div>
+      </div>
+
+      <div ref={mobileRef} className="relative h-[420svh] md:hidden">
+        <div className="sticky top-0 h-[100svh] overflow-hidden">
+          <div className="scene-grid pointer-events-none absolute inset-0 opacity-45" />
+          <Container className="relative flex h-full flex-col px-4 pb-5 pt-24">
+            <div className="flex items-center justify-between border-t border-white/15 pt-3 font-mono text-[8px] uppercase tracking-[.18em] text-white/36"><span className="text-accent">Scroll journey</span><span>01—04</span></div>
+            <div className="relative mt-4 min-h-0 flex-1">
+              {t.about.journey.map((item: JourneyItem, index: number) => <MobileJourneyCard key={item.title} item={item} index={index} progress={mobileProgress} />)}
+            </div>
+            <div className="mt-4 h-px bg-white/10"><m.div style={{ scaleX: mobileProgressScale, transformOrigin: "left" }} className="h-full bg-accent" /></div>
+          </Container>
+        </div>
+      </div>
+
+      <div ref={sectionRef} className="relative hidden h-[360svh] md:block">
+        <div className="sticky top-0 h-[100svh] overflow-hidden">
+          <div className="scene-grid pointer-events-none absolute inset-0" />
+          <m.div style={{ x: backgroundX }} className="pointer-events-none absolute bottom-[8%] left-0 whitespace-nowrap text-[19vw] font-black uppercase leading-none tracking-[-.09em] text-white/[.018]">
+            Websites · Products · Bots · CRM · Websites · Products
+          </m.div>
+          <Container className="relative h-full">
+            <div className="absolute inset-x-6 top-5 z-20 flex items-center justify-between border-t border-white/15 pt-4 lg:inset-x-8">
+              <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">{t.about.eyebrow}</span>
+              <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/35">Scroll / 01—04</span>
+            </div>
+            {t.about.journey.map((item: JourneyItem, index: number) => <JourneyScene key={item.title} item={item} index={index} progress={scrollYProgress} />)}
+          </Container>
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/8"><m.div style={{ scaleX: progressScale, transformOrigin: "left" }} className="h-full bg-accent" /></div>
+          <div className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 xl:flex">{t.about.journey.map((item: JourneyItem) => <span key={item.title} className="font-mono text-[7px] uppercase tracking-[.16em] text-white/25">0{t.about.journey.indexOf(item) + 1}</span>)}</div>
+        </div>
       </div>
     </section>
   );

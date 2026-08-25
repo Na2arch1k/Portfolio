@@ -8,6 +8,7 @@ import { dictionaries } from "@/lib/i18n/dictionaries";
  * owner always reads leads in one consistent language.
  */
 export const SERVICE_VALUE_BY_ID: Record<string, string> = Object.fromEntries([
+  ["siteEdit", dictionaries.uk.pricing.items.siteEdit.title],
   ...SERVICES.map((s) => [
     s.id,
     dictionaries.uk.services.items[s.id as keyof typeof dictionaries.uk.services.items].title,

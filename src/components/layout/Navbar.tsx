@@ -70,8 +70,8 @@ export function Navbar() {
             </span>
           </a>
 
-          <div className="mx-auto hidden items-center gap-7 xl:flex">
-            {NAV_LINKS.slice(1, 6).map((link, index) => (
+          <div className="mx-auto hidden items-center gap-5 xl:flex">
+            {NAV_LINKS.slice(1, 7).map((link, index) => (
               <a
                 key={link.href}
                 href={link.href}

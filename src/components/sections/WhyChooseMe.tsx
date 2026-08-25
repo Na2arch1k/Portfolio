@@ -16,7 +16,7 @@ export function WhyChooseMe() {
 
   return (
     <section ref={sectionRef} id="why-me" className="relative scroll-mt-24 overflow-clip bg-[#efeee8] py-24 text-[#090908] sm:py-36">
-      <Container>
+      <Container className="px-4 sm:px-6 lg:px-8">
         <div className="border-t border-black/25 pt-5">
           <div className="flex items-center justify-between font-mono text-[8px] uppercase tracking-[.18em] text-black/42">
             <span className="flex items-center gap-2 text-[#d73c1b]"><i className="h-1.5 w-1.5 bg-[#d73c1b]" />{t.whyChooseMe.eyebrow}</span>
@@ -26,7 +26,7 @@ export function WhyChooseMe() {
 
         <div className="mt-12 grid gap-16 lg:grid-cols-[.78fr_1.22fr] lg:gap-20">
           <div className="self-start lg:sticky lg:top-32">
-            <h2 className="max-w-[8ch] text-[clamp(3.2rem,6.4vw,6.5rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{t.whyChooseMe.title}</h2>
+            <h2 className="max-w-[8ch] text-[clamp(2.8rem,11vw,6.5rem)] font-semibold uppercase leading-[.82] tracking-[-.075em]">{t.whyChooseMe.title}</h2>
             <p className="mt-7 max-w-md border-l border-[#d73c1b] pl-5 text-sm leading-relaxed text-black/58 sm:text-base">{t.whyChooseMe.description}</p>
 
             <div className="mt-10 hidden items-center gap-4 lg:flex">

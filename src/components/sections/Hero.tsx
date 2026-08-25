@@ -24,7 +24,7 @@ function ProjectFrame({ image, label, className, priority = false }: { image: st
 function HeroTitle({ t }: { t: ReturnType<typeof useLanguage>["t"] }) {
   const reduceMotion = useReducedMotion();
   return (
-    <h1 className="hero-title text-[clamp(3.1rem,7.4vw,7.4rem)] font-semibold uppercase leading-[.8] tracking-[-.075em] text-[#efeee8]">
+    <h1 className="hero-title text-[clamp(2.85rem,11vw,7.4rem)] font-semibold uppercase leading-[.8] tracking-[-.075em] text-[#efeee8]">
       <span className="block overflow-hidden"><m.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: .9, ease: [0.16, 1, 0.3, 1], delay: .06 }} className="block">{t.hero.titleLine}</m.span></span>
       <span className="block overflow-hidden text-accent"><m.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: .9, ease: [0.16, 1, 0.3, 1], delay: .17 }} className="block">{t.hero.titleAccent}</m.span></span>
     </h1>

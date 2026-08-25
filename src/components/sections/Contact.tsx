@@ -85,7 +85,7 @@ export function Contact() {
           <span>No—007</span>
         </div>
         <div className="mt-12 grid gap-12 lg:grid-cols-[1.25fr_.75fr] lg:items-end">
-          <m.h2 style={reduceMotion ? undefined : { x: titleX }} className="max-w-[10ch] text-[clamp(4rem,9vw,9rem)] font-semibold uppercase leading-[0.8] tracking-[-0.08em]">
+          <m.h2 style={reduceMotion ? undefined : { x: titleX }} className="max-w-[10ch] text-[clamp(3.2rem,11vw,9rem)] font-semibold uppercase leading-[0.8] tracking-[-0.08em]">
             {t.contact.title}
           </m.h2>
           <div className="max-w-md border-l border-black/35 pl-5">
@@ -153,6 +153,7 @@ export function Contact() {
                     <span className="relative">
                       <select name="service" required defaultValue="" className={`${inputClasses} appearance-none pr-10 invalid:text-white/25`}>
                         <option value="" disabled className="bg-surface">{t.contact.form.selectService}</option>
+                        <option value={SERVICE_VALUE_BY_ID.siteEdit} className="bg-surface">{t.pricing.items.siteEdit.title}</option>
                         {SERVICES.map((service) => <option key={service.id} value={SERVICE_VALUE_BY_ID[service.id]} className="bg-surface">{t.services.items[service.id as keyof typeof t.services.items].title}</option>)}
                         <option value={SERVICE_VALUE_BY_ID.other} className="bg-surface">{t.contact.form.otherService}</option>
                       </select>

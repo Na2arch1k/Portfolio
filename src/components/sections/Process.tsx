@@ -27,9 +27,9 @@ export function Process() {
   return (
     <section id="process" className="relative scroll-mt-24 overflow-hidden border-y border-white/10 bg-[#0c0c0a] py-24 sm:py-36">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_24%,rgba(255,91,51,.07),transparent_28%)]" />
-      <Container className="relative">
+      <Container className="relative px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 border-t border-white/15 pt-5 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
-          <div><span className="font-mono text-[9px] uppercase tracking-[.18em] text-accent">{t.process.eyebrow}</span><h2 className="mt-7 max-w-[9ch] text-[clamp(3.4rem,7vw,7rem)] font-semibold uppercase leading-[.8] tracking-[-.075em]">{t.process.title}</h2></div>
+          <div><span className="font-mono text-[9px] uppercase tracking-[.18em] text-accent">{t.process.eyebrow}</span><h2 className="mt-7 max-w-[9ch] text-[clamp(2.9rem,11vw,7rem)] font-semibold uppercase leading-[.8] tracking-[-.075em]">{t.process.title}</h2></div>
           <p className="max-w-xl border-l border-accent pl-5 text-sm leading-relaxed text-white/46">{t.process.description}</p>
         </div>
         <div className="mt-20 grid gap-4 sm:gap-6">
