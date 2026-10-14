@@ -12,11 +12,11 @@ function ClinicVisual() {
   return (
     <div className="relative h-full w-full [perspective:1100px]">
       <div className="absolute inset-[5%] -rotate-2 overflow-hidden border border-cyan-300/25 bg-[#071512] shadow-[0_45px_110px_rgba(0,0,0,.75)]">
-        <Image src="/projects/cliniccard-dashboard.png" alt="" fill sizes="(max-width: 768px) 90vw, 48vw" className="object-cover object-left-top" />
+        <Image src="/projects/clinwide-schedule.png" alt="" fill sizes="(max-width: 768px) 90vw, 48vw" className="object-cover object-left-top" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#06110f]/70 via-transparent to-cyan-400/5" />
       </div>
       <div className="scene-float absolute -left-1 bottom-[10%] border border-cyan-300/30 bg-[#08211c]/95 px-4 py-3 shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em] text-cyan-300">Live schedule</span><strong className="mt-1 block text-sm text-white">Лікарі · записи · пацієнти</strong></div>
-      <div className="scene-float-delayed absolute right-0 top-[9%] border border-black/15 bg-[#efeee8] px-4 py-3 text-black shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em]">ClinicCard / Live</span><strong className="mt-1 block text-sm">Повний робочий день</strong></div>
+      <div className="scene-float-delayed absolute right-0 top-[9%] border border-black/15 bg-[#efeee8] px-4 py-3 text-black shadow-xl"><span className="font-mono text-[7px] uppercase tracking-[.15em]">Clinwide / Live</span><strong className="mt-1 block text-sm">Повний робочий день</strong></div>
     </div>
   );
 }

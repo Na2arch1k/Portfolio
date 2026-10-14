@@ -40,7 +40,8 @@ export function Pricing() {
         <div className="mt-14 grid gap-3 sm:mt-20 sm:grid-cols-2 lg:grid-cols-6">
           {PRICING_ITEMS.map(({ id, icon: Icon, index, featured }, itemIndex) => {
             const item = t.pricing.items[id];
-            const span = id === "siteEdit" || id === "newWebsite" ? "lg:col-span-3" : itemIndex === 4 ? "sm:col-span-2 lg:col-span-2" : "lg:col-span-2";
+            const hasOffer = "oldPrice" in item && "offerLabel" in item;
+            const span = itemIndex < 2 ? "lg:col-span-3" : itemIndex === 4 ? "sm:col-span-2 lg:col-span-2" : "lg:col-span-2";
             return (
               <m.article
                 key={id}
@@ -69,7 +70,13 @@ export function Pricing() {
                 </div>
 
                 <div className="relative mt-auto flex items-end justify-between gap-4 border-t border-white/12 pt-6">
-                  <div><span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/26">{t.pricing.fromLabel}</span><strong className="mt-1 block text-3xl font-semibold tracking-[-.055em] text-white sm:text-4xl">{item.price}</strong></div>
+                  <div>
+                    <span className="font-mono text-[7px] uppercase tracking-[.15em] text-white/34">{hasOffer ? item.offerLabel : t.pricing.fromLabel}</span>
+                    <div className="mt-1 flex items-baseline gap-3">
+                      <strong className="block text-3xl font-semibold tracking-[-.055em] text-white sm:text-4xl">{item.price}</strong>
+                      {hasOffer && <s className="font-mono text-base text-white/55 decoration-accent decoration-1 sm:text-lg">{item.oldPrice}</s>}
+                    </div>
+                  </div>
                   <a href="#contact" aria-label={`${t.pricing.cta}: ${item.title}`} className="grid h-12 w-12 shrink-0 place-items-center bg-[#efeee8] text-black transition-[transform,background-color] duration-400 hover:-translate-y-1 hover:bg-accent"><ArrowUpRight size={17} /></a>
                 </div>
               </m.article>

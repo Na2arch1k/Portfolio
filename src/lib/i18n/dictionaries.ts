@@ -23,8 +23,8 @@ const uk = {
     ctaPrimary: "Обговорити проєкт",
     ctaSecondary: "Дивитися роботи",
     motionLabel: "Ідеї в постійному русі",
-    ownProductLabel: "Власний продукт",
-    clinicCardLabel: "Система для керування клінікою",
+    ownProductLabel: "Мій основний продукт",
+    clinwideLabel: "Система для керування клінікою",
     stats: [
       { value: "15+", label: "запущених проєктів" },
       { value: "5+", label: "бізнес-ніш" },
@@ -47,10 +47,10 @@ const uk = {
       },
       {
         label: "Власний продукт",
-        title: "ClinicCard",
+        title: "Clinwide",
         kicker: "Операційна система для клініки",
-        description: "Записи, база пацієнтів, команда, нагадування й ключова аналітика працюють в одному захищеному просторі.",
-        points: ["Розклад і пацієнти", "Ролі для команди", "Аналітика в реальному часі"],
+        description: "Записи, база пацієнтів, команда, нагадування й аналітика працюють в одному просторі, налаштованому під конкретну клініку.",
+        points: ["Розклад і пацієнти", "Індивідуальні ролі", "Аналітика в реальному часі"],
       },
       {
         label: "Automation layer",
@@ -86,7 +86,7 @@ const uk = {
     items: [
       "Сайти під ключ",
       "Цифрові продукти",
-      "ClinicCard",
+      "Clinwide",
       "Чат-боти",
       "CRM-системи",
       "Інтеграції та API",
@@ -104,11 +104,13 @@ const uk = {
     priceNote:
       "Фінальна вартість залежить від кількості ролей, інтеграцій і бізнес-сценаріїв. Після короткого дзвінка ви отримуєте чітку оцінку без прихованих пунктів.",
     items: {
-      cliniccard: {
-        title: "ClinicCard",
+      clinwide: {
+        title: "Clinwide",
         tagline: "Готова система для приватних клінік",
-        description: "Центр керування записами, пацієнтами, лікарями та показниками клініки. Показую живе демо й адаптую впровадження під ваш процес.",
-        price: "$200–300",
+        description: "Центр керування записами, пацієнтами, лікарями та показниками клініки. Кожне впровадження налаштовую індивідуально під процеси команди.",
+        price: "$300",
+        oldPrice: "$450",
+        offerLabel: "Спеціальна ціна",
         cta: "Запросити демонстрацію",
         features: ["Онлайн-розклад", "Картки пацієнтів", "Команда й ролі", "Звіти та нагадування"],
       },
@@ -168,12 +170,14 @@ const uk = {
         price: "$80–200",
         features: ["Клієнтська база", "Ролі та доступи", "Залежить від складності"],
       },
-      cliniccard: {
-        label: "Якісний готовий продукт",
-        title: "ClinicCard",
-        description: "Повноцінна система для клініки з великою кількістю функцій, продуманими ролями й зручним щоденним керуванням.",
-        price: "$200–300",
-        features: ["Пацієнти та розклад", "Команда, ролі й звіти", "Багато готових функцій"],
+      clinwide: {
+        label: "Спеціальна пропозиція",
+        title: "Clinwide",
+        description: "Повноцінна система для клініки, яку індивідуально налаштовуємо під ролі, робочі етапи, документи та звіти вашої команди.",
+        price: "$300",
+        oldPrice: "$450",
+        offerLabel: "Разова оплата",
+        features: ["Пацієнти та розклад", "Власні ролі й процеси", "Багато готових функцій"],
       },
       chatbot: {
         label: "Автоматизація",
@@ -197,14 +201,22 @@ const uk = {
     websitesLabel: "Вибрані сайти",
     systemsLabel: "Власні продукти та автоматизація",
     featuredProduct: "Основний продукт",
-    systemsDescription: "ClinicCard і CRM доступні як живі демо, а для чат-бота вже підготовлено окремий концепт інтерфейсу в стилі Telegram та Instagram Direct.",
+    systemsDescription: "Clinwide — один із моїх основних власних продуктів. Розвиваю систему для клінік і налаштовую її під конкретну команду. Нижче — деталі продукту, а також CRM та автоматизація.",
+    clinwideFeature: {
+      intro: "Власний продукт. Індивідуально під вашу клініку.",
+      features: ["Розклад, пацієнти та історія лікування", "Ролі, документи й звіти під вашу команду", "Готова основа з індивідуальним налаштуванням"],
+      demoNote: "Хочете переглянути демо Clinwide? Напишіть мені — я надішлю посилання й поясню, з чого почати.",
+      demoAction: "Написати щодо демо",
+      imageAlt: "Демонстраційний розклад прийомів Clinwide у світлому інтерфейсі",
+      caption: "Приклад інтерфейсу Clinwide · демонстраційні дані",
+    },
     productCases: {
-      cliniccard: {
+      clinwide: {
         status: "Готовий продукт",
-        title: "ClinicCard",
+        title: "Clinwide",
         category: "Clinic OS",
-        description: "Повноцінна система керування приватною клінікою: записи, пацієнти, команда, нагадування та аналітика в одному середовищі.",
-        action: "Переглянути демо",
+        description: "Система керування приватною клінікою з індивідуальним налаштуванням ролей, процесів, документів і звітів під конкретну команду.",
+        action: "Дізнатися більше",
       },
       chatbot: {
         status: "Демо-концепт",
@@ -278,7 +290,7 @@ const uk = {
     eyebrow: "Каталог робіт",
     title: "Сайти, продукти та системи",
     description:
-      "сайтів уже доступні наживо. ClinicCard, CRM і чат-бот винесені окремо як головні продуктові напрями.",
+      "сайтів уже доступні наживо. Clinwide, CRM і чат-бот винесені окремо як головні продуктові напрями.",
     back: "На головну",
     open: "Відкрити",
   },
@@ -353,12 +365,12 @@ const uk = {
       {
         question: "Які проєкти ви розробляєте?",
         answer:
-          "Створюю промосайти, корпоративні сайти й каталоги, а також чат-боти, CRM та інші цифрові системи. ClinicCard — один із власних готових продуктів.",
+          "Створюю промосайти, корпоративні сайти й каталоги, а також чат-боти, CRM та інші цифрові системи. Clinwide — один із власних готових продуктів.",
       },
       {
         question: "Скільки коштує розробка?",
         answer:
-          "Редагування сайту коштує $50–100, новий сайт — $100–150, чат-бот — $50–150, CRM — $80–200, а ClinicCard — $200–300. Точна сума залежить від складності та фіксується до початку роботи.",
+          "Редагування сайту коштує $50–100, новий сайт — $100–150, чат-бот — $50–150, CRM — $80–200. Clinwide зараз коштує $300 за акційною ціною, звичайна ціна — $450. Точна сума й склад налаштування фіксуються до початку роботи.",
       },
       {
         question: "Як проходить робота над проєктом?",
@@ -451,8 +463,8 @@ const en: typeof uk = {
     ctaPrimary: "Discuss a project",
     ctaSecondary: "View selected work",
     motionLabel: "Ideas always in motion",
-    ownProductLabel: "Owned product",
-    clinicCardLabel: "Clinic management system",
+    ownProductLabel: "My flagship product",
+    clinwideLabel: "Clinic management system",
     stats: [
       { value: "15+", label: "shipped projects" },
       { value: "5+", label: "business niches" },
@@ -475,10 +487,10 @@ const en: typeof uk = {
       },
       {
         label: "Owned product",
-        title: "ClinicCard",
+        title: "Clinwide",
         kicker: "An operating system for clinics",
-        description: "Appointments, patient records, team access, reminders, and core analytics live in one secure workspace.",
-        points: ["Schedule and patients", "Team roles", "Real-time analytics"],
+        description: "Appointments, patient records, reminders, and analytics live in one workspace configured for a specific clinic.",
+        points: ["Schedule and patients", "Custom team roles", "Real-time analytics"],
       },
       {
         label: "Automation layer",
@@ -514,7 +526,7 @@ const en: typeof uk = {
     items: [
       "Websites",
       "Digital products",
-      "ClinicCard",
+      "Clinwide",
       "Chatbots",
       "CRM systems",
       "Integrations & APIs",
@@ -532,11 +544,13 @@ const en: typeof uk = {
     priceNote:
       "Final cost depends on roles, integrations, and business scenarios. After a short call, you receive a clear estimate with no hidden items.",
     items: {
-      cliniccard: {
-        title: "ClinicCard",
+      clinwide: {
+        title: "Clinwide",
         tagline: "A ready system for private clinics",
-        description: "A control center for appointments, patients, doctors, and clinic performance. I show a live demo and adapt implementation to your workflow.",
-        price: "$200–300",
+        description: "A control center for appointments, patients, doctors, and clinic performance. Every implementation is configured around the team's workflow.",
+        price: "$300",
+        oldPrice: "$450",
+        offerLabel: "Special price",
         cta: "Request a demo",
         features: ["Online schedule", "Patient records", "Team roles", "Reports and reminders"],
       },
@@ -596,12 +610,14 @@ const en: typeof uk = {
         price: "$80–200",
         features: ["Client database", "Roles and access", "Based on complexity"],
       },
-      cliniccard: {
-        label: "Quality ready product",
-        title: "ClinicCard",
-        description: "A complete clinic system with a rich feature set, thoughtful roles, and comfortable daily management.",
-        price: "$200–300",
-        features: ["Patients and schedule", "Team, roles, and reports", "Rich ready feature set"],
+      clinwide: {
+        label: "Special offer",
+        title: "Clinwide",
+        description: "A complete clinic system individually configured around your team's roles, workflow stages, documents, and reports.",
+        price: "$300",
+        oldPrice: "$450",
+        offerLabel: "One-time payment",
+        features: ["Patients and schedule", "Custom roles and workflows", "Rich ready feature set"],
       },
       chatbot: {
         label: "Automation",
@@ -625,14 +641,22 @@ const en: typeof uk = {
     websitesLabel: "Selected websites",
     systemsLabel: "Owned products and automation",
     featuredProduct: "Flagship product",
-    systemsDescription: "ClinicCard and CRM are available as live demos, while the chatbot now has a dedicated Telegram and Instagram Direct interface concept.",
+    systemsDescription: "Clinwide is one of my core products. I develop this clinic system and configure it for each team. Explore the product below, followed by CRM and automation work.",
+    clinwideFeature: {
+      intro: "My own product. Configured for your clinic.",
+      features: ["Appointments, patients, and treatment history", "Roles, documents, and reports for your team", "A ready foundation with individual configuration"],
+      demoNote: "Want to explore the Clinwide demo? Message me and I’ll send you the link and help you get started.",
+      demoAction: "Message me for a demo",
+      imageAlt: "Illustrative Clinwide appointment calendar in a light interface",
+      caption: "Clinwide interface example · illustrative data",
+    },
     productCases: {
-      cliniccard: {
+      clinwide: {
         status: "Ready product",
-        title: "ClinicCard",
+        title: "Clinwide",
         category: "Clinic OS",
-        description: "A complete operating system for private clinics: appointments, patients, team access, reminders, and analytics in one environment.",
-        action: "View demo",
+        description: "A clinic operating system with roles, workflows, documents, and reports individually configured for each team.",
+        action: "Explore the product",
       },
       chatbot: {
         status: "Demo concept",
@@ -706,7 +730,7 @@ const en: typeof uk = {
     eyebrow: "Work catalog",
     title: "Websites, products, and systems",
     description:
-      "websites are already available live. ClinicCard, CRM, and chatbot work are presented separately as the main product directions.",
+      "websites are already available live. Clinwide, CRM, and chatbot work are presented separately as the main product directions.",
     back: "Back to home",
     open: "Open",
   },
@@ -781,12 +805,12 @@ const en: typeof uk = {
       {
         question: "What types of projects do you build?",
         answer:
-          "I build promotional and corporate websites, catalogs, chatbots, CRM systems, and other digital tools. ClinicCard is one of my own ready-to-use products.",
+          "I build promotional and corporate websites, catalogs, chatbots, CRM systems, and other digital tools. Clinwide is one of my own ready-to-use products.",
       },
       {
         question: "How much does development cost?",
         answer:
-          "Website editing is $50–100, a new website is $100–150, a chatbot is $50–150, a CRM is $80–200, and ClinicCard is $200–300. The exact amount depends on complexity and is fixed before work begins.",
+          "Website editing is $50–100, a new website is $100–150, a chatbot is $50–150, and a CRM is $80–200. Clinwide is currently $300 on sale, with a regular price of $450. The exact scope is fixed before work begins.",
       },
       {
         question: "How does a project move from idea to launch?",

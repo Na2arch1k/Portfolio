@@ -4,11 +4,16 @@ import Image from "next/image";
 import { useRef } from "react";
 import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, BarChart3, MessageCircle } from "lucide-react";
+import { ClinwideFeature } from "./ClinwideFeature";
 
-export type ProductCaseId = "cliniccard" | "crm" | "chatbot";
+export type ProductCaseId = "clinwide" | "crm" | "chatbot";
 
 export const PRODUCT_CASE_URLS: Partial<Record<ProductCaseId, string>> = {
-  cliniccard: "https://clinic-card-demo.vercel.app",
+  clinwide:
+    process.env.NEXT_PUBLIC_CLINWIDE_SITE_URL ||
+    (process.env.NODE_ENV === "development"
+      ? "http://localhost:3003"
+      : "https://clinwide-site.vercel.app"),
   crm: "https://crm-demo-snowy-two.vercel.app",
 };
 
@@ -29,14 +34,14 @@ function BrowserBar({ domain, light = false }: { domain: string; light?: boolean
   );
 }
 
-function ScreenshotPreview({ id }: { id: "cliniccard" | "chatbot" }) {
-  const isClinic = id === "cliniccard";
+function ScreenshotPreview({ id }: { id: "clinwide" | "chatbot" }) {
+  const isClinic = id === "clinwide";
   return (
     <div className={`h-full p-2 sm:p-3 ${isClinic ? "bg-[#0a1b18]" : "bg-[#101114]"}`}>
       <div className="h-full overflow-hidden border border-white/10 bg-black shadow-2xl">
-        <BrowserBar domain={isClinic ? "cliniccard.app / schedule" : "ai-assistant.app / inbox"} />
+        <BrowserBar domain={isClinic ? "clinwide / product tour" : "ai-assistant.app / inbox"} />
         <div className="relative h-[calc(100%_-_2rem)] overflow-hidden">
-          <Image src={isClinic ? "/projects/cliniccard-dashboard.png" : "/projects/chatbot-dashboard.png"} alt="" fill sizes="(max-width: 640px) 100vw, 42vw" className={`object-cover object-top transition-transform duration-[1300ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.025] ${isClinic ? "object-left" : "object-center"}`} />
+          <Image src={isClinic ? "/projects/clinwide-schedule.png" : "/projects/chatbot-dashboard.png"} alt="" fill sizes="(max-width: 640px) 100vw, 42vw" className={`object-cover object-top transition-transform duration-[1300ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.025] ${isClinic ? "object-left" : "object-center"}`} />
           <div className={`pointer-events-none absolute inset-0 ${isClinic ? "bg-[radial-gradient(circle_at_24%_18%,rgba(36,201,226,.13),transparent_42%)]" : "bg-[radial-gradient(circle_at_78%_16%,rgba(255,91,51,.13),transparent_38%)]"}`} />
         </div>
       </div>
@@ -89,7 +94,7 @@ export function ProductCaseCover({ id, index, copy, variant = "default", feature
         <m.div style={reduceMotion ? undefined : { y: previewY, scale: previewScale }} className="absolute -inset-y-8 inset-x-0 origin-center transition-transform duration-[1100ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.025]">{id === "crm" ? <CrmPreview /> : <ScreenshotPreview id={id} />}</m.div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-black/20" />
         {featured && <m.span style={reduceMotion ? undefined : { x: glowX }} className="pointer-events-none absolute -inset-y-16 left-0 w-1/3 skew-x-[-14deg] bg-gradient-to-r from-transparent via-cyan-300/10 to-transparent blur-xl" />}
-        <span className="absolute left-0 top-0 bg-accent px-4 py-3 font-mono text-[8px] font-bold uppercase tracking-[.16em] text-black">0{index + 1} / {href ? "Live demo" : "Concept preview"}</span>
+        <span className="absolute left-0 top-0 bg-accent px-4 py-3 font-mono text-[8px] font-bold uppercase tracking-[.16em] text-black">0{index + 1} / {id === "clinwide" ? "Product overview" : href ? "Live demo" : "Concept preview"}</span>
         {featured && <span className="absolute left-4 top-14 inline-flex items-center gap-2 border border-cyan-300/25 bg-[#071411]/85 px-3 py-2 font-mono text-[7px] font-bold uppercase tracking-[.16em] text-cyan-200 backdrop-blur-md"><i className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,.9)]" />{featuredLabel}</span>}
         <span className="absolute right-3 top-3 grid h-11 w-11 place-items-center bg-[#efeee8] text-black transition-[transform,background-color] duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-accent">{href ? <ArrowUpRight size={17} /> : <MessageCircle size={17} />}</span>
         <span className="pointer-events-none absolute inset-y-[-30%] -left-32 w-16 rotate-12 bg-gradient-to-r from-transparent via-white/12 to-transparent blur-sm transition-transform duration-1000 group-hover:translate-x-[850%]" />
@@ -99,6 +104,10 @@ export function ProductCaseCover({ id, index, copy, variant = "default", feature
       <div className={`flex flex-col gap-5 border-white/10 p-5 ${compact ? "border-t lg:justify-between lg:border-l lg:border-t-0 lg:p-5" : "border-t sm:flex-row sm:items-end sm:justify-between sm:p-7"} ${featured ? "lg:p-9" : ""}`}><p className={`max-w-xl leading-relaxed text-white/48 ${featured ? "text-sm sm:text-base" : "text-xs sm:text-sm"}`}>{copy.description}</p><span className="inline-flex w-fit shrink-0 items-center gap-2 border-b border-accent pb-2 text-[9px] font-bold uppercase tracking-[.1em]">{copy.action}{href ? <ArrowUpRight size={13} /> : <i className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />}</span></div>
     </>
   );
+
+  if (id === "clinwide" && featured && href) {
+    return <ClinwideFeature copy={copy} href={href} featuredLabel={featuredLabel} />;
+  }
 
   return <m.div ref={cardRef} style={reduceMotion ? undefined : { y: cardY, rotateZ: cardRotate }} className="h-full">{href ? <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass}>{cover}</a> : <article className={cardClass}>{cover}</article>}</m.div>;
 }

@@ -1,6 +1,6 @@
 import { Bot, PanelsTopLeft, PencilRuler, Stethoscope, Workflow, type LucideIcon } from "lucide-react";
 
-export type PricingId = "siteEdit" | "newWebsite" | "crm" | "cliniccard" | "chatbot";
+export type PricingId = "siteEdit" | "newWebsite" | "crm" | "clinwide" | "chatbot";
 
 export interface PricingItem {
   id: PricingId;
@@ -10,9 +10,9 @@ export interface PricingItem {
 }
 
 export const PRICING_ITEMS: PricingItem[] = [
-  { id: "siteEdit", icon: PencilRuler, index: "01" },
+  { id: "clinwide", icon: Stethoscope, index: "01", featured: true },
   { id: "newWebsite", icon: PanelsTopLeft, index: "02", featured: true },
   { id: "crm", icon: Workflow, index: "03" },
-  { id: "cliniccard", icon: Stethoscope, index: "04", featured: true },
+  { id: "siteEdit", icon: PencilRuler, index: "04" },
   { id: "chatbot", icon: Bot, index: "05" },
 ];

@@ -52,8 +52,8 @@ export function ProjectsGrid() {
       <div className="mt-28 flex flex-wrap items-end justify-between gap-7 border-t border-white/15 pt-5"><div><span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">Products / Systems</span><h2 className="mt-4 max-w-[10ch] text-4xl font-semibold uppercase leading-[.88] tracking-[-.06em] sm:text-6xl">{t.projects.systemsLabel}</h2></div><p className="max-w-md text-sm leading-relaxed text-white/42">{t.projects.systemsDescription}</p></div>
 
       <div className="mt-10 grid gap-4 lg:grid-cols-12 lg:items-stretch">
-        <m.div className="lg:col-span-7 lg:row-span-2" initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .72, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id="cliniccard" index={0} copy={t.projects.productCases.cliniccard} variant="featured" featuredLabel={t.projects.featuredProduct} /></m.div>
-        {(["crm", "chatbot"] as const).map((id, index) => <m.div className="lg:col-span-5" key={id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .66, delay: (index + 1) * .07, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id={id} index={index + 1} copy={t.projects.productCases[id]} variant="compact" /></m.div>)}
+        <m.div className="lg:col-span-12" initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .72, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id="clinwide" index={0} copy={t.projects.productCases.clinwide} variant="featured" featuredLabel={t.projects.featuredProduct} /></m.div>
+        {(["crm", "chatbot"] as const).map((id, index) => <m.div className="lg:col-span-6" key={id} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: .66, delay: (index + 1) * .07, ease: [0.16, 1, 0.3, 1] }}><ProductCaseCover id={id} index={index + 1} copy={t.projects.productCases[id]} variant="compact" /></m.div>)}
       </div>
     </Container>
   );

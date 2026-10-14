@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   keywords: [
-    "ClinicCard",
+    "Clinwide",
     "система управління клінікою",
     "CRM для клініки",
     "електронна картка пацієнта",

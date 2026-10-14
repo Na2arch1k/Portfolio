@@ -1,6 +1,6 @@
 import { Stethoscope, PanelsTopLeft, Bot, Workflow, type LucideIcon } from "lucide-react";
 
-export type ServiceId = "cliniccard" | "websites" | "chatbots" | "crm";
+export type ServiceId = "clinwide" | "websites" | "chatbots" | "crm";
 
 export interface Service {
   id: ServiceId;
@@ -10,7 +10,7 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   { id: "websites", icon: PanelsTopLeft, index: "01" },
-  { id: "cliniccard", icon: Stethoscope, index: "02" },
+  { id: "clinwide", icon: Stethoscope, index: "02" },
   { id: "chatbots", icon: Bot, index: "03" },
   { id: "crm", icon: Workflow, index: "04" },
 ];

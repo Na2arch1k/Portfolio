@@ -12,6 +12,7 @@ function ServiceCard({ service, index, mobile = false }: { service: Service; ind
   const { t } = useLanguage();
   const copy = t.services.items[service.id];
   const Icon = service.icon;
+  const hasOffer = "oldPrice" in copy && "offerLabel" in copy;
 
   return (
     <m.article
@@ -23,7 +24,7 @@ function ServiceCard({ service, index, mobile = false }: { service: Service; ind
       <div className="relative flex w-full flex-col">
         <div className="flex items-start justify-between gap-4">
           <span className="grid h-11 w-11 place-items-center border border-white/15 bg-white/[.04] text-accent transition-colors duration-500 group-hover:bg-accent group-hover:text-black sm:h-14 sm:w-14"><Icon size={22} strokeWidth={1.35} /></span>
-          <div className="text-right"><span className="block font-mono text-[7px] uppercase tracking-[.17em] text-white/28">Solution / {service.index}</span>{service.id === "cliniccard" && <span className="mt-2 inline-block border border-accent/40 px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em] text-accent">{t.services.popularBadge}</span>}</div>
+          <div className="text-right"><span className="block font-mono text-[7px] uppercase tracking-[.17em] text-white/28">Solution / {service.index}</span>{service.id === "clinwide" && <span className="mt-2 inline-block border border-accent/40 px-2 py-1 font-mono text-[7px] uppercase tracking-[.14em] text-accent">{t.services.popularBadge}</span>}</div>
         </div>
 
         <div className={`mt-auto ${mobile ? "pt-5" : "pt-10"}`}>
@@ -34,7 +35,13 @@ function ServiceCard({ service, index, mobile = false }: { service: Service; ind
             {copy.features.map((feature) => <li key={feature} className="flex min-h-12 items-center gap-2 bg-[#0f0f0d] p-2.5 text-[9px] leading-snug text-white/58 sm:p-3"><Check size={11} className="shrink-0 text-accent" />{feature}</li>)}
           </ul>
           <div className="mt-5 flex items-end justify-between gap-4 border-t border-white/12 pt-5 sm:mt-6">
-            <div><span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/28">{t.services.investmentLabel}</span><strong className="mt-1 block text-xl uppercase tracking-[-.045em] sm:text-2xl">{copy.price}</strong></div>
+            <div>
+              <span className="font-mono text-[7px] uppercase tracking-[.14em] text-white/34">{hasOffer ? copy.offerLabel : t.services.investmentLabel}</span>
+              <div className="mt-1 flex items-baseline gap-3">
+                <strong className="block text-xl uppercase tracking-[-.045em] sm:text-2xl">{copy.price}</strong>
+                {hasOffer && <s className="font-mono text-base text-white/55 decoration-accent decoration-1 sm:text-lg">{copy.oldPrice}</s>}
+              </div>
+            </div>
             <a href="#contact" className="grid h-12 w-12 shrink-0 place-items-center bg-[#efeee8] text-black transition-[background-color,transform] duration-300 hover:-translate-y-1 hover:bg-accent" aria-label={copy.cta}><ArrowUpRight size={17} /></a>
           </div>
         </div>

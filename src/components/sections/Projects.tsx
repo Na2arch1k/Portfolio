@@ -147,9 +147,9 @@ export function Projects() {
       <Container className="relative mt-20 px-4 sm:mt-32 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-8 border-t border-white/15 pt-5"><div><span className="font-mono text-[8px] uppercase tracking-[.17em] text-accent">Products / Systems</span><h3 className="mt-4 max-w-[11ch] text-4xl font-semibold uppercase leading-[.9] tracking-[-.06em] sm:text-6xl">{t.projects.systemsLabel}</h3></div><p className="max-w-md text-sm leading-relaxed text-white/42">{t.projects.systemsDescription}</p></div>
         <div className="mt-12 grid gap-4 lg:grid-cols-12 lg:items-stretch">
-          <Reveal className="lg:col-span-7 lg:row-span-2" y={54}><ProductCaseCover id="cliniccard" index={0} copy={t.projects.productCases.cliniccard} variant="featured" featuredLabel={t.projects.featuredProduct} /></Reveal>
-          <Reveal className="lg:col-span-5" delay={.08} y={42}><ProductCaseCover id="crm" index={1} copy={t.projects.productCases.crm} variant="compact" /></Reveal>
-          <Reveal className="lg:col-span-5" delay={.14} y={42}><ProductCaseCover id="chatbot" index={2} copy={t.projects.productCases.chatbot} variant="compact" /></Reveal>
+          <Reveal className="lg:col-span-12" y={32}><ProductCaseCover id="clinwide" index={0} copy={t.projects.productCases.clinwide} variant="featured" featuredLabel={t.projects.featuredProduct} /></Reveal>
+          <Reveal className="lg:col-span-6" delay={.08} y={28}><ProductCaseCover id="crm" index={1} copy={t.projects.productCases.crm} variant="compact" /></Reveal>
+          <Reveal className="lg:col-span-6" delay={.14} y={28}><ProductCaseCover id="chatbot" index={2} copy={t.projects.productCases.chatbot} variant="compact" /></Reveal>
         </div>
         <Reveal className="mt-10 flex justify-end"><Button href="/projects" variant="secondary" size="lg" icon={<ArrowRight size={16} />}>{t.projects.viewAll}</Button></Reveal>
       </Container>
