@@ -25,8 +25,8 @@ export function ClinwideFeature({ copy, href, featuredLabel }: {
             <i className="h-1.5 w-1.5 rounded-full bg-[#cfaa8b]" /><i className="h-1.5 w-1.5 rounded-full bg-[#d7d2ab]" /><i className="h-1.5 w-1.5 rounded-full bg-[#96ad75]" />
             <span className="ml-auto font-mono text-[7px] text-black/40">clinwide / workspace</span>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/11]">
-            <Image src="/projects/clinwide-schedule.png" alt={feature.imageAlt} fill sizes="(max-width: 1024px) 90vw, 55vw" className="object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.015]" />
+          <div className="relative aspect-[16/10] overflow-hidden">
+            <Image src="/projects/clinwide-schedule-actual.png" alt={feature.imageAlt} fill sizes="(max-width: 1024px) 90vw, 55vw" className="object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.015]" />
           </div>
         </a>
         <p className="mt-4 text-[11px] leading-relaxed text-white/40">{feature.caption}</p>

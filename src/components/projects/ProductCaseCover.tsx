@@ -41,7 +41,7 @@ function ScreenshotPreview({ id }: { id: "clinwide" | "chatbot" }) {
       <div className="h-full overflow-hidden border border-white/10 bg-black shadow-2xl">
         <BrowserBar domain={isClinic ? "clinwide / product tour" : "ai-assistant.app / inbox"} />
         <div className="relative h-[calc(100%_-_2rem)] overflow-hidden">
-          <Image src={isClinic ? "/projects/clinwide-schedule.png" : "/projects/chatbot-dashboard.png"} alt="" fill sizes="(max-width: 640px) 100vw, 42vw" className={`object-cover object-top transition-transform duration-[1300ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.025] ${isClinic ? "object-left" : "object-center"}`} />
+          <Image src={isClinic ? "/projects/clinwide-schedule-actual.png" : "/projects/chatbot-dashboard.png"} alt="" fill sizes="(max-width: 640px) 100vw, 42vw" className={`object-cover object-top transition-transform duration-[1300ms] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.025] ${isClinic ? "object-left" : "object-center"}`} />
           <div className={`pointer-events-none absolute inset-0 ${isClinic ? "bg-[radial-gradient(circle_at_24%_18%,rgba(36,201,226,.13),transparent_42%)]" : "bg-[radial-gradient(circle_at_78%_16%,rgba(255,91,51,.13),transparent_38%)]"}`} />
         </div>
       </div>
